@@ -1,0 +1,107 @@
+{
+  "name": "tasjeel",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/cds": "^10",
+    "@sap/cds-common-content": "^3.2.0",
+    "@sap/xssec": "^4.15.0"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^1.0.2",
+    "@cap-js/sqlite": "^3",
+    "@phosphor-icons/web": "^2.1.2",
+    "less": "^4.9.1"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "test": "node --test test/*.test.js",
+    "build:css": "lessc app/portal/webapp/css/less/main.less app/portal/webapp/css/style.css",
+    "watch:css": "node -e \"require('fs').watch('app/portal/webapp/css/less',()=>require('child_process').execSync('npm run build:css',{stdio:'inherit'}))\"",
+    "mock:s4": "cd mock-s4 && cds watch --port 4006",
+    "hybrid": "cds watch --profile hybrid --port 4008",
+    "router:hybrid": "PORT=5001 destinations='[{\"name\":\"srv-api\",\"url\":\"http://localhost:4008\",\"forwardAuthToken\":true}]' cds bind --profile hybrid --exec -- npm start --prefix app/router"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "vendor1": {
+              "password": "",
+              "roles": [
+                "Applicant"
+              ],
+              "attr": {}
+            },
+            "vendor2": {
+              "password": "",
+              "roles": [
+                "Applicant"
+              ],
+              "attr": {}
+            },
+            "reviewer": {
+              "password": "",
+              "roles": [
+                "Reviewer"
+              ],
+              "attr": {}
+            },
+            "admin": {
+              "password": "",
+              "roles": [
+                "Admin",
+                "Reviewer"
+              ],
+              "attr": {}
+            },
+            "*": false
+          }
+        },
+        "[hybrid]": {
+          "kind": "xsuaa"
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "S4_SANDBOX": {
+        "kind": "odata-v2",
+        "model": "srv/external/S4_SANDBOX",
+        "[development]": {
+          "credentials": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "S4_SANDBOX",
+            "path": "/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+          }
+        }
+      },
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "[development]": {
+          "credentials": {
+            "url": "http://localhost:4006/odata/v2/api-business-partner"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "S4_ONPREM",
+            "path": "/odata/v2/api-business-partner"
+          }
+        }
+      }
+    }
+  }
+}

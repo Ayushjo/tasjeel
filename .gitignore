@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------- dependencies
+node_modules/
+
+# ---------------------------------------------------------------- secrets & local bindings (never commit)
+# .cdsrc-private.json: api.sap.com sandbox key + `cds bind` references for hybrid mode
+.cdsrc-private.json
+default-env.json
+default-services.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+# Cloud Foundry / BTP CLI local state
+.cf/
+.btp/
+
+# ---------------------------------------------------------------- CAP build output & local databases
+gen/
+_out/
+target/
+@cds-models/
+*.sqlite
+*.sqlite-journal
+*.db
+
+# ---------------------------------------------------------------- MTA / UI5 build output
+mta_archives/
+*_mta_build_tmp/
+*.mtar
+dist/
+resources/mta-*/
+.ui5/
+
+# ---------------------------------------------------------------- tests & tooling
+coverage/
+.nyc_output/
+*.log
+npm-debug.log*
+.eslintcache
+
+# ---------------------------------------------------------------- editors & OS
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
