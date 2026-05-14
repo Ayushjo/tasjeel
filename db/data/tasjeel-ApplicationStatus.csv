@@ -1,0 +1,8 @@
+code;name;descr;criticality;sortOrder
+DRAFT;Draft;Being prepared by the supplier;0;1
+SUBMITTED;Pending approval;Submitted, waiting for a reviewer;0;2
+IN_REVIEW;Under review;A reviewer is checking the application;2;3
+CHANGES_REQUESTED;Changes requested;The supplier must correct flagged items;2;4
+APPROVED;Approved;Approved, supplier record being created in SAP;3;5
+REGISTERED;Registered in SAP;Business Partner created in S/4HANA;3;6
+REJECTED;Rejected;Application rejected;1;7
