@@ -1,0 +1,11 @@
+locale;code;name;descr
+ar;UNIFIED_CR;شهادة الرقم الموحد (السجل التجاري);
+ar;VAT_CERT;شهادة التسجيل في ضريبة القيمة المضافة;
+ar;ZAKAT_CERT;شهادة الزكاة;
+ar;GOSI_CERT;شهادة التأمينات الاجتماعية;
+ar;CHAMBER_CERT;شهادة عضوية الغرفة التجارية;
+ar;IBAN_LETTER;خطاب الآيبان من البنك;
+ar;TRADE_LICENSE;الرخصة التجارية;
+ar;MISA_LICENSE;ترخيص وزارة الاستثمار;
+ar;ISO_CERT;شهادة الأيزو;
+ar;OTHER;مستند آخر;

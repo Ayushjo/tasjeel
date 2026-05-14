@@ -1,0 +1,11 @@
+code;name;requiredFor;hasExpiry
+UNIFIED_CR;Unified number certificate (CR);LOCAL;false
+VAT_CERT;VAT registration certificate;LOCAL,GCC;false
+ZAKAT_CERT;Zakat certificate;LOCAL;true
+GOSI_CERT;GOSI certificate;LOCAL;true
+CHAMBER_CERT;Chamber of Commerce membership;LOCAL;true
+IBAN_LETTER;IBAN letter from the bank;LOCAL,GCC,FOREIGN;false
+TRADE_LICENSE;Trade license;GCC,FOREIGN;true
+MISA_LICENSE;MISA investment license;FOREIGN;true
+ISO_CERT;ISO certificate;;true
+OTHER;Other document;;false
