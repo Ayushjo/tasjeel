@@ -1,0 +1,73 @@
+### Tasjeel API walkthrough: open in VS Code with the "REST Client" extension and click "Send Request".
+### Start the server first:  cds watch
+### Mock users (no passwords): vendor1, vendor2 (Applicant) · reviewer (Reviewer) · admin (Admin + Reviewer)
+
+@host = http://localhost:4004
+@vendor = vendor2:
+@reviewer = reviewer:
+
+### 1. Supplier: create a draft (copy the returned ID into @id below)
+POST {{host}}/odata/v4/applicant/Applications
+Authorization: Basic {{vendor}}
+Content-Type: application/json
+
+{}
+
+###
+@id = paste-the-ID-here
+
+### 2. Autosave: PATCH the draft (Arabic-Indic digits and spaces get normalized, bank detected from IBAN)
+PATCH {{host}}/odata/v4/applicant/Applications(ID={{id}},IsActiveEntity=false)
+Authorization: Basic {{vendor}}
+Content-Type: application/json
+
+{ "legalNameEn": "Ofuq Engineering Co.", "unifiedNo": "٧٠٥٥٥٥٥٥٥٥", "iban": "SA03 8000 0000 6080 1016 7519" }
+
+### 3. What's still needed (in Arabic)
+GET {{host}}/odata/v4/applicant/Applications(ID={{id}},IsActiveEntity=false)/ApplicantService.requirements()
+Authorization: Basic {{vendor}}
+Accept-Language: ar
+
+### 4. Try to activate: 400 with one error per field, each with a "target"
+POST {{host}}/odata/v4/applicant/Applications(ID={{id}},IsActiveEntity=false)/ApplicantService.draftActivate
+Authorization: Basic {{vendor}}
+Content-Type: application/json
+
+{}
+
+### 5. IBAN lookup while typing
+GET {{host}}/odata/v4/applicant/lookupIban(iban='SA0380000000608010167519')
+Authorization: Basic {{vendor}}
+Accept-Language: ar
+
+### 6. Reviewer queue: newest first, with status names and count
+GET {{host}}/odata/v4/review/Applications?$select=applicationNo,legalNameEn,riskLevel,submittedAt&$expand=status($select=name)&$orderby=submittedAt desc&$top=10&$count=true
+Authorization: Basic {{reviewer}}
+
+### 7. Search the queue by name or unified number
+GET {{host}}/odata/v4/review/Applications?$filter=contains(legalNameEn,'Najd') or unifiedNo eq '7012345678'&$select=applicationNo,legalNameEn
+Authorization: Basic {{reviewer}}
+
+### 8. Reviewer actions on an application (replace the ID)
+POST {{host}}/odata/v4/review/Applications(8293e5d9-aeca-fbcd-9ab4-ca1669f8e977)/ReviewService.requestChanges
+Authorization: Basic {{reviewer}}
+Content-Type: application/json
+
+{ "note": "Please upload a valid GOSI certificate.", "fields": ["gosiNo"] }
+
+### 9. Duplicate check (same unified number / VAT / IBAN)
+GET {{host}}/odata/v4/review/Applications(8293e5d9-aeca-fbcd-9ab4-ca1669f8e977)/ReviewService.duplicates()
+Authorization: Basic {{reviewer}}
+
+### 10. Dashboard numbers (plain REST)
+GET {{host}}/rest/stats/summary
+Authorization: Basic {{reviewer}}
+
+###
+GET {{host}}/rest/stats/byCategory
+Authorization: Basic {{reviewer}}
+Accept-Language: ar
+
+### 11. Security check: a supplier calling the reviewer API → 403
+GET {{host}}/odata/v4/review/Applications
+Authorization: Basic {{vendor}}
