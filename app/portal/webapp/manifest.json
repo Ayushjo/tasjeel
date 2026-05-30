@@ -1,0 +1,72 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "tasjeel.portal",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": { "version": "0.3.0" },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "applicant": { "uri": "/odata/v4/applicant/", "type": "OData", "settings": { "odataVersion": "4.0" } },
+      "review": { "uri": "/odata/v4/review/", "type": "OData", "settings": { "odataVersion": "4.0" } }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+  },
+  "sap.ui5": {
+    "rootView": { "viewName": "tasjeel.portal.view.App", "type": "XML", "id": "app", "async": true },
+    "dependencies": {
+      "minUI5Version": "1.148.0",
+      "libs": { "sap.m": {}, "sap.tnt": {}, "sap.f": {}, "sap.ui.layout": {}, "sap.uxap": { "lazy": true } }
+    },
+    "contentDensities": { "compact": true, "cozy": true },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": { "bundleName": "tasjeel.portal.i18n.i18n", "supportedLocales": ["", "ar"], "fallbackLocale": "" }
+      },
+      "": {
+        "dataSource": "applicant",
+        "settings": { "operationMode": "Server", "autoExpandSelect": true, "groupId": "$auto" }
+      },
+      "review": {
+        "dataSource": "review",
+        "settings": { "operationMode": "Server", "autoExpandSelect": true, "groupId": "$auto" }
+      }
+    },
+    "resources": { "css": [{ "uri": "css/style.css" }] },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "path": "tasjeel.portal.view",
+        "controlId": "pages",
+        "controlAggregation": "pages",
+        "transition": "show",
+        "async": true,
+        "bypassed": { "target": "notFound" }
+      },
+      "routes": [
+        { "name": "welcome", "pattern": "", "target": "welcome" },
+        { "name": "home", "pattern": "home", "target": "home" },
+        { "name": "wizard", "pattern": "apply/:step:", "target": "wizard" },
+        { "name": "inbox", "pattern": "inbox/:id:", "target": "inbox" },
+        { "name": "dashboard", "pattern": "dashboard", "target": "dashboard" },
+        { "name": "settings", "pattern": "settings", "target": "settings" }
+      ],
+      "targets": {
+        "welcome": { "id": "welcome", "name": "Welcome", "level": 0 },
+        "home": { "id": "home", "name": "Home", "level": 1 },
+        "wizard": { "id": "wizard", "name": "Wizard", "level": 2 },
+        "inbox": { "id": "inbox", "name": "Inbox", "level": 1 },
+        "dashboard": { "id": "dashboard", "name": "Dashboard", "level": 1 },
+        "settings": { "id": "settings", "name": "Settings", "level": 1 },
+        "notFound": { "id": "notFound", "name": "NotFound", "transition": "show" }
+      }
+    }
+  }
+}
