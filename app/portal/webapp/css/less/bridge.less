@@ -1,0 +1,108 @@
+// Bridge: our tokens → SAP Horizon theming parameters (CSS custom properties).
+// Standard UI5 controls then render in Tasjeel's look without per-control CSS.
+// Variable names verified against SAP/theming-base-content sap_horizon/css_variables.css.
+// ":root:root" out-ranks the theme's own ":root" regardless of stylesheet load order.
+.tj-sap-bridge() {
+  --sapBrandColor: var(--tjAccent);
+  --sapHighlightColor: var(--tjAccent);
+  --sapSelectedColor: var(--tjAccent);
+  --sapLinkColor: var(--tjAccent);
+  --sapContent_FocusColor: var(--tjAccent);
+  --sapBackgroundColor: var(--tjBg);
+  --sapShellColor: var(--tjSurface);
+  --sapShell_Background: var(--tjSurface);
+  --sapShell_BorderColor: var(--tjBorder);
+  --sapTextColor: var(--tjText);
+  --sapContent_LabelColor: var(--tjMuted);
+  --sapGroup_TitleBackground: var(--tjSurface);
+  --sapGroup_ContentBorderColor: var(--tjBorder);
+  --sapList_Background: var(--tjSurface);
+  --sapList_BorderColor: var(--tjBorder);
+  --sapList_Hover_Background: var(--tjHover);
+  --sapList_SelectionBackgroundColor: var(--tjAccentSoft);
+  --sapList_Active_Background: var(--tjAccent);
+  --sapField_Background: var(--tjSurface);
+  --sapField_BorderColor: var(--tjBorderStrong);
+  --sapField_Hover_BorderColor: var(--tjMuted);
+  --sapField_Focus_BorderColor: var(--tjAccent);
+  --sapField_BackgroundStyle: none;          // Horizon's dark bottom-border emphasis
+  --sapField_Hover_BackgroundStyle: none;
+  --sapField_InvalidBackgroundStyle: none;
+  --sapField_InvalidColor: var(--tjRejected);
+  --sapField_InvalidBorderStyle: solid;       // Horizon: no border, pink inner shadow + bottom bar
+  --sapField_InvalidBorderWidth: 1px;
+  --sapField_InvalidBackground: var(--tjSurface);
+  --sapField_InvalidShadow: 0 0 0 3px color-mix(in srgb, var(--tjRejected) 14%, transparent);
+  --sapField_TextColor: var(--tjText);
+  --sapField_PlaceholderTextColor: var(--tjSubtle);
+  --sapTitleColor: var(--tjText);
+  --sapGroup_TitleTextColor: var(--tjText);
+  --sapContent_IconColor: var(--tjText);
+  --sapContent_NonInteractiveIconColor: var(--tjMuted);
+  --sapButton_IconColor: var(--tjText);
+  // Semantic "information" = calm neutral + accent icon (Horizon uses saturated blue)
+  --sapInformationBackground: var(--tjSurface2);
+  --sapInformationBorderColor: var(--tjBorder);
+  --sapInformationColor: var(--tjAccent);
+  --sapInformativeElementColor: var(--tjAccent);
+  --sapNeutralBackground: var(--tjSurface2);
+  --sapNeutralBorderColor: var(--tjBorder);
+  --sapMessage_InformationBorderColor: var(--tjBorder);
+  --sapField_Active_BorderColor: var(--tjAccent);
+  --sapShell_InteractiveTextColor: var(--tjText);
+  --sapShell_Navigation_TextColor: var(--tjText);
+  // Avatars default to accent 6 (blue): make that our teal
+  --sapAvatar_6_Background: var(--tjAccentSoft);
+  --sapAvatar_6_TextColor: var(--tjAccent);
+  --sapAccentColor6: var(--tjAccent);
+  --sapButton_Background: var(--tjSurface);
+  --sapButton_BorderColor: var(--tjBorderStrong);
+  --sapButton_TextColor: var(--tjText);
+  --sapButton_Hover_Background: var(--tjHover);
+  --sapButton_Hover_BorderColor: var(--tjBorderStrong);
+  --sapButton_Hover_TextColor: var(--tjText);
+  --sapButton_Lite_TextColor: var(--tjMuted);
+  --sapButton_Emphasized_Background: var(--tjAccent);
+  --sapButton_Emphasized_BorderColor: var(--tjAccent);
+  --sapButton_Emphasized_TextColor: var(--tjOnAccent);
+  --sapButton_Emphasized_Hover_Background: var(--tjAccentHover);
+  --sapButton_Emphasized_Hover_BorderColor: var(--tjAccentHover);
+  --sapButton_Emphasized_Hover_TextColor: var(--tjOnAccent);
+  --sapButton_Emphasized_Active_Background: var(--tjAccentHover);
+  --sapButton_Selected_Background: var(--tjAccentSoft);
+  --sapButton_Selected_BorderColor: var(--tjAccent);
+  --sapButton_Selected_TextColor: var(--tjText);
+  --sapContent_Selected_Background: var(--tjAccentSoft);
+  --sapContent_Selected_ForegroundColor: var(--tjAccent); // checkbox tick
+  --sapContent_Selected_TextColor: var(--tjAccent);
+  // Typography: one superfamily for Latin + Arabic, mono for identifiers
+  --sapFontFamily: @font;
+  --sapFontLightFamily: @font;
+  --sapFontBoldFamily: @font;
+  --sapFontSemiboldFamily: @font;
+  --sapFontSemiboldDuplexFamily: @font;
+  --sapFontBlackFamily: @font;
+  --sapFontHeaderFamily: @font;
+  --sapButton_FontFamily: @font;
+  --sapButton_Emphasized_FontFamily: @font;
+  --sapObjectHeader_Title_FontFamily: @font;
+  --sapContent_MonospaceFontFamily: @font-mono;
+  --sapContent_MonospaceBoldFontFamily: @font-mono;
+  // Corners: 2–4px everywhere (Horizon defaults are 8–16px)
+  --sapButton_BorderCornerRadius: @r;
+  --sapButton_Segment_BorderCornerRadius: @r;
+  --sapButton_TokenBorderCornerRadius: @r-xs;
+  --sapField_BorderCornerRadius: @r;
+  --sapElement_BorderCornerRadius: @r-lg;
+  --sapGroup_BorderCornerRadius: @r-lg;
+  --sapPopover_BorderCornerRadius: @r-lg;
+  --sapTile_BorderCornerRadius: @r-lg;
+}
+
+:root:root { .tj-light(); .tj-sap-bridge(); }
+:root:root.tjDark { .tj-dark(); }
+:root:root:lang(ar) {
+  --sapFontFamily: @font-ar; --sapFontBoldFamily: @font-ar; --sapFontSemiboldFamily: @font-ar;
+  --sapFontSemiboldDuplexFamily: @font-ar; --sapFontHeaderFamily: @font-ar; --sapButton_FontFamily: @font-ar;
+  --sapButton_Emphasized_FontFamily: @font-ar;
+}

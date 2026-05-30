@@ -1,0 +1,2478 @@
+:root:root {
+  --tjBg: #f7f7f5;
+  --tjSurface: #ffffff;
+  --tjSurface2: #f1f1ee;
+  --tjHover: #f1f1ee;
+  --tjBorder: #e3e3df;
+  --tjBorderStrong: #cfcfca;
+  --tjText: #161616;
+  --tjMuted: #64645f;
+  --tjSubtle: #9a9a94;
+  --tjAccent: #0f5f58;
+  --tjAccentHover: #0b4a45;
+  --tjAccentSoft: #e3efed;
+  --tjOnAccent: #ffffff;
+  --tjFocus: rgba(15, 95, 88, 0.3);
+  --tjDraft: #6f6f69;
+  --tjSubmitted: #3f5bd9;
+  --tjReview: #b26a00;
+  --tjChanges: #c4500e;
+  --tjApproved: #1d7a4b;
+  --tjRejected: #c4293d;
+  --sapBrandColor: var(--tjAccent);
+  --sapHighlightColor: var(--tjAccent);
+  --sapSelectedColor: var(--tjAccent);
+  --sapLinkColor: var(--tjAccent);
+  --sapContent_FocusColor: var(--tjAccent);
+  --sapBackgroundColor: var(--tjBg);
+  --sapShellColor: var(--tjSurface);
+  --sapShell_Background: var(--tjSurface);
+  --sapShell_BorderColor: var(--tjBorder);
+  --sapTextColor: var(--tjText);
+  --sapContent_LabelColor: var(--tjMuted);
+  --sapGroup_TitleBackground: var(--tjSurface);
+  --sapGroup_ContentBorderColor: var(--tjBorder);
+  --sapList_Background: var(--tjSurface);
+  --sapList_BorderColor: var(--tjBorder);
+  --sapList_Hover_Background: var(--tjHover);
+  --sapList_SelectionBackgroundColor: var(--tjAccentSoft);
+  --sapList_Active_Background: var(--tjAccent);
+  --sapField_Background: var(--tjSurface);
+  --sapField_BorderColor: var(--tjBorderStrong);
+  --sapField_Hover_BorderColor: var(--tjMuted);
+  --sapField_Focus_BorderColor: var(--tjAccent);
+  --sapField_BackgroundStyle: none;
+  --sapField_Hover_BackgroundStyle: none;
+  --sapField_InvalidBackgroundStyle: none;
+  --sapField_InvalidColor: var(--tjRejected);
+  --sapField_InvalidBorderStyle: solid;
+  --sapField_InvalidBorderWidth: 1px;
+  --sapField_InvalidBackground: var(--tjSurface);
+  --sapField_InvalidShadow: 0 0 0 3px color-mix(in srgb, var(--tjRejected) 14%, transparent);
+  --sapField_TextColor: var(--tjText);
+  --sapField_PlaceholderTextColor: var(--tjSubtle);
+  --sapTitleColor: var(--tjText);
+  --sapGroup_TitleTextColor: var(--tjText);
+  --sapContent_IconColor: var(--tjText);
+  --sapContent_NonInteractiveIconColor: var(--tjMuted);
+  --sapButton_IconColor: var(--tjText);
+  --sapInformationBackground: var(--tjSurface2);
+  --sapInformationBorderColor: var(--tjBorder);
+  --sapInformationColor: var(--tjAccent);
+  --sapInformativeElementColor: var(--tjAccent);
+  --sapNeutralBackground: var(--tjSurface2);
+  --sapNeutralBorderColor: var(--tjBorder);
+  --sapMessage_InformationBorderColor: var(--tjBorder);
+  --sapField_Active_BorderColor: var(--tjAccent);
+  --sapShell_InteractiveTextColor: var(--tjText);
+  --sapShell_Navigation_TextColor: var(--tjText);
+  --sapAvatar_6_Background: var(--tjAccentSoft);
+  --sapAvatar_6_TextColor: var(--tjAccent);
+  --sapAccentColor6: var(--tjAccent);
+  --sapButton_Background: var(--tjSurface);
+  --sapButton_BorderColor: var(--tjBorderStrong);
+  --sapButton_TextColor: var(--tjText);
+  --sapButton_Hover_Background: var(--tjHover);
+  --sapButton_Hover_BorderColor: var(--tjBorderStrong);
+  --sapButton_Hover_TextColor: var(--tjText);
+  --sapButton_Lite_TextColor: var(--tjMuted);
+  --sapButton_Emphasized_Background: var(--tjAccent);
+  --sapButton_Emphasized_BorderColor: var(--tjAccent);
+  --sapButton_Emphasized_TextColor: var(--tjOnAccent);
+  --sapButton_Emphasized_Hover_Background: var(--tjAccentHover);
+  --sapButton_Emphasized_Hover_BorderColor: var(--tjAccentHover);
+  --sapButton_Emphasized_Hover_TextColor: var(--tjOnAccent);
+  --sapButton_Emphasized_Active_Background: var(--tjAccentHover);
+  --sapButton_Selected_Background: var(--tjAccentSoft);
+  --sapButton_Selected_BorderColor: var(--tjAccent);
+  --sapButton_Selected_TextColor: var(--tjText);
+  --sapContent_Selected_Background: var(--tjAccentSoft);
+  --sapContent_Selected_ForegroundColor: var(--tjAccent);
+  --sapContent_Selected_TextColor: var(--tjAccent);
+  --sapFontFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontLightFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontBoldFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontSemiboldFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontSemiboldDuplexFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontBlackFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontHeaderFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapButton_FontFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapButton_Emphasized_FontFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapObjectHeader_Title_FontFamily: "IBM Plex Sans", system-ui, sans-serif;
+  --sapContent_MonospaceFontFamily: "IBM Plex Mono", ui-monospace, monospace;
+  --sapContent_MonospaceBoldFontFamily: "IBM Plex Mono", ui-monospace, monospace;
+  --sapButton_BorderCornerRadius: 3px;
+  --sapButton_Segment_BorderCornerRadius: 3px;
+  --sapButton_TokenBorderCornerRadius: 2px;
+  --sapField_BorderCornerRadius: 3px;
+  --sapElement_BorderCornerRadius: 4px;
+  --sapGroup_BorderCornerRadius: 4px;
+  --sapPopover_BorderCornerRadius: 4px;
+  --sapTile_BorderCornerRadius: 4px;
+}
+:root:root.tjDark {
+  --tjBg: #111110;
+  --tjSurface: #191918;
+  --tjSurface2: #141413;
+  --tjHover: #222220;
+  --tjBorder: #2a2a28;
+  --tjBorderStrong: #3a3a37;
+  --tjText: #ececea;
+  --tjMuted: #9a9a94;
+  --tjSubtle: #6a6a65;
+  --tjAccent: #4fb3a6;
+  --tjAccentHover: #6cc4b8;
+  --tjAccentSoft: #17302d;
+  --tjOnAccent: #0c1f1d;
+  --tjFocus: rgba(79, 179, 166, 0.35);
+  --tjDraft: #9a9a94;
+  --tjSubmitted: #8196f0;
+  --tjReview: #e0a03c;
+  --tjChanges: #ec8a4f;
+  --tjApproved: #4cb782;
+  --tjRejected: #ec6a7c;
+}
+:root:root:lang(ar) {
+  --sapFontFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontBoldFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontSemiboldFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontSemiboldDuplexFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --sapFontHeaderFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --sapButton_FontFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --sapButton_Emphasized_FontFamily: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+}
+.sapUiBody {
+  background: var(--tjBg);
+}
+.sapTntToolPage {
+  background: var(--tjBg);
+}
+.sapTntToolPage .sapTntToolHeader {
+  background: var(--tjSurface);
+  box-shadow: none;
+  border-bottom: 1px solid var(--tjBorder);
+  height: 3.25rem;
+  padding-inline: 0.75rem;
+  gap: 0.25rem;
+}
+.sapTntToolPage .tjBrand.sapMTitle {
+  color: var(--tjText);
+}
+.sapTntToolPage .tjBrand {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-inline-start: 0.5rem;
+}
+.sapTntToolPage .tjBrandSub {
+  color: var(--tjMuted);
+  margin-inline-start: 0.5rem;
+  padding-inline-start: 0.75rem;
+  border-inline-start: 1px solid var(--tjBorder);
+}
+.sapTntToolPage .tjTopNav {
+  gap: 0.125rem;
+  margin-inline-start: 1.5rem;
+}
+.sapTntToolPage .tjAvatar.sapFAvatar {
+  border-radius: 3px;
+  margin-inline-start: 0.25rem;
+  background: var(--tjAccentSoft) !important;
+  color: var(--tjAccent) !important;
+  font-weight: 600;
+}
+.sapTntToolPage .tjAvatar.sapFAvatar .sapFAvatarInitialsHolder,
+.sapTntToolPage .tjAvatar.sapFAvatar .sapFAvatarInitials {
+  color: var(--tjAccent) !important;
+}
+.sapTntToolPage .tjTopNavItem.sapMBtn .sapMBtnInner {
+  color: var(--tjMuted);
+  font-weight: 500;
+}
+.sapTntToolPage .tjTopNavItem.sapMBtn:hover .sapMBtnInner {
+  color: var(--tjText);
+}
+.sapTntToolPage .sapTntToolPageAside {
+  background: var(--tjSurface2);
+  border-inline-end: 1px solid var(--tjBorder);
+}
+.sapTntToolPage .sapTntSideNavigation,
+.sapTntToolPage .sapTntNL,
+.sapTntToolPage .sapTntSideNavigationFixed {
+  background: transparent;
+  box-shadow: none;
+}
+.sapTntToolPage .sapTntNLI,
+.sapTntToolPage .sapTntNLIFirstLevel,
+.sapTntToolPage .sapTntNLGroup {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 3px;
+}
+.sapTntToolPage .sapTntNLI:not(.sapTntNLISelected):hover {
+  background: var(--tjHover) !important;
+}
+.sapTntToolPage .sapTntNLISelected {
+  background: var(--tjSurface) !important;
+  box-shadow: inset 0 0 0 1px var(--tjBorder), inset 2px 0 0 var(--tjAccent) !important;
+}
+.sapTntToolPage .sapTntNLISelected .sapUiIcon {
+  color: var(--tjAccent);
+}
+html[dir="rtl"] .sapTntToolPage .sapTntNLISelected {
+  box-shadow: inset 0 0 0 1px var(--tjBorder), inset -2px 0 0 var(--tjAccent) !important;
+}
+.tjArea-public .sapTntToolHeaderWrapper,
+.tjArea-public .sapTntToolPageHeaderWrapper,
+.tjArea-public .sapTntToolPageAside,
+.tjArea-public .sapTntToolPageAsideContent {
+  display: none !important;
+}
+.tjArea-applicant .sapTntToolPageAside {
+  display: none !important;
+}
+.tjTabBar {
+  display: none;
+}
+@media (max-width: 760px) {
+  .tjTabBar {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 10;
+    height: 4rem;
+    padding-bottom: 0.375rem;
+    background: var(--tjSurface);
+    border-top: 1px solid var(--tjBorder);
+  }
+  .tjTabBarItem {
+    all: unset;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--tjSubtle);
+  }
+  .tjTabBarItem .tjTabBarIcon {
+    font-size: 1.25rem;
+    color: inherit;
+  }
+  .tjTabBarItem:focus-visible {
+    outline: 2px solid var(--tjAccent);
+    outline-offset: -4px;
+  }
+  .tjTabBarItemOn {
+    color: var(--tjAccent);
+  }
+  .tjTabBarItemOn::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    inset-inline: 30%;
+    height: 2px;
+    background: var(--tjAccent);
+  }
+  .tjTabBarCount {
+    position: absolute;
+    top: 0.5rem;
+    inset-inline-start: calc(50% + 0.375rem);
+    font-size: 0.625rem;
+    font-weight: 600;
+    min-width: 1rem;
+    height: 0.875rem;
+    padding: 0 0.2rem;
+    border-radius: 2px;
+    background: var(--tjAccent);
+    color: var(--tjOnAccent);
+    display: grid;
+    place-items: center;
+  }
+  .tjArea-applicant .tjPages .sapMPage > section,
+  .tjArea-staff .tjPages .sapMPage > section {
+    padding-bottom: 4.5rem;
+  }
+}
+html[data-route="home"] .tjTopNavItem[data-route="home"] .sapMBtnInner,
+html[data-route="wizard"] .tjTopNavItem[data-route="wizard"] .sapMBtnInner {
+  color: var(--tjText);
+  background: var(--tjSurface2);
+}
+.tjMono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.8125rem !important;
+  white-space: nowrap !important;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.tjMuted {
+  color: var(--tjMuted) !important;
+}
+.tjEyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.72rem !important;
+  color: var(--tjAccent) !important;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+:lang(ar) .tjEyebrow {
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif !important;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.8rem !important;
+}
+.tjH1.sapMTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+:lang(ar) .tjH1.sapMTitle {
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+.tjPage.sapMPage,
+.tjPage .sapMPageEnableScrolling {
+  background: var(--tjBg);
+}
+.tjWrap {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.tjNarrow {
+  max-width: 42rem;
+}
+.tjPageHead {
+  justify-content: space-between;
+  gap: 1rem;
+}
+.tjCard {
+  background: var(--tjSurface);
+  border: 1px solid var(--tjBorder);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tjStrip.sapMMsgStrip {
+  border-radius: 4px;
+}
+.tjList.sapMList .sapMLIB {
+  border-bottom-color: var(--tjBorder);
+}
+.tjRow {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+.tjList.sapMList .sapMCLI {
+  padding: 0;
+}
+.tjRowMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.tjRowTitle {
+  font-weight: 500 !important;
+}
+.tjRisk {
+  font-size: 0.75rem !important;
+  color: var(--tjMuted) !important;
+}
+.tjTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: 1.375rem;
+  padding: 0 0.45rem;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--tjText);
+  background: color-mix(in srgb, var(--c) 9%, var(--tjSurface));
+  border: 1px solid color-mix(in srgb, var(--c) 28%, transparent);
+}
+.tjTag .tjTagMarker {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--c);
+}
+.tjTag-draft {
+  --c: var(--tjDraft);
+}
+.tjTag-submitted {
+  --c: var(--tjSubmitted);
+}
+.tjTag-review {
+  --c: var(--tjReview);
+}
+.tjTag-changes {
+  --c: var(--tjChanges);
+}
+.tjTag-approved {
+  --c: var(--tjApproved);
+}
+.tjTag-rejected {
+  --c: var(--tjRejected);
+}
+.tjLogo {
+  display: inline-block;
+  flex: none;
+  line-height: 0;
+}
+.tjLogo .tjLogoBg {
+  fill: var(--tjAccent);
+}
+.tjLogo .tjLogoFg {
+  fill: var(--tjOnAccent);
+}
+.tjLogoInverted .tjLogoBg {
+  fill: #e9f2f0;
+}
+.tjLogoInverted .tjLogoFg {
+  fill: #0b3b37;
+}
+.tjKpis {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+}
+.tjKpi {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.tjKpi + .tjKpi {
+  border-inline-start: 1px solid var(--tjBorder);
+}
+.tjKpiLabel {
+  color: var(--tjMuted) !important;
+  font-weight: 500;
+}
+.tjKpiValue {
+  font-size: 1.75rem !important;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.tjSettings {
+  padding: 0.25rem 1rem;
+}
+.tjSettingRow {
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+.tjSettingRow + .tjSettingRow {
+  border-top: 1px solid var(--tjBorder);
+}
+html[dir="rtl"] .sapUiIconMirrorInRTL[style*="Phosphor"]::before {
+  transform: none !important;
+}
+html[dir="rtl"] .tjMirror .sapUiIcon[style*="Phosphor"]::before,
+html[dir="rtl"] .tjMirror.sapUiIcon[style*="Phosphor"]::before {
+  transform: scaleX(-1) !important;
+}
+@media (max-width: 1199px) {
+  .tjWrap {
+    padding: 1.5rem 1.5rem 3.5rem;
+  }
+}
+@media (max-width: 760px) {
+  .tjWrap {
+    padding: 1.25rem 1rem 6rem;
+  }
+  .tjRow {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+  .tjRowMain {
+    flex-basis: 100%;
+  }
+  .tjH1.sapMTitle {
+    font-size: 1.5rem;
+  }
+  .tjKpis {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tjKpi:nth-child(3) {
+    border-inline-start: 0;
+  }
+  .tjKpi:nth-child(n+3) {
+    border-top: 1px solid var(--tjBorder);
+  }
+}
+.sapMInputBaseInner::placeholder,
+.sapMInputBaseInner::-webkit-input-placeholder {
+  font-style: normal;
+}
+.tjWelcomePage .sapMPageEnableScrolling {
+  background: var(--tjSurface);
+}
+.tjWelcome {
+  display: grid !important;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 100vh;
+}
+.tjPatternPanel {
+  position: relative;
+  overflow: hidden;
+  background: #0b3b37;
+  color: #e9f2f0;
+}
+.tjPatternPanel .tjLattice {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: -60px;
+  width: 70%;
+  height: 100%;
+  color: #2c6b64;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.tjPatternPanel .tjPatternPanelContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 2.25rem 3rem;
+  box-sizing: border-box;
+}
+.tjPatternPanel .sapMText {
+  color: inherit;
+}
+html[dir="rtl"] .tjPatternPanel .tjLattice {
+  transform: scaleX(-1);
+}
+.tjWelcomeBrand {
+  gap: 0.625rem;
+}
+.tjWelcomeBrandName {
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+}
+.tjWelcomeSlash {
+  opacity: 0.4;
+}
+.tjWelcomeBrandSub {
+  opacity: 0.75;
+}
+.tjWelcomeHero {
+  margin-top: auto;
+  max-width: 32rem;
+  padding-top: 3rem;
+}
+.tjWelcomeHero .tjEyebrow {
+  color: #8cc7bf !important;
+}
+.tjHeroTitle.sapMTitle {
+  color: #fff;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  margin: 0.875rem 0 1rem;
+  white-space: normal;
+}
+:lang(ar) .tjHeroTitle.sapMTitle {
+  font-size: 2.5rem;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.tjHeroLead {
+  color: #b9d3cf !important;
+  font-size: 0.95rem !important;
+  line-height: 1.55 !important;
+  max-width: 28rem;
+}
+.tjProof {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #1f5a54;
+  display: flex;
+}
+.tjProof > * {
+  padding-inline-end: 2rem;
+}
+.tjProof > * + * {
+  padding-inline-start: 2rem;
+  border-inline-start: 1px solid #1f5a54;
+}
+.tjProofValue {
+  display: block;
+  white-space: nowrap !important;
+  font-size: 1.5rem !important;
+  font-weight: 500;
+  color: #fff !important;
+  font-variant-numeric: tabular-nums;
+}
+.tjProofLabel {
+  font-size: 0.75rem !important;
+  color: #8cc7bf !important;
+}
+.tjWelcomeFoot {
+  margin-top: 2rem;
+  gap: 1.5rem;
+}
+.tjWelcomeFoot .sapMText {
+  font-size: 0.75rem;
+  color: #6fa69e;
+}
+.tjWelcomePane {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2.5rem;
+  background: var(--tjSurface);
+}
+.tjWelcomeBox {
+  width: 100%;
+  max-width: 24rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.tjFormTitle.sapMTitle {
+  font-size: 1.625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.tjFormSub {
+  color: var(--tjMuted) !important;
+  margin: 0.5rem 0 1.75rem;
+  font-size: 0.875rem !important;
+}
+.tjFieldLabel {
+  margin-bottom: 0.375rem;
+  font-weight: 500 !important;
+}
+.tjInputLg.sapMInput {
+  height: 2.625rem;
+  margin-bottom: 0.75rem;
+}
+.tjInputLg.sapMInput .sapMInputBaseContentWrapper {
+  height: 2.625rem;
+}
+.tjBtnLg.sapMBtn {
+  height: 2.625rem;
+}
+.tjBtnLg.sapMBtn .sapMBtnInner {
+  height: 2.625rem;
+}
+.tjOr {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+.tjOr::before,
+.tjOr::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--tjBorder);
+}
+.tjOr .sapMText {
+  color: var(--tjSubtle);
+  font-size: 0.75rem;
+}
+.tjSteps {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--tjBorder);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.tjStep {
+  display: flex;
+  gap: 0.75rem;
+}
+.tjStepNo {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.75rem !important;
+  color: var(--tjAccent) !important;
+  width: 1.25rem;
+  flex: none;
+  padding-top: 0.1rem;
+}
+.tjStepTitle {
+  font-weight: 500 !important;
+}
+.tjStepText {
+  font-size: 0.75rem !important;
+  color: var(--tjMuted) !important;
+}
+.tjDemo {
+  margin-top: 1.5rem;
+  padding: 0.875rem;
+  border: 1px dashed var(--tjBorderStrong);
+  border-radius: 4px;
+  background: var(--tjSurface2);
+}
+.tjDemoTitle {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tjMuted) !important;
+}
+.tjDemoHint {
+  font-size: 0.75rem !important;
+  color: var(--tjMuted) !important;
+  margin: 0.25rem 0 0.625rem;
+}
+.tjDemoUsers {
+  gap: 0.375rem;
+}
+.tjBtnSm.sapMBtn {
+  height: 1.75rem;
+}
+.tjBtnSm.sapMBtn .sapMBtnInner {
+  height: 1.75rem;
+  min-width: 0;
+  font-size: 0.75rem;
+}
+.tjLegal {
+  text-align: center;
+  font-size: 0.75rem !important;
+  color: var(--tjSubtle) !important;
+}
+@media (max-width: 1199px) {
+  .tjPatternPanel .tjPatternPanelContent {
+    padding: 1.75rem 2rem;
+  }
+  .tjHeroTitle.sapMTitle {
+    font-size: 2.25rem;
+  }
+  .tjWelcomePane {
+    padding: 1.5rem 1.75rem;
+  }
+}
+@media (max-width: 760px) {
+  .tjWelcome {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .tjPatternPanel .tjPatternPanelContent {
+    padding: 1.25rem 1rem 1.75rem;
+    min-height: 0;
+  }
+  .tjPatternPanel .tjLattice {
+    width: 100%;
+    inset-inline-end: -40%;
+  }
+  .tjWelcomeHero {
+    margin-top: 0;
+    padding-top: 2.5rem;
+  }
+  .tjHeroTitle.sapMTitle {
+    font-size: 1.75rem;
+    margin: 0.625rem 0;
+  }
+  :lang(ar) .tjHeroTitle.sapMTitle {
+    font-size: 1.7rem;
+  }
+  .tjWelcomePane {
+    padding: 1.5rem 1rem 2rem;
+  }
+  .tjWelcomeBox {
+    margin: 0 0 2rem;
+    max-width: none;
+  }
+}
+.tjNoRole {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.tjNoRoleIcon {
+  font-size: 1.5rem;
+  color: var(--tjMuted);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid !important;
+  place-items: center;
+  border: 1px solid var(--tjBorder);
+  border-radius: 4px;
+  background: var(--tjSurface2);
+}
+.tjNoRole .tjFormSub {
+  margin-bottom: 0;
+}
+.tjNoRoleList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  border: 1px solid var(--tjBorder);
+  border-radius: 4px;
+}
+.tjNoRole .tjBtnLg {
+  margin-top: 0.5rem;
+}
+.tjWizPage .sapMPageEnableScrolling,
+.tjWizPage > section {
+  background: var(--tjBg);
+}
+.tjWizPage > section {
+  overflow: hidden !important;
+}
+.tjWiz {
+  display: grid !important;
+  grid-template-columns: 16.5rem minmax(0, 1fr) 18.75rem;
+  height: 100%;
+}
+.tjWizCenter {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+}
+.tjWizState .tjWizStateIcon {
+  font-size: 2.25rem;
+  color: var(--tjMuted);
+}
+.tjWizState .tjWizStateOk {
+  color: var(--tjApproved);
+}
+.tjWizStateText {
+  max-width: 28rem;
+  color: var(--tjMuted) !important;
+  margin-bottom: 0.5rem;
+}
+.tjH2.sapMTitle {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.tjH3.sapMTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.tjSmall {
+  font-size: 0.75rem !important;
+}
+.tjStrong {
+  font-weight: 600 !important;
+}
+.tjGrow {
+  flex: 1;
+  min-width: 0;
+}
+.tjGap {
+  gap: 0.5rem;
+}
+.tjLead {
+  color: var(--tjMuted) !important;
+  font-size: 0.875rem !important;
+  margin: 0.5rem 0 1.75rem;
+  max-width: 34rem;
+  display: block;
+}
+.tjHint {
+  font-size: 0.75rem !important;
+  color: var(--tjMuted) !important;
+}
+.tjFieldError {
+  font-size: 0.75rem !important;
+  color: var(--tjRejected) !important;
+}
+.tjChip {
+  display: inline-flex;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0 0.375rem;
+  border-radius: 2px;
+  font-size: 0.72rem !important;
+  color: var(--tjMuted) !important;
+  background: var(--tjSurface2);
+  border: 1px solid var(--tjBorder);
+  white-space: nowrap;
+}
+.tjRail {
+  background: var(--tjSurface2);
+  border-inline-end: 1px solid var(--tjBorder);
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.tjRailMeta {
+  padding: 0 0.5rem 1rem;
+}
+.tjRailTitle.sapMTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.tjRailProgress.sapMPI {
+  height: 3px;
+  margin: 0.625rem 0 0;
+  border: 0;
+  background: var(--tjBorder);
+  border-radius: 0;
+}
+.tjRailProgress.sapMPI .sapMPIBar {
+  background: var(--tjAccent);
+  border-radius: 0;
+}
+.tjRailProgress.sapMPI .sapMPIText {
+  display: none;
+}
+.tjSteps.sapMList {
+  background: transparent;
+  border-inline-start: 1px solid var(--tjBorder);
+  margin-inline-start: 0.5rem;
+}
+.tjSteps.sapMList .sapMLIB {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  min-height: 0;
+}
+.tjSteps.sapMList .sapMLIBFocusable:focus {
+  outline-offset: -2px;
+}
+.tjStepItem.sapMLIB {
+  position: relative;
+}
+.tjStepItem::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -1px;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  background: transparent;
+}
+.tjStepItem[data-state="current"]::before {
+  background: var(--tjAccent);
+}
+.tjStepRow {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.55rem 0.625rem 0.55rem 0.75rem;
+  width: 100%;
+}
+.tjStepNo {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.72rem !important;
+  color: var(--tjSubtle) !important;
+  width: 1.5rem;
+  flex: none;
+  line-height: 1.3rem !important;
+}
+.tjStepCheck {
+  width: 1.5rem;
+  flex: none;
+  color: var(--tjAccent);
+  font-size: 0.95rem;
+  line-height: 1.3rem;
+}
+.tjStepEye {
+  color: var(--tjSubtle);
+}
+.tjStepText {
+  flex: 1;
+  min-width: 0;
+}
+.tjStepName {
+  font-weight: 500 !important;
+  color: var(--tjMuted) !important;
+  line-height: 1.3rem !important;
+}
+.tjStepItem[data-state="done"] .tjStepName {
+  color: var(--tjText) !important;
+}
+.tjStepItem[data-state="current"] .tjStepName {
+  color: var(--tjText) !important;
+  font-weight: 600 !important;
+}
+.tjStepItem[data-state="current"] .tjStepNo {
+  color: var(--tjAccent) !important;
+}
+.tjStepItem:hover .tjStepName {
+  color: var(--tjText) !important;
+}
+.tjStepErr {
+  font-size: 0.68rem !important;
+  font-weight: 600;
+  color: var(--tjRejected) !important;
+  padding: 0 0.375rem;
+  line-height: 1.1rem !important;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--tjRejected) 12%, transparent);
+  align-self: center;
+}
+.tjWizForm {
+  background: var(--tjBg);
+}
+.tjWizFormIn {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+.tjWizH1.sapMTitle {
+  margin-top: 0.5rem;
+  white-space: normal;
+}
+.tjNeedsInline {
+  display: none !important;
+  gap: 0.625rem;
+  padding: 0.625rem 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--tjBorder);
+  border-radius: 4px;
+  background: var(--tjSurface);
+}
+.tjNeedsBar.sapMPI {
+  flex: 1;
+  height: 4px;
+  margin: 0;
+  border: 0;
+  background: var(--tjBorder);
+  border-radius: 0;
+}
+.tjNeedsBar.sapMPI .sapMPIBar {
+  background: var(--tjAccent);
+  border-radius: 0;
+}
+.tjReviewerNote {
+  margin-bottom: 1.25rem;
+}
+.tjStepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: tj-step-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes tj-step-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+html[dir="rtl"] .tjStepBody {
+  animation-name: tj-step-in-rtl;
+}
+@keyframes tj-step-in-rtl {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tjStepBody {
+    animation: none;
+  }
+}
+.tjSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.tjSectionLabel {
+  font-weight: 500 !important;
+}
+.tjSectionHead {
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.tjGrid2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+.tjField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+.tjField .sapMLabel {
+  font-weight: 500;
+}
+.tjField .sapMInputBase,
+.tjField .sapMSlt,
+.tjField .sapMComboBox,
+.tjField .sapMMultiComboBox,
+.tjField .sapMDP {
+  width: 100% !important;
+}
+.tjSpan2 {
+  grid-column: 1 / -1;
+}
+.tjMonoInput .sapMInputBaseInner {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.02em;
+}
+.tjCheck.sapMCb {
+  padding-inline-start: 0;
+}
+.tjBtnSmall.sapMBtn {
+  height: 1.75rem;
+}
+.tjBtnSmall.sapMBtn .sapMBtnInner {
+  height: 1.75rem;
+}
+.tjChoiceGrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.625rem;
+}
+.tjChoiceGrid2 {
+  grid-template-columns: 1fr 1fr;
+}
+.tjChoice {
+  display: flex;
+  gap: 0.625rem;
+  align-items: flex-start;
+  padding: 0.75rem 0.875rem;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid var(--tjBorderStrong);
+  border-radius: 3px;
+  background: var(--tjSurface);
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.tjChoice:hover {
+  border-color: var(--tjMuted);
+}
+.tjChoice:focus-visible {
+  box-shadow: 0 0 0 3px var(--tjFocus);
+}
+.tjChoice .tjChoiceRadio {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--tjBorderStrong);
+  flex: none;
+  margin-top: 0.1rem;
+  box-sizing: border-box;
+}
+.tjChoice .tjChoiceBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.tjChoice .tjChoiceTitle {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.tjChoice .tjChoiceIcon {
+  font-size: 0.95rem;
+  color: var(--tjMuted);
+}
+.tjChoice .tjChoiceDesc {
+  font-size: 0.75rem;
+  color: var(--tjMuted);
+}
+.tjChoiceOn {
+  border-color: var(--tjAccent);
+  box-shadow: 0 0 0 3px var(--tjFocus);
+}
+.tjChoiceOn .tjChoiceRadio {
+  border: 5px solid var(--tjAccent);
+}
+.tjChoiceOn .tjChoiceIcon {
+  color: var(--tjAccent);
+}
+.tjBankHit {
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  margin-top: -1rem;
+  border-radius: 4px;
+  background: var(--tjAccentSoft);
+  border: 1px solid color-mix(in srgb, var(--tjAccent) 25%, transparent);
+}
+.tjBankIcon {
+  font-size: 1.1rem;
+  color: var(--tjAccent);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid !important;
+  place-items: center;
+  background: var(--tjSurface);
+  border: 1px solid var(--tjBorder);
+  border-radius: 3px;
+}
+.tjContacts.sapMList .sapMLIB {
+  padding: 0;
+}
+.tjContactItem .sapMLIBContent {
+  width: 100%;
+}
+.tjContactGrid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tjContactFlags {
+  grid-column: 1 / -1;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+.tjDocs.sapMList .sapMLIB {
+  padding: 0;
+}
+.tjDocRow {
+  display: flex !important;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tjDocMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.tjDocExpiryRow {
+  margin-top: 0.25rem;
+}
+.tjEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+}
+.tjDocIcon {
+  font-size: 1.1rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid !important;
+  place-items: center;
+  flex: none;
+  border-radius: 3px;
+  background: var(--tjSurface2);
+  border: 1px solid var(--tjBorder);
+  color: var(--tjSubtle);
+}
+.tjDocIcon[data-done="true"] {
+  color: var(--tjAccent);
+  background: var(--tjAccentSoft);
+}
+.tjDeclare {
+  padding: 0.75rem 1rem;
+}
+.tjDeclare .sapMCbLabel {
+  white-space: normal;
+  line-height: 1.45;
+}
+.tjSummary {
+  overflow: hidden;
+}
+.tjSummaryHead {
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--tjBorder);
+}
+.tjDlGrid {
+  display: grid !important;
+  grid-template-columns: 12rem 1fr;
+}
+.tjDl.sapMLabel,
+.tjDd.sapMText {
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--tjBorder);
+}
+.tjDl.sapMLabel {
+  color: var(--tjMuted);
+  font-weight: 400;
+}
+.tjDd.sapMText {
+  font-weight: 500;
+}
+.tjDlGrid > :nth-last-child(-n+2) {
+  border-bottom: 0;
+}
+.tjNeeds {
+  border-inline-start: 1px solid var(--tjBorder);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  background: var(--tjBg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.tjNeedsHead {
+  gap: 0.5rem;
+}
+.tjNeedsCard {
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+.tjNeedsList.sapMList {
+  background: transparent;
+}
+.tjNeedsList.sapMList .sapMLIB {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  min-height: 0;
+}
+.tjNeedsList.sapMList .sapMListNoData {
+  display: none;
+}
+.tjNeedRow {
+  display: flex;
+  gap: 0.625rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 3px;
+}
+.tjNeedRow:hover {
+  background: var(--tjHover);
+}
+.tjNeedIcon {
+  color: var(--tjSubtle);
+  margin-top: 0.15rem;
+}
+.tjNeedIcon[data-bad="true"] {
+  color: var(--tjRejected);
+}
+.tjNeedText {
+  font-size: 0.8125rem !important;
+}
+.tjPrivacy {
+  gap: 0.625rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  background: var(--tjSurface2);
+  border: 1px solid var(--tjBorder);
+}
+.tjPrivacy .sapUiIcon {
+  color: var(--tjMuted);
+  margin-top: 0.1rem;
+}
+.tjPrivacy .sapMText {
+  font-size: 0.75rem;
+  color: var(--tjMuted);
+}
+.tjRing {
+  display: inline-block;
+  flex: none;
+}
+.tjRing .tjRingTrack {
+  stroke: var(--tjBorder);
+}
+.tjRing .tjRingValue {
+  stroke: var(--tjAccent);
+  transition: stroke-dashoffset 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tjWizFooter.sapMTB {
+  height: 3.75rem;
+  padding-inline: 1.25rem;
+  background: var(--tjSurface);
+  border-top: 1px solid var(--tjBorder);
+  box-shadow: none;
+}
+.tjSaved {
+  gap: 0.375rem;
+  margin-inline-end: 0.5rem;
+}
+.tjSavedIcon {
+  font-size: 0.9rem;
+  color: var(--tjApproved);
+}
+.tjSavedIcon[data-saving="saving"] {
+  color: var(--tjReview);
+  animation: tj-spin 0.8s linear infinite;
+}
+.tjSavedIcon[data-saving="error"] {
+  color: var(--tjRejected);
+}
+@keyframes tj-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 1199px) {
+  .tjWiz {
+    grid-template-columns: 14.25rem minmax(0, 1fr);
+  }
+  .tjNeeds {
+    display: none !important;
+  }
+  .tjNeedsInline {
+    display: flex !important;
+  }
+  .tjWizFormIn {
+    padding: 2rem 1.75rem 3rem;
+  }
+}
+@media (max-width: 760px) {
+  .tjWiz {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tjRail {
+    display: none !important;
+  }
+  .tjWizFormIn {
+    padding: 1.25rem 1rem 6rem;
+  }
+  .tjGrid2,
+  .tjChoiceGrid,
+  .tjChoiceGrid2,
+  .tjContactGrid {
+    grid-template-columns: 1fr;
+  }
+  .tjDlGrid {
+    grid-template-columns: 1fr;
+  }
+  .tjDlGrid .tjDl.sapMLabel {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .tjDocRow {
+    flex-wrap: wrap;
+  }
+  .tjWizFooter.sapMTB {
+    padding-inline: 0.75rem;
+    margin-bottom: 4rem;
+  }
+}
+.sapMCb .sapMCbBg.sapMCbMarkChecked::after,
+.sapMCbMarkChecked::before {
+  color: var(--tjAccent) !important;
+}
+.sapMCb:hover .sapMCbBg,
+.sapMCb .sapMCbBg {
+  border-radius: 2px;
+}
+.tjFieldError.sapMText {
+  display: flex;
+  gap: 0.375rem;
+  line-height: 1.4;
+}
+@font-face {
+  font-family: "TjPhosphor";
+  src: url("../fonts/Phosphor.woff2") format("woff2");
+  font-display: block;
+}
+.tjFieldError.sapMText::before {
+  content: "\e4e2";
+  font-family: "TjPhosphor";
+  font-size: 0.85rem;
+}
+.tjFcl.sapFFCL {
+  background: var(--tjBg);
+}
+.tjFcl.sapFFCL .sapFFCLColumn {
+  background: transparent;
+}
+.tjQueuePage.sapMPage {
+  background: var(--tjSurface);
+  border-inline-end: 1px solid var(--tjBorder);
+}
+.tjQueuePage.sapMPage .sapMPageEnableScrolling {
+  background: var(--tjSurface);
+}
+.tjQueueHead {
+  padding: 1rem 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  border-bottom: 1px solid var(--tjBorder);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--tjSurface);
+}
+.tjQueueTitle {
+  justify-content: space-between;
+}
+.tjSeg.sapMSegB {
+  width: 100%;
+}
+.tjSeg.sapMSegB .sapMSegBBtn {
+  flex: 1;
+}
+.tjQueue.sapMList .sapMLIB {
+  padding: 0;
+  border-bottom-color: var(--tjBorder);
+}
+.tjQueue.sapMList .sapMLIBSelected {
+  background: color-mix(in srgb, var(--tjAccent) 7%, var(--tjSurface)) !important;
+  box-shadow: inset 2px 0 0 var(--tjAccent);
+}
+html[dir="rtl"] .tjQueue.sapMList .sapMLIBSelected {
+  box-shadow: inset -2px 0 0 var(--tjAccent);
+}
+.tjQueueRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.7rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tjQueueLine {
+  gap: 0.625rem;
+}
+.tjQueueLine .tjRowTitle {
+  flex: 1;
+  min-width: 0;
+}
+.tjQueueMeta {
+  gap: 0.375rem;
+  padding-inline-start: 1.125rem;
+}
+.tjNoWrap {
+  white-space: nowrap !important;
+}
+.tjSubtleText {
+  color: var(--tjSubtle) !important;
+}
+.tjTagDot {
+  padding: 0;
+  border: 0;
+  background: none;
+  height: auto;
+}
+.tjTagDot .tjTagMarker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.tjRiskTag.sapMText {
+  font-size: 0.72rem !important;
+  font-weight: 500;
+  padding: 0 0.375rem;
+  border-radius: 2px;
+  line-height: 1.25rem !important;
+  margin-inline-start: auto;
+  white-space: nowrap;
+}
+.tjRiskTag[data-risk="High"] {
+  color: var(--tjRejected) !important;
+  background: color-mix(in srgb, var(--tjRejected) 10%, transparent);
+}
+.tjRiskTag[data-risk="Medium"] {
+  color: var(--tjReview) !important;
+  background: color-mix(in srgb, var(--tjReview) 12%, transparent);
+}
+.tjRiskTag[data-risk="Low"] {
+  color: var(--tjApproved) !important;
+  background: color-mix(in srgb, var(--tjApproved) 10%, transparent);
+}
+.tjDetHead .tjRiskTag.sapMText {
+  margin-inline-start: 0;
+}
+.tjDetailPage.sapMPage,
+.tjDetailPage .sapMPageEnableScrolling {
+  background: var(--tjBg);
+}
+.tjDetail {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.75rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.tjDetHead {
+  gap: 1rem;
+}
+.tjMonogram.sapMText {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  display: grid !important;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--tjAccentSoft);
+  color: var(--tjAccent) !important;
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-weight: 600;
+  border: 1px solid var(--tjBorder);
+}
+.tjDetSub {
+  gap: 0.375rem;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+}
+.tjCloseBtn.sapMBtn {
+  margin-inline-start: auto;
+}
+.tjDetActions {
+  gap: 0.5rem;
+}
+.tjDangerBtn.sapMBtn .sapMBtnInner {
+  color: var(--tjRejected);
+}
+.tjDangerBtn.sapMBtn .sapMBtnInner .sapUiIcon {
+  color: var(--tjRejected);
+}
+.tjDangerBtn[data-counting="true"] .sapMBtnInner {
+  border-color: color-mix(in srgb, var(--tjRejected) 45%, transparent);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--tjRejected) 14%, var(--tjSurface)) 0 100%) no-repeat left bottom / 100% 2px, color-mix(in srgb, var(--tjRejected) 6%, var(--tjSurface));
+  animation: tj-drain 5s linear forwards;
+}
+@keyframes tj-drain {
+  from {
+    background-size: 100% 2px, auto;
+  }
+  to {
+    background-size: 0% 2px, auto;
+  }
+}
+.tjTabs.sapMITB .sapMITH {
+  background: transparent;
+  box-shadow: inset 0 -1px 0 var(--tjBorder);
+  padding: 0;
+}
+.tjTabs.sapMITB .sapMITBFilter .sapMITBText {
+  color: var(--tjMuted);
+  font-weight: 500;
+}
+.tjTabs.sapMITB .sapMITBSelected .sapMITBText {
+  color: var(--tjText);
+}
+.tjTabs.sapMITB .sapMITBContentArrow {
+  background: transparent !important;
+}
+.tjTabs.sapMITB .sapMITBSelected .sapMITBContentArrow {
+  background: var(--tjText) !important;
+  height: 2px;
+  border-radius: 0;
+}
+.tjTabs.sapMITB .sapMITBFilter .sapMITBCount {
+  color: var(--tjMuted);
+}
+.tjTabs.sapMITB .sapMITBContainerContent {
+  padding: 1rem 0 0;
+  background: transparent;
+  border: 0;
+}
+.tjDetGrid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: 1rem;
+  align-items: start;
+}
+.tjDetMain {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+.tjCardHead {
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--tjBorder);
+  gap: 0.75rem;
+}
+.tjFacts {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+}
+.tjFact {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--tjBorder);
+  gap: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.tjFact .sapMLabel {
+  color: var(--tjMuted);
+  font-size: 0.75rem;
+}
+.tjFact .sapMText {
+  font-weight: 500;
+}
+.tjFact:nth-child(odd) {
+  border-inline-end: 1px solid var(--tjBorder);
+}
+.tjFact:nth-last-child(-n+2) {
+  border-bottom: 0;
+}
+.tjPlainList.sapMList {
+  background: transparent;
+}
+.tjPlainList.sapMList .sapMLIB {
+  background: transparent;
+  padding: 0;
+  border-color: var(--tjBorder);
+}
+.tjPlainList.sapMList .sapMListNoData {
+  padding: 0.75rem 1rem;
+}
+.tjDupRow {
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+}
+.tjDupIcon {
+  font-size: 1.1rem;
+  margin-top: 0.1rem;
+}
+.tjDupIcon.tjOk {
+  color: var(--tjApproved);
+}
+.tjDupIcon.tjWarn {
+  color: var(--tjReview);
+}
+.tjContactRow {
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+}
+.tjAvatarSm.sapMText {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  display: grid !important;
+  place-items: center;
+  border-radius: 3px;
+  background: var(--tjSurface2);
+  border: 1px solid var(--tjBorder);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.tjRiskCard {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.tjBigNum.sapMText {
+  font-size: 1.75rem !important;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1 !important;
+}
+.tjRiskBar {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+  margin: 0.5rem 0;
+}
+.tjRiskBar i {
+  height: 6px;
+  border-radius: 1px;
+  background: var(--tjBorder);
+}
+.tjRiskBar[data-level="Low"] i.on {
+  background: var(--tjApproved);
+}
+.tjRiskBar[data-level="Medium"] i.on {
+  background: var(--tjReview);
+}
+.tjRiskBar[data-level="High"] i.on {
+  background: var(--tjRejected);
+}
+.tjFactors .sapMLIB {
+  min-height: 0;
+}
+.tjFactorRow {
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  width: 100%;
+}
+.tjDetSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+.tjS4Card .tjCardHead {
+  padding-block: 0.375rem;
+  padding-inline-end: 0.375rem;
+}
+.tjIconBtn.sapMBtn .sapMBtnInner {
+  min-width: 2rem;
+}
+.tjS4Sync {
+  padding: 0.875rem 1rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--tjBorder);
+}
+.tjS4SyncIcon {
+  font-size: 1.05rem;
+  color: var(--tjMuted);
+}
+.tjS4Sync[data-sync="SYNCED"] .tjS4SyncIcon {
+  color: var(--tjApproved);
+}
+.tjS4Sync[data-sync="FAILED"] {
+  background: color-mix(in srgb, var(--tjRejected) 6%, transparent);
+}
+.tjS4Sync[data-sync="FAILED"] .tjS4SyncIcon {
+  color: var(--tjRejected);
+}
+.tjS4Sync[data-sync="PENDING"] .tjS4SyncIcon {
+  animation: tjSpin 1s linear infinite;
+}
+.tjS4Bp {
+  gap: 0.125rem;
+  display: flex;
+  flex-direction: column;
+}
+.tjS4Bp .sapMLabel {
+  color: var(--tjMuted);
+  font-size: 0.75rem;
+}
+.tjS4Msg.sapMText {
+  color: var(--tjText);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem !important;
+  line-height: 1.45;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--tjBorder);
+  border-radius: 2px;
+  background: var(--tjSurface2);
+  overflow-wrap: anywhere;
+}
+.tjS4Retry {
+  gap: 0.75rem;
+}
+.tjS4Busy {
+  padding: 1rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tjS4Sys {
+  padding: 0.75rem 1rem;
+  gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.tjS4Dot.sapMText {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  flex: none;
+  background: var(--tjSubtle);
+}
+.tjS4Dot[data-state="ok"] {
+  background: var(--tjApproved);
+}
+.tjS4Dot[data-state="match"] {
+  background: var(--tjReview);
+}
+.tjS4Dot[data-state="down"] {
+  background: var(--tjRejected);
+}
+.tjS4Matches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+.tjS4Matches:empty {
+  display: none;
+}
+.tjS4Match {
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid var(--tjBorder);
+  border-radius: 2px;
+}
+.tjS4Match .sapMText.tjGrow {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@keyframes tjSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.tjComposer {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.tjTimeline.sapMList {
+  background: transparent;
+  position: relative;
+}
+.tjTimeline.sapMList .sapMLIB {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  min-height: 0;
+}
+.tjEvent {
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+.tjEventIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  display: grid !important;
+  place-items: center;
+  border-radius: 3px;
+  background: var(--tjSurface);
+  border: 1px solid var(--tjBorder);
+  color: var(--tjMuted);
+  font-size: 0.8rem;
+}
+.tjEventText.sapMText {
+  font-size: 0.8125rem;
+}
+.tjQuote.sapMText {
+  margin: 0.375rem 0;
+  padding: 0.5rem 0.625rem;
+  border-radius: 3px;
+  background: var(--tjSurface);
+  border: 1px solid var(--tjBorder);
+  font-size: 0.8125rem;
+}
+.tjDialog.sapMDialog {
+  border-radius: 4px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18), 0 0 0 1px var(--tjBorder);
+}
+.tjDialog.sapMDialog .sapMDialogTitleGroup,
+.tjDialog.sapMDialog .sapMIBar {
+  background: var(--tjSurface);
+  box-shadow: none;
+}
+.tjDialog.sapMDialog .sapMDialogFooter .sapMIBar {
+  border-top: 1px solid var(--tjBorder);
+}
+.tjDialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1rem;
+}
+@media (max-width: 1199px) {
+  .tjDetGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tjDetail {
+    padding: 1.25rem 1.25rem 3rem;
+  }
+}
+@media (max-width: 760px) {
+  .tjFacts {
+    grid-template-columns: 1fr;
+  }
+  .tjFact:nth-child(odd) {
+    border-inline-end: 0;
+  }
+  .tjFact:nth-last-child(2) {
+    border-bottom: 1px solid var(--tjBorder);
+  }
+  .tjDetail {
+    padding: 1rem 1rem 6rem;
+  }
+  .tjDetActions .sapMBtn {
+    flex: 1;
+  }
+}
+.tjDashHead {
+  gap: 1rem;
+}
+.tjDashGrid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+.tjKpiLabelRow {
+  gap: 0.375rem;
+}
+.tjKpiLabelRow .sapUiIcon {
+  color: var(--tjMuted);
+  font-size: 0.9rem;
+}
+.tjChartPad {
+  padding: 0.75rem 1rem 1rem;
+}
+.tjChart {
+  width: 100%;
+}
+.tjChart-bars svg {
+  display: block;
+  overflow: visible;
+}
+.tjChart .tjGrid {
+  stroke: var(--tjBorder);
+  stroke-dasharray: 2 3;
+}
+.tjChart .tjAxis {
+  font-size: 11px;
+  fill: var(--tjSubtle);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+.tjChart .tjBar path {
+  fill: var(--tjAccent);
+  transition: opacity 0.15s;
+}
+.tjChart:hover .tjBar path {
+  opacity: 0.45;
+}
+.tjChart .tjBar:hover path {
+  opacity: 1;
+}
+.tjChart .tjHit {
+  fill: transparent;
+}
+.tjChart .tjBarValue {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--tjText);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+.tjStack {
+  display: flex;
+  height: 10px;
+  gap: 2px;
+  overflow: hidden;
+  margin: 0.75rem 0 1rem;
+}
+.tjStack i {
+  display: block;
+  height: 100%;
+}
+.tjLegend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+}
+.tjLegend div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--tjMuted);
+  font-size: 0.8125rem;
+}
+.tjLegend b {
+  margin-inline-start: auto;
+  color: var(--tjText);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.tjSwatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  flex: none;
+}
+.tjHbar {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr 2rem;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.4rem 0;
+  font-size: 0.8125rem;
+}
+.tjHbarLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tjHbarTrack {
+  height: 8px;
+  background: var(--tjSurface2);
+}
+.tjHbarTrack i {
+  display: block;
+  height: 100%;
+  background: var(--tjAccent);
+}
+.tjHbarValue {
+  text-align: end;
+  color: var(--tjMuted);
+  font-variant-numeric: tabular-nums;
+}
+html[dir="rtl"] .tjHbarLabel {
+  text-align: right;
+}
+.tjTable.sapMList {
+  background: transparent;
+}
+.tjTable.sapMList .sapMListTblHeader {
+  background: transparent;
+}
+.tjTable.sapMList .sapMLIB {
+  background: transparent;
+}
+.tjDanger.sapMText {
+  color: var(--tjRejected) !important;
+  font-variant-numeric: tabular-nums;
+}
+.tjSegSm.sapMSegB .sapMSegBBtn {
+  height: 2rem;
+}
+@media (max-width: 1199px) {
+  .tjDashGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .tjHbar {
+    grid-template-columns: 6rem 1fr 1.75rem;
+  }
+  .tjLegend {
+    grid-template-columns: 1fr;
+  }
+}
+.tjHome {
+  max-width: 65rem;
+  gap: 1rem;
+}
+.tjGreet {
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.tjGreet .tjH1.sapMTitle {
+  margin-top: 0.25rem;
+}
+.tjGreetNo {
+  gap: 0.5rem;
+}
+.tjHomeCenter {
+  display: grid;
+  place-items: center;
+  padding: 4rem 0;
+}
+.tjHomeBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.tjCardPad.sapMText {
+  display: block;
+  padding: 1rem;
+}
+.tjHomeEmpty {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  max-width: 36rem;
+}
+.tjHomeEmptyIcon {
+  font-size: 1.5rem;
+  color: var(--tjAccent);
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid !important;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--tjAccentSoft);
+}
+.tjHomeEmptyList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0.5rem;
+}
+.tjHomeEmptyList .sapUiIcon {
+  color: var(--tjMuted);
+  font-size: 1rem;
+}
+.tjTrack {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: 1.25rem 1.25rem 1rem;
+}
+.tjTk {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.tjTkBar.sapMText {
+  display: block;
+  height: 4px;
+  background: var(--tjBorder);
+  margin-inline-end: 6px;
+}
+.tjTkText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-inline-end: 0.5rem;
+  min-width: 0;
+}
+.tjTkLabel {
+  gap: 0.375rem;
+  min-width: 0;
+}
+.tjTkIcon {
+  font-size: 0.95rem;
+  color: var(--tjSubtle);
+  flex: none;
+}
+.tjTkTitle.sapMText {
+  font-weight: 500;
+  color: var(--tjSubtle);
+}
+.tjTkMeta.sapMText {
+  font-size: 0.75rem;
+  color: var(--tjMuted);
+}
+.tjTk[data-state="done"] .tjTkBar {
+  background: var(--tjAccent);
+}
+.tjTk[data-state="done"] .tjTkIcon {
+  color: var(--tjAccent);
+}
+.tjTk[data-state="done"] .tjTkTitle {
+  color: var(--tjText);
+}
+.tjTk[data-state="current"] {
+  --tjTkTone: var(--tjAccent);
+}
+.tjTk[data-state="current"] .tjTkTitle {
+  color: var(--tjText);
+}
+.tjTk[data-state="current"] .tjTkBar {
+  background: linear-gradient(to right, var(--tjTkTone) 50%, var(--tjBorder) 50%);
+}
+.tjTk[data-state="current"] .tjTkIcon {
+  color: var(--tjTkTone);
+}
+.tjTk[data-state="current"][data-tone="info"] {
+  --tjTkTone: var(--tjSubmitted);
+}
+.tjTk[data-state="current"][data-tone="review"] {
+  --tjTkTone: var(--tjReview);
+}
+.tjTk[data-state="current"][data-tone="warn"] {
+  --tjTkTone: var(--tjChanges);
+}
+.tjTk[data-state="current"][data-tone="danger"] {
+  --tjTkTone: var(--tjRejected);
+}
+[dir="rtl"] .tjTk[data-state="current"] .tjTkBar {
+  background: linear-gradient(to left, var(--tjTkTone) 50%, var(--tjBorder) 50%);
+}
+.tjBanner {
+  margin: 0 1.25rem 1.25rem;
+  padding: 0.875rem 1rem;
+  gap: 0.75rem;
+  border-radius: 4px;
+  --tjTone: var(--tjAccent);
+  background: color-mix(in srgb, var(--tjTone) 7%, var(--tjSurface));
+  border: 1px solid color-mix(in srgb, var(--tjTone) 28%, transparent);
+}
+.tjBanner[data-tone="info"] {
+  --tjTone: var(--tjSubmitted);
+}
+.tjBanner[data-tone="review"] {
+  --tjTone: var(--tjReview);
+}
+.tjBanner[data-tone="warn"] {
+  --tjTone: var(--tjChanges);
+}
+.tjBanner[data-tone="ok"] {
+  --tjTone: var(--tjApproved);
+}
+.tjBanner[data-tone="danger"] {
+  --tjTone: var(--tjRejected);
+}
+.tjBannerIcon {
+  color: var(--tjTone);
+  font-size: 1.15rem;
+  margin-top: 0.1rem;
+  flex: none;
+}
+.tjBannerText.sapMText {
+  margin-top: 0.15rem;
+}
+.tjBannerBtn {
+  flex: none;
+}
+.tjFlags:empty {
+  display: none;
+}
+.tjFlag {
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--tjBorder);
+}
+.tjFlagIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid !important;
+  place-items: center;
+  flex: none;
+  border-radius: 3px;
+  color: var(--tjChanges);
+  background: color-mix(in srgb, var(--tjChanges) 12%, transparent);
+  font-size: 0.95rem;
+}
+.tjFlag[data-kind="todo"] .tjFlagIcon {
+  color: var(--tjMuted);
+  background: var(--tjSurface2);
+}
+.tjHomeGrid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+.tjHomeSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+.tjHomeLock {
+  gap: 0.3rem;
+}
+.tjHomeLock .sapUiIcon {
+  font-size: 0.75rem;
+}
+.tjKvs {
+  padding: 0.25rem 1rem;
+}
+.tjKv {
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--tjBorder);
+}
+.tjKv:last-child {
+  border-bottom: 0;
+}
+.tjKvV.sapMText {
+  font-weight: 500;
+  text-align: end;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.tjKvV[data-mono="true"] {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8125rem !important;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.tjReminders,
+.tjMsgs {
+  display: flex;
+  flex-direction: column;
+}
+.tjReminders:empty,
+.tjMsgs:empty {
+  display: none;
+}
+.tjReminder,
+.tjMsg {
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--tjBorder);
+}
+.tjReminder:first-child,
+.tjMsg:first-child {
+  border-top: 0;
+}
+.tjReminderIcon {
+  font-size: 1.05rem;
+  flex: none;
+  color: var(--tjApproved);
+}
+.tjReminder[data-state="warn"] .tjReminderIcon {
+  color: var(--tjReview);
+}
+.tjReminder[data-state="danger"] .tjReminderIcon {
+  color: var(--tjRejected);
+}
+.tjMsgIcon {
+  font-size: 1rem;
+  color: var(--tjMuted);
+  margin-top: 0.15rem;
+  flex: none;
+}
+@media (max-width: 760px) {
+  .tjHome {
+    padding: 1.25rem 1rem 5rem;
+  }
+  .tjGreet {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+  .tjTrack {
+    grid-template-columns: 1fr;
+    padding: 0.5rem 1rem;
+  }
+  .tjTk {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+  }
+  .tjTkBar.sapMText {
+    width: 4px;
+    height: 2rem;
+    margin: 0;
+    flex: none;
+  }
+  .tjTk[data-state="current"] .tjTkBar,
+  [dir="rtl"] .tjTk[data-state="current"] .tjTkBar {
+    background: linear-gradient(to bottom, var(--tjTkTone) 50%, var(--tjBorder) 50%);
+  }
+  .tjTkText {
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tjTkMeta.sapMText {
+    text-align: end;
+  }
+  .tjBanner {
+    margin: 0 1rem 1rem;
+    flex-wrap: wrap;
+  }
+  .tjBannerBtn {
+    width: 100%;
+  }
+  .tjBannerBtn .sapMBtnInner {
+    width: 100%;
+  }
+  .tjFlag {
+    padding: 0.75rem 1rem;
+  }
+  .tjHomeGrid {
+    grid-template-columns: 1fr;
+  }
+}
