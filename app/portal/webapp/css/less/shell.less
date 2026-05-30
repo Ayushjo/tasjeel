@@ -1,0 +1,76 @@
+// App shell: ToolPage header, side navigation (full → icon rail), phone tab bar.
+.sapUiBody { background: var(--tjBg); }
+
+.sapTntToolPage {
+  background: var(--tjBg);
+  .sapTntToolHeader {
+    background: var(--tjSurface);
+    box-shadow: none;
+    border-bottom: 1px solid var(--tjBorder);
+    height: 3.25rem;
+    padding-inline: .75rem;
+    gap: .25rem;
+  }
+  .tjBrand.sapMTitle { color: var(--tjText); }
+  .tjBrand { font-size: .95rem; font-weight: 600; letter-spacing: -.01em; margin-inline-start: .5rem; }
+  .tjBrandSub { color: var(--tjMuted); margin-inline-start: .5rem; padding-inline-start: .75rem; border-inline-start: 1px solid var(--tjBorder); }
+  .tjTopNav { gap: .125rem; margin-inline-start: 1.5rem; }
+  .tjAvatar.sapFAvatar { border-radius: @r; margin-inline-start: .25rem; background: var(--tjAccentSoft) !important; color: var(--tjAccent) !important; font-weight: 600;
+    .sapFAvatarInitialsHolder, .sapFAvatarInitials { color: var(--tjAccent) !important; } }
+  .tjTopNavItem.sapMBtn .sapMBtnInner { color: var(--tjMuted); font-weight: 500; }
+  .tjTopNavItem.sapMBtn:hover .sapMBtnInner { color: var(--tjText); }
+
+  // Side navigation: flat, warm-grey rail with an accent bar on the selected item
+  .sapTntToolPageAside { background: var(--tjSurface2); border-inline-end: 1px solid var(--tjBorder); }
+  .sapTntSideNavigation, .sapTntNL, .sapTntSideNavigationFixed { background: transparent; box-shadow: none; }
+  // Flat items; only the selected one gets a surface + accent bar (Horizon draws every item as a card)
+  .sapTntNLI, .sapTntNLIFirstLevel, .sapTntNLGroup {
+    background: transparent !important; box-shadow: none !important; border: 0 !important; border-radius: @r;
+  }
+  .sapTntNLI:not(.sapTntNLISelected):hover { background: var(--tjHover) !important; }
+  .sapTntNLISelected {
+    background: var(--tjSurface) !important;
+    box-shadow: inset 0 0 0 1px var(--tjBorder), inset 2px 0 0 var(--tjAccent) !important;
+    .sapUiIcon { color: var(--tjAccent); }
+  }
+  html[dir="rtl"] & .sapTntNLISelected { box-shadow: inset 0 0 0 1px var(--tjBorder), inset -2px 0 0 var(--tjAccent) !important; }
+}
+
+// Public area (Welcome): no shell chrome at all
+.tjArea-public {
+  .sapTntToolHeaderWrapper, .sapTntToolPageHeaderWrapper, .sapTntToolPageAside, .sapTntToolPageAsideContent { display: none !important; }
+}
+// Applicant area: top navigation only
+.tjArea-applicant {
+  .sapTntToolPageAside { display: none !important; }
+}
+
+// Phone tab bar
+.tjTabBar { display: none; }
+@media (max-width: @bp-phone) {
+  .tjTabBar {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+    position: fixed; inset-inline: 0; bottom: 0; z-index: 10; height: 4rem; padding-bottom: .375rem;
+    background: var(--tjSurface); border-top: 1px solid var(--tjBorder);
+  }
+  .tjTabBarItem {
+    all: unset; cursor: pointer; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem;
+    font-size: .6875rem; font-weight: 500; color: var(--tjSubtle);
+    .tjTabBarIcon { font-size: 1.25rem; color: inherit; }
+    &:focus-visible { outline: 2px solid var(--tjAccent); outline-offset: -4px; }
+  }
+  .tjTabBarItemOn { color: var(--tjAccent); &::before { content: ""; position: absolute; top: -1px; inset-inline: 30%; height: 2px; background: var(--tjAccent); } }
+  .tjTabBarCount {
+    position: absolute; top: .5rem; inset-inline-start: calc(50% + .375rem);
+    font-size: .625rem; font-weight: 600; min-width: 1rem; height: .875rem; padding: 0 .2rem; border-radius: @r-xs;
+    background: var(--tjAccent); color: var(--tjOnAccent); display: grid; place-items: center;
+  }
+  .tjArea-applicant, .tjArea-staff { .tjPages .sapMPage > section { padding-bottom: 4.5rem; } }
+}
+
+// Current page in the applicant top nav (App controller mirrors the route on <html data-route>)
+html[data-route="home"] .tjTopNavItem[data-route="home"],
+html[data-route="wizard"] .tjTopNavItem[data-route="wizard"] {
+  .sapMBtnInner { color: var(--tjText); background: var(--tjSurface2); }
+}
