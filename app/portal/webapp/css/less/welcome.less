@@ -1,0 +1,73 @@
+// Welcome / sign-in (mockup S1)
+.tjWelcomePage .sapMPageEnableScrolling { background: var(--tjSurface); }
+.tjWelcome { display: grid !important; grid-template-columns: 1.05fr 1fr; min-height: 100vh; }
+
+.tjPatternPanel {
+  position: relative; overflow: hidden; background: #0b3b37; color: #e9f2f0;
+  .tjLattice { position: absolute; inset-block: 0; inset-inline-end: -60px; width: 70%; height: 100%; color: #2c6b64; opacity: .55; pointer-events: none; }
+  .tjPatternPanelContent { position: relative; display: flex; flex-direction: column; min-height: 100%; padding: 2.25rem 3rem; box-sizing: border-box; }
+  .sapMText { color: inherit; }
+}
+html[dir="rtl"] .tjPatternPanel .tjLattice { transform: scaleX(-1); }
+
+.tjWelcomeBrand { gap: .625rem; }
+.tjWelcomeBrandName { font-weight: 600 !important; font-size: .95rem !important; }
+.tjWelcomeSlash { opacity: .4; }
+.tjWelcomeBrandSub { opacity: .75; }
+.tjWelcomeHero { margin-top: auto; max-width: 32rem; padding-top: 3rem; }
+.tjWelcomeHero .tjEyebrow { color: #8cc7bf !important; }
+.tjHeroTitle.sapMTitle { color: #fff; font-size: 2.75rem; line-height: 1.1; letter-spacing: -.025em; font-weight: 500; margin: .875rem 0 1rem; white-space: normal; }
+:lang(ar) .tjHeroTitle.sapMTitle { font-size: 2.5rem; line-height: 1.35; letter-spacing: 0; }
+.tjHeroLead { color: #b9d3cf !important; font-size: .95rem !important; line-height: 1.55 !important; max-width: 28rem; }
+.tjProof { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid #1f5a54; display: flex; }
+.tjProof > * { padding-inline-end: 2rem; }
+.tjProof > * + * { padding-inline-start: 2rem; border-inline-start: 1px solid #1f5a54; }
+.tjProofValue { display: block; white-space: nowrap !important; font-size: 1.5rem !important; font-weight: 500; color: #fff !important; font-variant-numeric: tabular-nums; }
+.tjProofLabel { font-size: .75rem !important; color: #8cc7bf !important; }
+.tjWelcomeFoot { margin-top: 2rem; gap: 1.5rem; .sapMText { font-size: .75rem; color: #6fa69e; } }
+
+.tjWelcomePane { display: flex; flex-direction: column; padding: 1.5rem 2.5rem; background: var(--tjSurface); }
+.tjWelcomeBox { width: 100%; max-width: 24rem; margin: auto; display: flex; flex-direction: column; }
+.tjFormTitle.sapMTitle { font-size: 1.625rem; font-weight: 600; letter-spacing: -.02em; }
+.tjFormSub { color: var(--tjMuted) !important; margin: .5rem 0 1.75rem; font-size: .875rem !important; }
+.tjFieldLabel { margin-bottom: .375rem; font-weight: 500 !important; }
+.tjInputLg.sapMInput { height: 2.625rem; margin-bottom: .75rem; .sapMInputBaseContentWrapper { height: 2.625rem; } }
+.tjBtnLg.sapMBtn { height: 2.625rem; .sapMBtnInner { height: 2.625rem; } }
+.tjOr { display: flex; align-items: center; gap: .75rem; margin: 1.25rem 0;
+  &::before, &::after { content: ""; flex: 1; height: 1px; background: var(--tjBorder); }
+  .sapMText { color: var(--tjSubtle); font-size: .75rem; } }
+.tjSteps { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--tjBorder); display: flex; flex-direction: column; gap: .875rem; }
+.tjStep { display: flex; gap: .75rem; }
+.tjStepNo { font-family: @font-mono !important; font-size: .75rem !important; color: var(--tjAccent) !important; width: 1.25rem; flex: none; padding-top: .1rem; }
+.tjStepTitle { font-weight: 500 !important; }
+.tjStepText { font-size: .75rem !important; color: var(--tjMuted) !important; }
+.tjDemo { margin-top: 1.5rem; padding: .875rem; border: 1px dashed var(--tjBorderStrong); border-radius: @r-lg; background: var(--tjSurface2); }
+.tjDemoTitle { font-family: @font-mono !important; font-size: .72rem !important; text-transform: uppercase; letter-spacing: .04em; color: var(--tjMuted) !important; }
+.tjDemoHint { font-size: .75rem !important; color: var(--tjMuted) !important; margin: .25rem 0 .625rem; }
+.tjDemoUsers { gap: .375rem; }
+.tjBtnSm.sapMBtn { height: 1.75rem; .sapMBtnInner { height: 1.75rem; min-width: 0; font-size: .75rem; } }
+.tjLegal { text-align: center; font-size: .75rem !important; color: var(--tjSubtle) !important; }
+
+@media (max-width: @bp-tablet) {
+  .tjPatternPanel .tjPatternPanelContent { padding: 1.75rem 2rem; }
+  .tjHeroTitle.sapMTitle { font-size: 2.25rem; }
+  .tjWelcomePane { padding: 1.5rem 1.75rem; }
+}
+@media (max-width: @bp-phone) {
+  .tjWelcome { grid-template-columns: 1fr; min-height: 0; }
+  .tjPatternPanel .tjPatternPanelContent { padding: 1.25rem 1rem 1.75rem; min-height: 0; }
+  .tjPatternPanel .tjLattice { width: 100%; inset-inline-end: -40%; }
+  .tjWelcomeHero { margin-top: 0; padding-top: 2.5rem; }
+  .tjHeroTitle.sapMTitle { font-size: 1.75rem; margin: .625rem 0; }
+  :lang(ar) .tjHeroTitle.sapMTitle { font-size: 1.7rem; }
+  .tjWelcomePane { padding: 1.5rem 1rem 2rem; }
+  .tjWelcomeBox { margin: 0 0 2rem; max-width: none; }
+}
+
+// Signed in via XSUAA but no role collection assigned
+.tjNoRole { display: flex; flex-direction: column; gap: .75rem; }
+.tjNoRoleIcon { font-size: 1.5rem; color: var(--tjMuted); width: 2.5rem; height: 2.5rem; display: grid !important; place-items: center;
+  border: 1px solid var(--tjBorder); border-radius: @r-lg; background: var(--tjSurface2); }
+.tjNoRole .tjFormSub { margin-bottom: 0; }
+.tjNoRoleList { display: flex; flex-direction: column; gap: .5rem; padding: .875rem; border: 1px solid var(--tjBorder); border-radius: @r-lg; }
+.tjNoRole .tjBtnLg { margin-top: .5rem; }

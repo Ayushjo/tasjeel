@@ -1,0 +1,79 @@
+<mvc:View controllerName="tasjeel.portal.controller.Welcome"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tj="tasjeel.portal.control" xmlns:core="sap.ui.core">
+  <Page showHeader="false" class="tjWelcomePage">
+    <FlexBox class="tjWelcome" renderType="Bare">
+      <tj:PatternPanel>
+        <HBox class="tjWelcomeBrand" alignItems="Center" renderType="Bare">
+          <tj:Logo inverted="true"/>
+          <Text text="{i18n>brand}" class="tjWelcomeBrandName"/>
+          <Text text="/" class="tjWelcomeSlash"/>
+          <Text text="{i18n>brand.sub}" class="tjWelcomeBrandSub"/>
+        </HBox>
+        <VBox class="tjWelcomeHero" renderType="Bare">
+          <Text text="{i18n>welcome.eyebrow}" class="tjEyebrow"/>
+          <Title text="{i18n>welcome.title}" level="H2" wrapping="true" class="tjHeroTitle"/>
+          <Text text="{i18n>welcome.lead}" class="tjHeroLead"/>
+          <HBox class="tjProof sapUiHideOnPhone" renderType="Bare">
+            <VBox renderType="Bare"><Text text="2" class="tjProofValue"/><Text text="{i18n>welcome.proof1}" class="tjProofLabel"/></VBox>
+            <VBox renderType="Bare"><Text text="1" class="tjProofValue"/><Text text="{i18n>welcome.proof2}" class="tjProofLabel"/></VBox>
+            <VBox renderType="Bare"><Text text="AR · EN" class="tjProofValue"/><Text text="{i18n>welcome.proof3}" class="tjProofLabel"/></VBox>
+          </HBox>
+        </VBox>
+        <HBox class="tjWelcomeFoot sapUiHideOnPhone" renderType="Bare">
+          <Text text="© 2026 Tasjeel"/>
+          <Text text="{i18n>welcome.footer}"/>
+        </HBox>
+      </tj:PatternPanel>
+
+      <VBox class="tjWelcomePane" renderType="Bare">
+        <HBox class="tjWelcomeTop sapUiHideOnPhone" justifyContent="End" renderType="Bare">
+          <Button icon="sap-icon://phosphor/globe-simple" text="{i18n>shell.language}" type="Transparent" press=".onToggleLanguage"/>
+        </HBox>
+        <VBox class="tjWelcomeBox" renderType="Bare">
+          <!-- Signed in through XSUAA, but no Tasjeel role collection yet -->
+          <VBox renderType="Bare" class="tjNoRole" visible="{= !${ui>/demo} }">
+            <core:Icon src="sap-icon://phosphor/lock-key" class="tjNoRoleIcon"/>
+            <Title text="{i18n>noRole.title}" level="H2" class="tjFormTitle" wrapping="true"/>
+            <Text text="{ parts: ['i18n>noRole.text', 'ui>/noRole'], formatter: '.formatter.text' }" class="tjFormSub"/>
+            <VBox renderType="Bare" class="tjNoRoleList">
+              <HBox renderType="Bare" alignItems="Center" class="tjGap"><Text text="Tasjeel_Applicant" class="tjChip tjMono"/><Text text="{i18n>noRole.applicant}" class="tjMuted tjSmall"/></HBox>
+              <HBox renderType="Bare" alignItems="Center" class="tjGap"><Text text="Tasjeel_Reviewer" class="tjChip tjMono"/><Text text="{i18n>noRole.reviewer}" class="tjMuted tjSmall"/></HBox>
+              <HBox renderType="Bare" alignItems="Center" class="tjGap"><Text text="Tasjeel_Admin" class="tjChip tjMono"/><Text text="{i18n>noRole.admin}" class="tjMuted tjSmall"/></HBox>
+            </VBox>
+            <Text text="{i18n>noRole.after}" class="tjMuted tjSmall"/>
+            <Button text="{i18n>shell.signOut}" icon="sap-icon://phosphor/sign-out" width="100%" press=".onSignOut" class="tjBtnLg"/>
+          </VBox>
+
+          <VBox renderType="Bare" visible="{ui>/demo}">
+          <Title text="{i18n>welcome.formTitle}" level="H2" class="tjFormTitle"/>
+          <Text text="{i18n>welcome.formSub}" class="tjFormSub"/>
+          <Label text="{i18n>welcome.email}" labelFor="email" class="tjFieldLabel"/>
+          <Input id="email" type="Email" placeholder="name@company.sa" textDirection="LTR" class="tjInputLg" submit=".onContinue"/>
+          <Button text="{i18n>welcome.continue}" type="Emphasized" icon="sap-icon://phosphor/arrow-right" iconFirst="false"
+            width="100%" press=".onContinue" class="tjBtnLg tjMirror"/>
+          <HBox class="tjOr" renderType="Bare"><Text text="{i18n>welcome.or}"/></HBox>
+          <Button text="{i18n>welcome.staff}" icon="sap-icon://phosphor/shield-check" width="100%" press=".onStaff" class="tjBtnLg"/>
+
+          <VBox class="tjSteps" renderType="Bare">
+            <HBox renderType="Bare" class="tjStep"><Text text="01" class="tjStepNo"/><VBox renderType="Bare"><Text text="{i18n>welcome.step1}" class="tjStepTitle"/><Text text="{i18n>welcome.step1d}" class="tjStepText"/></VBox></HBox>
+            <HBox renderType="Bare" class="tjStep"><Text text="02" class="tjStepNo"/><VBox renderType="Bare"><Text text="{i18n>welcome.step2}" class="tjStepTitle"/><Text text="{i18n>welcome.step2d}" class="tjStepText"/></VBox></HBox>
+            <HBox renderType="Bare" class="tjStep"><Text text="03" class="tjStepNo"/><VBox renderType="Bare"><Text text="{i18n>welcome.step3}" class="tjStepTitle"/><Text text="{i18n>welcome.step3d}" class="tjStepText"/></VBox></HBox>
+          </VBox>
+
+          <VBox class="tjDemo" renderType="Bare">
+            <Text text="{i18n>welcome.demo}" class="tjDemoTitle"/>
+            <Text text="{i18n>welcome.demoHint}" class="tjDemoHint"/>
+            <FlexBox wrap="Wrap" class="tjDemoUsers" renderType="Bare">
+              <Button text="vendor1 · Supplier" press=".onDemo" class="tjBtnSm"><customData><core:CustomData key="user" value="vendor1"/></customData></Button>
+              <Button text="vendor2 · Supplier" press=".onDemo" class="tjBtnSm"><customData><core:CustomData key="user" value="vendor2"/></customData></Button>
+              <Button text="reviewer · Procurement" press=".onDemo" class="tjBtnSm"><customData><core:CustomData key="user" value="reviewer"/></customData></Button>
+              <Button text="admin" press=".onDemo" class="tjBtnSm"><customData><core:CustomData key="user" value="admin"/></customData></Button>
+            </FlexBox>
+          </VBox>
+          </VBox>
+        </VBox>
+        <Text text="{i18n>welcome.legal}" class="tjLegal"/>
+      </VBox>
+    </FlexBox>
+  </Page>
+</mvc:View>
