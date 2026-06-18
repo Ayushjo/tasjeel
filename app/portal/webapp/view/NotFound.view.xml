@@ -1,0 +1,7 @@
+<mvc:View controllerName="tasjeel.portal.controller.NotFound" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+  <Page showHeader="false" class="tjPage">
+    <IllustratedMessage illustrationType="sapIllus-PageNotFound" title="{i18n>notFound.title}" description="{i18n>notFound.text}" enableVerticalResponsiveness="true">
+      <additionalContent><Button text="{i18n>notFound.back}" type="Emphasized" press=".onBack"/></additionalContent>
+    </IllustratedMessage>
+  </Page>
+</mvc:View>
