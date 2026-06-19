@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'profile' }">
+    <FlexBox class="tjGrid2" renderType="Bare">
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.legalForm}" labelFor="legalForm" required="true"/>
+        <Select id="legalForm" showValueStateMessage="false" selectedKey="{legalForm_code}" forceSelection="false" width="100%" items="{ path: '/LegalForms', sorter: { path: 'name' } }" valueState="{= ${wiz>/errors/legalForm_code} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/legalForm_code}"><core:Item key="{code}" text="{name}"/></Select>
+        <Text text="{wiz>/errors/legalForm_code}" class="tjFieldError" visible="{= !!${wiz>/errors/legalForm_code} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.tradeName}" labelFor="tradeName" required="false"/>
+        <Input id="tradeName" showValueStateMessage="false" value="{tradeName}" valueState="{= ${wiz>/errors/tradeName} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/tradeName}" maxLength="160"/>
+        <Text text="{i18n>wiz.optional}" class="tjHint" visible="{= !${wiz>/errors/tradeName} }"/>
+        <Text text="{wiz>/errors/tradeName}" class="tjFieldError" visible="{= !!${wiz>/errors/tradeName} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.establishedOn}" labelFor="establishedOn" required="false"/>
+        <DatePicker id="establishedOn" showValueStateMessage="false" value="{path: 'establishedOn', type: 'sap.ui.model.odata.type.Date'}" valueState="{= ${wiz>/errors/establishedOn} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/establishedOn}"/>
+        <Text text="{wiz>/errors/establishedOn}" class="tjFieldError" visible="{= !!${wiz>/errors/establishedOn} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.legacyCrNo}" labelFor="legacyCrNo" required="false"/>
+        <Input id="legacyCrNo" showValueStateMessage="false" value="{legacyCrNo}" valueState="{= ${wiz>/errors/legacyCrNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/legacyCrNo}" maxLength="10" textDirection="LTR" class="tjMonoInput"/>
+        <Text text="{i18n>h.legacyCrNo}" class="tjHint" visible="{= !${wiz>/errors/legacyCrNo} }"/>
+        <Text text="{wiz>/errors/legacyCrNo}" class="tjFieldError" visible="{= !!${wiz>/errors/legacyCrNo} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare" visible="{= ${wiz>/supplierType} === 'FOREIGN' }">
+        <Label text="{i18n>f.misaLicenseNo}" labelFor="misaLicenseNo" required="true"/>
+        <Input id="misaLicenseNo" showValueStateMessage="false" value="{misaLicenseNo}" valueState="{= ${wiz>/errors/misaLicenseNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/misaLicenseNo}" maxLength="30" textDirection="LTR"/>
+        <Text text="{wiz>/errors/misaLicenseNo}" class="tjFieldError" visible="{= !!${wiz>/errors/misaLicenseNo} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.website}" labelFor="website" required="false"/>
+        <Input id="website" showValueStateMessage="false" value="{website}" valueState="{= ${wiz>/errors/website} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/website}" type="Url" textDirection="LTR" placeholder="https://"/>
+        <Text text="{i18n>wiz.optional}" class="tjHint" visible="{= !${wiz>/errors/website} }"/>
+        <Text text="{wiz>/errors/website}" class="tjFieldError" visible="{= !!${wiz>/errors/website} }"/>
+      </VBox>
+      <VBox class="tjField tjSpan2" renderType="Bare">
+        <Label text="{i18n>f.description}" labelFor="description" required="false"/>
+        <TextArea id="description" value="{description}" rows="3" width="100%" maxLength="1000" showExceededText="true" growing="true"/>
+        <Text text="{i18n>wiz.optional}" class="tjHint"/>
+      </VBox>
+    </FlexBox>
+    <CheckBox text="{i18n>f.isSme}" selected="{isSme}" class="tjCheck"/>
+  </VBox>
+</core:FragmentDefinition>
