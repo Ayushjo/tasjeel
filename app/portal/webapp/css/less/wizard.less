@@ -1,0 +1,169 @@
+// Registration wizard (mockup S4/S5): rail | form | requirements, sticky footer.
+.tjWizPage {
+  .sapMPageEnableScrolling, & > section { background: var(--tjBg); }
+  & > section { overflow: hidden !important; }
+}
+.tjWiz { display: grid !important; grid-template-columns: 16.5rem minmax(0, 1fr) 18.75rem; height: 100%; }
+.tjWizCenter { height: 100%; display: flex !important; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; padding: 2rem; text-align: center; }
+.tjWizState { .tjWizStateIcon { font-size: 2.25rem; color: var(--tjMuted); } .tjWizStateOk { color: var(--tjApproved); } }
+.tjWizStateText { max-width: 28rem; color: var(--tjMuted) !important; margin-bottom: .5rem; }
+.tjH2.sapMTitle { font-size: 1.375rem; font-weight: 600; letter-spacing: -.01em; }
+.tjH3.sapMTitle { font-size: .875rem; font-weight: 600; }
+.tjSmall { font-size: .75rem !important; }
+.tjStrong { font-weight: 600 !important; }
+.tjGrow { flex: 1; min-width: 0; }
+.tjGap { gap: .5rem; }
+.tjLead { color: var(--tjMuted) !important; font-size: .875rem !important; margin: .5rem 0 1.75rem; max-width: 34rem; display: block; }
+.tjHint { font-size: .75rem !important; color: var(--tjMuted) !important; }
+.tjFieldError { font-size: .75rem !important; color: var(--tjRejected) !important; }
+.tjChip { display: inline-flex; align-items: center; height: 1.25rem; padding: 0 .375rem; border-radius: @r-xs; font-size: .72rem !important;
+  color: var(--tjMuted) !important; background: var(--tjSurface2); border: 1px solid var(--tjBorder); white-space: nowrap; }
+
+// ---- Step rail (numbered vertical tabs)
+.tjRail { background: var(--tjSurface2); border-inline-end: 1px solid var(--tjBorder); padding: 1.5rem 1rem; overflow-y: auto; }
+.tjRailMeta { padding: 0 .5rem 1rem; }
+.tjRailTitle.sapMTitle { font-size: .875rem; font-weight: 600; }
+.tjRailProgress.sapMPI { height: 3px; margin: .625rem 0 0; border: 0; background: var(--tjBorder); border-radius: 0;
+  .sapMPIBar { background: var(--tjAccent); border-radius: 0; } .sapMPIText { display: none; } }
+.tjSteps.sapMList { background: transparent; border-inline-start: 1px solid var(--tjBorder); margin-inline-start: .5rem;
+  .sapMLIB { background: transparent; border: 0; padding: 0; min-height: 0; }
+  .sapMLIBFocusable:focus { outline-offset: -2px; }
+}
+.tjStepItem.sapMLIB { position: relative; }
+.tjStepItem::before { content: ""; position: absolute; inset-inline-start: -1px; top: .35rem; bottom: .35rem; width: 2px; background: transparent; }
+.tjStepItem[data-state="current"]::before { background: var(--tjAccent); }
+.tjStepRow { display: flex; gap: .5rem; padding: .55rem .625rem .55rem .75rem; width: 100%; }
+.tjStepNo { font-family: @font-mono !important; font-size: .72rem !important; color: var(--tjSubtle) !important; width: 1.5rem; flex: none; line-height: 1.3rem !important; }
+.tjStepCheck { width: 1.5rem; flex: none; color: var(--tjAccent); font-size: .95rem; line-height: 1.3rem; }
+.tjStepEye { color: var(--tjSubtle); }
+.tjStepText { flex: 1; min-width: 0; }
+.tjStepName { font-weight: 500 !important; color: var(--tjMuted) !important; line-height: 1.3rem !important; }
+.tjStepItem[data-state="done"] .tjStepName { color: var(--tjText) !important; }
+.tjStepItem[data-state="current"] { .tjStepName { color: var(--tjText) !important; font-weight: 600 !important; } .tjStepNo { color: var(--tjAccent) !important; } }
+.tjStepItem:hover .tjStepName { color: var(--tjText) !important; }
+.tjStepErr { font-size: .68rem !important; font-weight: 600; color: var(--tjRejected) !important; padding: 0 .375rem; line-height: 1.1rem !important;
+  border-radius: @r-xs; background: color-mix(in srgb, var(--tjRejected) 12%, transparent); align-self: center; }
+
+// ---- Form column
+.tjWizForm { background: var(--tjBg); }
+.tjWizFormIn { max-width: 38rem; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+.tjWizH1.sapMTitle { margin-top: .5rem; white-space: normal; }
+.tjNeedsInline { display: none !important; gap: .625rem; padding: .625rem .75rem; margin-bottom: 1.5rem; border: 1px solid var(--tjBorder); border-radius: @r-lg; background: var(--tjSurface); }
+.tjNeedsBar.sapMPI { flex: 1; height: 4px; margin: 0; border: 0; background: var(--tjBorder); border-radius: 0; .sapMPIBar { background: var(--tjAccent); border-radius: 0; } }
+.tjReviewerNote { margin-bottom: 1.25rem; }
+.tjStepBody { display: flex; flex-direction: column; gap: 1.5rem; animation: tj-step-in .22s @ease-out both; }
+@ease-out: cubic-bezier(.2, .8, .2, 1);
+@keyframes tj-step-in { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+html[dir="rtl"] .tjStepBody { animation-name: tj-step-in-rtl; }
+@keyframes tj-step-in-rtl { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .tjStepBody { animation: none; } }
+
+.tjSection { display: flex; flex-direction: column; gap: .625rem; }
+.tjSectionLabel { font-weight: 500 !important; }
+.tjSectionHead { justify-content: space-between; gap: .75rem; }
+.tjGrid2 { display: grid !important; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+.tjField { display: flex; flex-direction: column; gap: .375rem; min-width: 0;
+  .sapMLabel { font-weight: 500; }
+  .sapMInputBase, .sapMSlt, .sapMComboBox, .sapMMultiComboBox, .sapMDP { width: 100% !important; } }
+.tjSpan2 { grid-column: 1 / -1; }
+.tjMonoInput .sapMInputBaseInner { font-family: @font-mono; letter-spacing: .02em; }
+.tjCheck.sapMCb { padding-inline-start: 0; }
+.tjBtnSmall.sapMBtn { height: 1.75rem; .sapMBtnInner { height: 1.75rem; } }
+
+// Choice cards (control: ChoiceCard)
+.tjChoiceGrid { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: .625rem; }
+.tjChoiceGrid2 { grid-template-columns: 1fr 1fr; }
+.tjChoice {
+  display: flex; gap: .625rem; align-items: flex-start; padding: .75rem .875rem; cursor: pointer; outline: none;
+  border: 1px solid var(--tjBorderStrong); border-radius: @r; background: var(--tjSurface); transition: border-color .12s, box-shadow .12s;
+  &:hover { border-color: var(--tjMuted); }
+  &:focus-visible { box-shadow: 0 0 0 3px var(--tjFocus); }
+  .tjChoiceRadio { width: 1rem; height: 1rem; border-radius: 50%; border: 1.5px solid var(--tjBorderStrong); flex: none; margin-top: .1rem; box-sizing: border-box; }
+  .tjChoiceBody { display: flex; flex-direction: column; gap: .125rem; min-width: 0; }
+  .tjChoiceTitle { font-weight: 500; display: flex; align-items: center; gap: .375rem; }
+  .tjChoiceIcon { font-size: .95rem; color: var(--tjMuted); }
+  .tjChoiceDesc { font-size: .75rem; color: var(--tjMuted); }
+}
+.tjChoiceOn { border-color: var(--tjAccent); box-shadow: 0 0 0 3px var(--tjFocus);
+  .tjChoiceRadio { border: 5px solid var(--tjAccent); } .tjChoiceIcon { color: var(--tjAccent); } }
+
+// Bank detection card
+.tjBankHit { gap: .75rem; padding: .625rem .75rem; margin-top: -1rem; border-radius: @r-lg; background: var(--tjAccentSoft);
+  border: 1px solid color-mix(in srgb, var(--tjAccent) 25%, transparent); }
+.tjBankIcon { font-size: 1.1rem; color: var(--tjAccent); width: 1.75rem; height: 1.75rem; display: grid !important; place-items: center;
+  background: var(--tjSurface); border: 1px solid var(--tjBorder); border-radius: @r; }
+
+// Contacts
+.tjContacts.sapMList .sapMLIB { padding: 0; }
+.tjContactItem .sapMLIBContent { width: 100%; }
+.tjContactGrid { display: grid !important; grid-template-columns: 1fr 1fr; gap: .5rem; padding: .75rem; width: 100%; box-sizing: border-box; }
+.tjContactFlags { grid-column: 1 / -1; gap: .5rem; justify-content: space-between; }
+
+// Documents
+.tjDocs.sapMList .sapMLIB { padding: 0; }
+.tjDocRow { display: flex !important; gap: .75rem; padding: .75rem 1rem; width: 100%; box-sizing: border-box; }
+.tjDocMain { display: flex; flex-direction: column; gap: .2rem; }
+.tjDocExpiryRow { margin-top: .25rem; }
+.tjEllipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap !important; }
+.tjDocIcon { font-size: 1.1rem; width: 2rem; height: 2rem; display: grid !important; place-items: center; flex: none;
+  border-radius: @r; background: var(--tjSurface2); border: 1px solid var(--tjBorder); color: var(--tjSubtle); }
+.tjDocIcon[data-done="true"] { color: var(--tjAccent); background: var(--tjAccentSoft); }
+
+// Declarations
+.tjDeclare { padding: .75rem 1rem; .sapMCbLabel { white-space: normal; line-height: 1.45; } }
+
+// Review: check-answers cards
+.tjSummary { overflow: hidden; }
+.tjSummaryHead { justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid var(--tjBorder); }
+.tjDlGrid { display: grid !important; grid-template-columns: 12rem 1fr; }
+.tjDl.sapMLabel, .tjDd.sapMText { padding: .625rem 1rem; border-bottom: 1px solid var(--tjBorder); }
+.tjDl.sapMLabel { color: var(--tjMuted); font-weight: 400; }
+.tjDd.sapMText { font-weight: 500; }
+.tjDlGrid > :nth-last-child(-n+2) { border-bottom: 0; }
+
+// ---- Requirements panel
+.tjNeeds { border-inline-start: 1px solid var(--tjBorder); padding: 1.5rem 1.25rem; overflow-y: auto; background: var(--tjBg); display: flex; flex-direction: column; gap: .875rem; }
+.tjNeedsHead { gap: .5rem; }
+.tjNeedsCard { gap: .75rem; padding: .75rem; }
+.tjNeedsList.sapMList { background: transparent; .sapMLIB { background: transparent; border: 0; padding: 0; min-height: 0; } .sapMListNoData { display: none; } }
+.tjNeedRow { display: flex; gap: .625rem; padding: .45rem .5rem; border-radius: @r; &:hover { background: var(--tjHover); } }
+.tjNeedIcon { color: var(--tjSubtle); margin-top: .15rem; }
+.tjNeedIcon[data-bad="true"] { color: var(--tjRejected); }
+.tjNeedText { font-size: .8125rem !important; }
+.tjPrivacy { gap: .625rem; padding: .75rem; border-radius: @r-lg; background: var(--tjSurface2); border: 1px solid var(--tjBorder);
+  .sapUiIcon { color: var(--tjMuted); margin-top: .1rem; } .sapMText { font-size: .75rem; color: var(--tjMuted); } }
+.tjRing { display: inline-block; flex: none; .tjRingTrack { stroke: var(--tjBorder); } .tjRingValue { stroke: var(--tjAccent); transition: stroke-dashoffset .4s @ease-out; } }
+
+// ---- Footer
+.tjWizFooter.sapMTB { height: 3.75rem; padding-inline: 1.25rem; background: var(--tjSurface); border-top: 1px solid var(--tjBorder); box-shadow: none; }
+.tjSaved { gap: .375rem; margin-inline-end: .5rem; }
+.tjSavedIcon { font-size: .9rem; color: var(--tjApproved); }
+.tjSavedIcon[data-saving="saving"] { color: var(--tjReview); animation: tj-spin .8s linear infinite; }
+.tjSavedIcon[data-saving="error"] { color: var(--tjRejected); }
+@keyframes tj-spin { to { transform: rotate(360deg); } }
+
+// ---- Breakpoints
+@media (max-width: @bp-tablet) {
+  .tjWiz { grid-template-columns: 14.25rem minmax(0, 1fr); }
+  .tjNeeds { display: none !important; }
+  .tjNeedsInline { display: flex !important; }
+  .tjWizFormIn { padding: 2rem 1.75rem 3rem; }
+}
+@media (max-width: @bp-phone) {
+  .tjWiz { grid-template-columns: minmax(0, 1fr); }
+  .tjRail { display: none !important; }
+  .tjWizFormIn { padding: 1.25rem 1rem 6rem; }
+  .tjGrid2, .tjChoiceGrid, .tjChoiceGrid2, .tjContactGrid { grid-template-columns: 1fr; }
+  .tjDlGrid { grid-template-columns: 1fr; .tjDl.sapMLabel { border-bottom: 0; padding-bottom: 0; } }
+  .tjDocRow { flex-wrap: wrap; }
+  .tjWizFooter.sapMTB { padding-inline: .75rem; margin-bottom: 4rem; }
+}
+
+// Checkbox tick + box in our accent (Horizon draws them in --sapContent_Selected_ForegroundColor / blue hover)
+.sapMCb .sapMCbBg.sapMCbMarkChecked::after, .sapMCbMarkChecked::before { color: var(--tjAccent) !important; }
+.sapMCb:hover .sapMCbBg, .sapMCb .sapMCbBg { border-radius: @r-xs; }
+
+// Inline field error (message under the field, icon from the Phosphor font)
+.tjFieldError.sapMText { display: flex; gap: .375rem; line-height: 1.4; }
+@font-face { font-family: "TjPhosphor"; src: url("../fonts/Phosphor.woff2") format("woff2"); font-display: block; }
+.tjFieldError.sapMText::before { content: "\e4e2"; font-family: "TjPhosphor"; font-size: .85rem; }

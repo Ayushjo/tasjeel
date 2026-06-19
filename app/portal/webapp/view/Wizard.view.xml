@@ -1,0 +1,135 @@
+<mvc:View controllerName="tasjeel.portal.controller.Wizard"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <Page showHeader="false" class="tjPage tjWizPage" enableScrolling="false">
+
+    <!-- Loading -->
+    <VBox class="tjWizCenter" renderType="Bare" visible="{= ${wiz>/state} === 'loading' }">
+      <BusyIndicator size="1.5rem"/>
+      <Text text="{i18n>wiz.loading}" class="tjMuted"/>
+    </VBox>
+
+    <!-- Locked while under review -->
+    <VBox class="tjWizCenter tjWizState" renderType="Bare" visible="{= ${wiz>/state} === 'locked' }">
+      <core:Icon src="sap-icon://phosphor/lock-simple" class="tjWizStateIcon"/>
+      <Title text="{i18n>wiz.lockedTitle}" level="H2" class="tjH2"/>
+      <Text text="{ parts: ['i18n>wiz.lockedText', 'wiz>/appNo', 'wiz>/statusName'], formatter: '.formatter.text' }" class="tjWizStateText"/>
+      <Button text="{i18n>wiz.backHome}" type="Emphasized" press=".onExit"/>
+    </VBox>
+
+    <!-- Submitted -->
+    <VBox class="tjWizCenter tjWizState" renderType="Bare" visible="{= ${wiz>/state} === 'done' }">
+      <core:Icon src="sap-icon://phosphor/seal-check" class="tjWizStateIcon tjWizStateOk"/>
+      <Title text="{i18n>wiz.doneTitle}" level="H2" class="tjH2"/>
+      <Text text="{ parts: ['i18n>wiz.doneText', 'wiz>/appNo'], formatter: '.formatter.text' }" class="tjWizStateText"/>
+      <Button text="{i18n>wiz.backHome}" type="Emphasized" press=".onExit"/>
+    </VBox>
+
+    <!-- Editing -->
+    <FlexBox class="tjWiz" renderType="Bare" visible="{= ${wiz>/state} === 'edit' }">
+      <!-- Step rail: numbered vertical tabs -->
+      <VBox class="tjRail" renderType="Bare">
+        <VBox class="tjRailMeta" renderType="Bare">
+          <Text text="{ parts: ['i18n>wiz.stepOf', 'wiz>/stepNo'], formatter: '.formatter.text' }" class="tjMuted tjSmall" visible="{= ${wiz>/stepNo} > 0 &amp;&amp; ${wiz>/stepNo} &lt; 8 }"/>
+          <Title text="{wiz>/stepTitle}" level="H3" class="tjRailTitle"/>
+          <ProgressIndicator percentValue="{wiz>/percent}" showValue="false" class="tjRailProgress" displayOnly="true"/>
+        </VBox>
+        <List items="{wiz>/steps}" class="tjSteps" showSeparators="None" mode="None">
+          <CustomListItem type="Active" press=".onStepPress" class="tjStepItem">
+            <customData><core:CustomData key="state" value="{wiz>state}" writeToDom="true"/></customData>
+            <HBox class="tjStepRow" alignItems="Start" renderType="Bare">
+              <core:Icon src="sap-icon://phosphor/check" class="tjStepCheck" visible="{= ${wiz>state} === 'done' }"/>
+              <core:Icon src="sap-icon://phosphor/eye" class="tjStepCheck tjStepEye" visible="{= ${wiz>key} === 'review' &amp;&amp; ${wiz>state} !== 'done' }"/>
+              <Text text="{wiz>no}" class="tjStepNo" visible="{= ${wiz>state} !== 'done' &amp;&amp; ${wiz>key} !== 'review' }"/>
+              <VBox renderType="Bare" class="tjStepText">
+                <Text text="{wiz>title}" class="tjStepName"/>
+              </VBox>
+              <Text text="{wiz>errors}" class="tjStepErr" visible="{= ${wiz>errors} > 0 &amp;&amp; ${wiz>shown} }"/>
+            </HBox>
+          </CustomListItem>
+        </List>
+      </VBox>
+
+      <!-- Form column -->
+      <ScrollContainer id="formScroll" vertical="true" class="tjWizForm" height="100%">
+        <VBox class="tjWizFormIn" renderType="Bare">
+          <!-- Compact progress for tablet / phone -->
+          <HBox class="tjNeedsInline" alignItems="Center" renderType="Bare">
+            <core:Icon src="sap-icon://phosphor/list-checks"/>
+            <Text text="{ parts: ['i18n>wiz.percent', 'wiz>/percent'], formatter: '.formatter.text' }" class="tjStrong"/>
+            <ProgressIndicator percentValue="{wiz>/percent}" showValue="false" displayOnly="true" class="tjNeedsBar"/>
+            <Text text="{ parts: ['i18n>wiz.itemsLeftShort', 'wiz>/openCount'], formatter: '.formatter.text' }" class="tjMuted tjSmall" visible="{= ${wiz>/openCount} > 0 }"/>
+          </HBox>
+          <MessageStrip text="{wiz>/reviewerNote}" type="Warning" showIcon="true" visible="{= !!${wiz>/reviewerNote} }" class="tjStrip tjReviewerNote">
+            <link><Link text="{i18n>wiz.reviewChanges}" enabled="false"/></link>
+          </MessageStrip>
+
+          <Text text="{wiz>/eyebrow}" class="tjEyebrow"/>
+          <Title text="{wiz>/h1}" level="H1" class="tjH1 tjWizH1" wrapping="true"/>
+          <Text text="{wiz>/lead}" class="tjLead"/>
+
+          <VBox id="stepHost" class="tjStepHost" renderType="Bare">
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Pre" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Profile" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Address" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Tax" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Banking" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Products" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Documents" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Declarations" type="XML"/>
+            <core:Fragment fragmentName="tasjeel.portal.view.wizard.Review" type="XML"/>
+          </VBox>
+        </VBox>
+      </ScrollContainer>
+
+      <!-- What's still needed (Stripe-style requirements list) -->
+      <VBox class="tjNeeds" renderType="Bare">
+        <HBox class="tjNeedsHead" alignItems="Center" renderType="Bare">
+          <core:Icon src="sap-icon://phosphor/list-checks"/>
+          <Title text="{i18n>wiz.needTitle}" level="H3" class="tjH3"/>
+        </HBox>
+        <HBox class="tjCard tjNeedsCard" alignItems="Center" renderType="Bare">
+          <tj:ProgressRing value="{wiz>/percent}" size="2.75rem"/>
+          <VBox renderType="Bare">
+            <Text text="{ parts: ['i18n>wiz.percent', 'wiz>/percent'], formatter: '.formatter.text' }" class="tjStrong"/>
+            <Text text="{ parts: ['i18n>wiz.itemsLeft', 'wiz>/openCount', 'i18n>wiz.allDone'], formatter: '.formatter.itemsLeft' }" class="tjMuted tjSmall"/>
+          </VBox>
+        </HBox>
+        <List items="{wiz>/open}" class="tjNeedsList" showSeparators="None" noDataText=" ">
+          <CustomListItem type="Active" press=".onNeedPress">
+            <HBox class="tjNeedRow" alignItems="Start" renderType="Bare">
+              <core:Icon src="{= ${wiz>bad} ? 'sap-icon://phosphor/warning-circle' : 'sap-icon://phosphor/circle' }" class="tjNeedIcon">
+                <core:customData><core:CustomData key="bad" value="{= String(!!${wiz>bad}) }" writeToDom="true"/></core:customData>
+              </core:Icon>
+              <VBox renderType="Bare">
+                <Text text="{wiz>message}" class="tjNeedText"/>
+                <Text text="{wiz>stepTitle}" class="tjMuted tjSmall"/>
+              </VBox>
+            </HBox>
+          </CustomListItem>
+        </List>
+        <HBox class="tjPrivacy" renderType="Bare">
+          <core:Icon src="sap-icon://phosphor/lock-simple"/>
+          <Text text="{i18n>wiz.privacy}"/>
+        </HBox>
+      </VBox>
+    </FlexBox>
+
+    <footer>
+      <OverflowToolbar class="tjWizFooter" visible="{= ${wiz>/state} === 'edit' }">
+        <Button text="{i18n>wiz.back}" icon="sap-icon://phosphor/caret-left" press=".onBack" enabled="{= ${wiz>/stepIndex} > 0 }" class="tjMirror"/>
+        <ToolbarSpacer/>
+        <HBox class="tjSaved" alignItems="Center" renderType="Bare">
+          <core:Icon src="{= ${wiz>/saving} === 'saving' ? 'sap-icon://phosphor/circle-notch' : ${wiz>/saving} === 'error' ? 'sap-icon://phosphor/warning-circle' : 'sap-icon://phosphor/check-circle' }" class="tjSavedIcon">
+            <core:customData><core:CustomData key="saving" value="{wiz>/saving}" writeToDom="true"/></core:customData>
+          </core:Icon>
+          <Text text="{= ${wiz>/saving} === 'saving' ? ${i18n>wiz.saving} : ${wiz>/saving} === 'error' ? ${i18n>wiz.saveError} : ${i18n>wiz.saved} }" class="tjMuted tjSmall"/>
+        </HBox>
+        <Button text="{i18n>wiz.saveExit}" press=".onExit" class="sapUiHideOnPhone"/>
+        <Button text="{wiz>/nextText}" type="Emphasized" icon="sap-icon://phosphor/caret-right" iconFirst="false" press=".onNext"
+          visible="{= ${wiz>/step} !== 'review' }" class="tjMirror"/>
+        <Button text="{= ${wiz>/submitting} ? ${i18n>wiz.submitting} : ${i18n>wiz.submit} }" type="Emphasized" icon="sap-icon://phosphor/paper-plane-tilt"
+          iconFirst="false" press=".onSubmit" visible="{= ${wiz>/step} === 'review' }" enabled="{= !${wiz>/submitting} }" class="tjMirror"/>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>
