@@ -1,0 +1,21 @@
+<mvc:View controllerName="tasjeel.portal.controller.Settings" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+  <Page showHeader="false" class="tjPage">
+    <VBox class="tjWrap tjNarrow" renderType="Bare">
+      <Title text="{i18n>settings.title}" level="H1" class="tjH1"/>
+      <VBox class="tjCard tjSettings" renderType="Bare">
+        <HBox class="tjSettingRow" alignItems="Center" renderType="Bare">
+          <Label text="{i18n>settings.language}" class="tjSettingLabel"/>
+          <SegmentedButton selectedKey="{ui>/lang}" selectionChange=".onLanguage">
+            <items><SegmentedButtonItem key="en" text="English"/><SegmentedButtonItem key="ar" text="العربية"/></items>
+          </SegmentedButton>
+        </HBox>
+        <HBox class="tjSettingRow" alignItems="Center" renderType="Bare">
+          <Label text="{i18n>settings.theme}" class="tjSettingLabel"/>
+          <SegmentedButton selectedKey="{ui>/theme}" selectionChange=".onTheme">
+            <items><SegmentedButtonItem key="light" text="{i18n>settings.light}"/><SegmentedButtonItem key="dark" text="{i18n>settings.dark}"/></items>
+          </SegmentedButton>
+        </HBox>
+      </VBox>
+    </VBox>
+  </Page>
+</mvc:View>
