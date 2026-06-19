@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'banking' }">
+    <VBox class="tjSection" renderType="Bare">
+      <Label text="{i18n>f.currency}" class="tjSectionLabel"/>
+      <FlexBox class="tjChoiceGrid tjChoiceGrid2" renderType="Bare">
+        <tj:ChoiceCard key="SAR" selected="{= ${wiz>/currency} === 'SAR' }" title="{i18n>cur.sar}" description="{i18n>cur.sarD}" select=".onCurrency"/>
+        <tj:ChoiceCard key="USD" selected="{= ${wiz>/currency} !== 'SAR' }" title="{i18n>cur.fx}" description="{i18n>cur.fxD}" select=".onCurrency"/>
+      </FlexBox>
+    </VBox>
+    <VBox class="tjField" renderType="Bare">
+      <Label text="{i18n>f.iban}" labelFor="iban" required="true"/>
+      <Input id="iban" showValueStateMessage="false" value="{path: 'iban', formatter: '.formatter.iban'}" liveChange=".onIbanLive" change=".onIbanChange" textDirection="LTR" maxLength="42"
+        class="tjMonoInput" placeholder="SA00 0000 0000 0000 0000 0000" valueState="{= ${wiz>/errors/iban} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/iban}"/>
+      <Text text="{i18n>h.iban}" class="tjHint" visible="{= !${wiz>/errors/iban} }"/>
+        <Text text="{wiz>/errors/iban}" class="tjFieldError" visible="{= !!${wiz>/errors/iban} }"/>
+    </VBox>
+    <HBox class="tjBankHit" alignItems="Center" renderType="Bare" visible="{= !!${wiz>/bank/name} }">
+      <core:Icon src="sap-icon://phosphor/bank" class="tjBankIcon"/>
+      <VBox renderType="Bare" class="tjGrow">
+        <Text text="{wiz>/bank/name}" class="tjStrong"/>
+        <Text text="{ parts: ['i18n>bank.detected', 'wiz>/bank/code'], formatter: '.formatter.text' }" class="tjMuted tjSmall"/>
+      </VBox>
+      <Text text="{wiz>/bank/swift}" class="tjChip tjMono"/>
+    </HBox>
+    <FlexBox class="tjGrid2" renderType="Bare">
+      <VBox class="tjField tjSpan2" renderType="Bare">
+        <Label text="{i18n>f.accountHolder}" labelFor="accountHolder" required="true"/>
+        <Input id="accountHolder" showValueStateMessage="false" value="{accountHolder}" valueState="{= ${wiz>/errors/accountHolder} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/accountHolder}" maxLength="160"/>
+        <Text text="{wiz>/errors/accountHolder}" class="tjFieldError" visible="{= !!${wiz>/errors/accountHolder} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.swift}" labelFor="swift" required="false"/>
+        <Input id="swift" showValueStateMessage="false" value="{swift}" valueState="{= ${wiz>/errors/swift} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/swift}" maxLength="11" textDirection="LTR" class="tjMonoInput"/>
+        <Text text="{i18n>h.swift}" class="tjHint" visible="{= !${wiz>/errors/swift} }"/>
+        <Text text="{wiz>/errors/swift}" class="tjFieldError" visible="{= !!${wiz>/errors/swift} }"/>
+      </VBox>
+    </FlexBox>
+  </VBox>
+</core:FragmentDefinition>
