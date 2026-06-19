@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'products' }">
+    <VBox class="tjField" renderType="Bare">
+      <Label text="{i18n>f.categories}" labelFor="categories" required="true"/>
+      <MultiComboBox id="categories" showValueStateMessage="false" width="100%" selectedKeys="{wiz>/categoryKeys}" selectionFinish=".onCategories"
+        items="{ path: '/Categories', sorter: { path: 'name' } }"
+        valueState="{= ${wiz>/errors/categories} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/categories}">
+        <core:Item key="{code}" text="{name}"/>
+      </MultiComboBox>
+      <Text text="{i18n>h.categories}" class="tjHint" visible="{= !${wiz>/errors/categories} }"/>
+        <Text text="{wiz>/errors/categories}" class="tjFieldError" visible="{= !!${wiz>/errors/categories} }"/>
+    </VBox>
+  </VBox>
+</core:FragmentDefinition>
