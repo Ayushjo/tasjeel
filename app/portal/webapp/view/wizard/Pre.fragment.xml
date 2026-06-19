@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'pre' }">
+    <VBox class="tjSection" renderType="Bare">
+      <Label text="{i18n>f.supplierType}" required="true" class="tjSectionLabel"/>
+      <FlexBox class="tjChoiceGrid" renderType="Bare">
+        <tj:ChoiceCard key="LOCAL" selected="{= ${wiz>/supplierType} === 'LOCAL' }" title="{i18n>type.LOCAL}" description="{i18n>type.LOCALd}" icon="sap-icon://phosphor/map-pin" select=".onSupplierType"/>
+        <tj:ChoiceCard key="GCC" selected="{= ${wiz>/supplierType} === 'GCC' }" title="{i18n>type.GCC}" description="{i18n>type.GCCd}" icon="sap-icon://phosphor/globe-hemisphere-east" select=".onSupplierType"/>
+        <tj:ChoiceCard key="FOREIGN" selected="{= ${wiz>/supplierType} === 'FOREIGN' }" title="{i18n>type.FOREIGN}" description="{i18n>type.FOREIGNd}" icon="sap-icon://phosphor/airplane-tilt" select=".onSupplierType"/>
+      </FlexBox>
+      <Text text="{wiz>/errors/supplierType_code}" class="tjFieldError" visible="{= !!${wiz>/errors/supplierType_code} }"/>
+    </VBox>
+    <FlexBox class="tjGrid2" renderType="Bare">
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.legalNameEn}" labelFor="legalNameEn" required="true"/>
+        <Input id="legalNameEn" showValueStateMessage="false" value="{legalNameEn}" valueState="{= ${wiz>/errors/legalNameEn} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/legalNameEn}" maxLength="160" textDirection="LTR"/>
+        <Text text="{wiz>/errors/legalNameEn}" class="tjFieldError" visible="{= !!${wiz>/errors/legalNameEn} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.legalNameAr}" labelFor="legalNameAr" required="true"/>
+        <Input id="legalNameAr" showValueStateMessage="false" value="{legalNameAr}" valueState="{= ${wiz>/errors/legalNameAr} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/legalNameAr}" maxLength="160" textDirection="RTL"/>
+        <Text text="{wiz>/errors/legalNameAr}" class="tjFieldError" visible="{= !!${wiz>/errors/legalNameAr} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare" visible="{= ${wiz>/supplierType} === 'LOCAL' }">
+        <Label text="{i18n>f.unifiedNo}" labelFor="unifiedNo" required="true"/>
+        <Input id="unifiedNo" showValueStateMessage="false" value="{unifiedNo}" valueState="{= ${wiz>/errors/unifiedNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/unifiedNo}" maxLength="10" textDirection="LTR" class="tjMonoInput" placeholder="7XXXXXXXXX"/>
+        <Text text="{i18n>h.unifiedNo}" class="tjHint" visible="{= !${wiz>/errors/unifiedNo} }"/>
+        <Text text="{wiz>/errors/unifiedNo}" class="tjFieldError" visible="{= !!${wiz>/errors/unifiedNo} }"/>
+      </VBox>
+    </FlexBox>
+  </VBox>
+</core:FragmentDefinition>
