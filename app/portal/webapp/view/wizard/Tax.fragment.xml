@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'tax' }">
+    <FlexBox class="tjGrid2" renderType="Bare">
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.vatNumber}" labelFor="vatNumber" required="true"/>
+        <Input id="vatNumber" showValueStateMessage="false" value="{vatNumber}" valueState="{= ${wiz>/errors/vatNumber} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/vatNumber}" maxLength="15" textDirection="LTR" class="tjMonoInput" placeholder="3XXXXXXXXXXXXX3"/>
+        <Text text="{i18n>h.vatNumber}" class="tjHint" visible="{= !${wiz>/errors/vatNumber} }"/>
+        <Text text="{wiz>/errors/vatNumber}" class="tjFieldError" visible="{= !!${wiz>/errors/vatNumber} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.vatExemptReason}" labelFor="vatExemptReason" required="false"/>
+        <Input id="vatExemptReason" showValueStateMessage="false" value="{vatExemptReason}" valueState="{= ${wiz>/errors/vatExemptReason} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/vatExemptReason}" maxLength="255"/>
+        <Text text="{i18n>wiz.optional}" class="tjHint" visible="{= !${wiz>/errors/vatExemptReason} }"/>
+        <Text text="{wiz>/errors/vatExemptReason}" class="tjFieldError" visible="{= !!${wiz>/errors/vatExemptReason} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare" visible="{= ${wiz>/supplierType} === 'LOCAL' }">
+        <Label text="{i18n>f.zakatCertNo}" labelFor="zakatCertNo" required="true"/>
+        <Input id="zakatCertNo" showValueStateMessage="false" value="{zakatCertNo}" valueState="{= ${wiz>/errors/zakatCertNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/zakatCertNo}" maxLength="30" textDirection="LTR"/>
+        <Text text="{wiz>/errors/zakatCertNo}" class="tjFieldError" visible="{= !!${wiz>/errors/zakatCertNo} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare" visible="{= ${wiz>/supplierType} === 'LOCAL' }">
+        <Label text="{i18n>f.zakatCertExpiry}" labelFor="zakatCertExpiry" required="false"/>
+        <DatePicker id="zakatCertExpiry" showValueStateMessage="false" value="{path: 'zakatCertExpiry', type: 'sap.ui.model.odata.type.Date'}" valueState="{= ${wiz>/errors/zakatCertExpiry} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/zakatCertExpiry}"/>
+        <Text text="{wiz>/errors/zakatCertExpiry}" class="tjFieldError" visible="{= !!${wiz>/errors/zakatCertExpiry} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare" visible="{= ${wiz>/supplierType} === 'LOCAL' }">
+        <Label text="{i18n>f.gosiNo}" labelFor="gosiNo" required="true"/>
+        <Input id="gosiNo" showValueStateMessage="false" value="{gosiNo}" valueState="{= ${wiz>/errors/gosiNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/gosiNo}" maxLength="20" textDirection="LTR" class="tjMonoInput"/>
+        <Text text="{wiz>/errors/gosiNo}" class="tjFieldError" visible="{= !!${wiz>/errors/gosiNo} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.chamberNo}" labelFor="chamberNo" required="false"/>
+        <Input id="chamberNo" showValueStateMessage="false" value="{chamberNo}" valueState="{= ${wiz>/errors/chamberNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/chamberNo}" maxLength="30" textDirection="LTR"/>
+        <Text text="{i18n>wiz.optional}" class="tjHint" visible="{= !${wiz>/errors/chamberNo} }"/>
+        <Text text="{wiz>/errors/chamberNo}" class="tjFieldError" visible="{= !!${wiz>/errors/chamberNo} }"/>
+      </VBox>
+    </FlexBox>
+  </VBox>
+</core:FragmentDefinition>
