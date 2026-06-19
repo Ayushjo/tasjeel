@@ -1,0 +1,69 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'address' }">
+    <FlexBox class="tjGrid2" renderType="Bare">
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.country}" labelFor="country" required="true"/>
+        <ComboBox id="country" showValueStateMessage="false" selectedKey="{country_code}" width="100%" items="{ path: '/Countries', sorter: { path: 'name' }, length: 300 }" valueState="{= ${wiz>/errors/country_code} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/country_code}"><core:Item key="{code}" text="{name}"/></ComboBox>
+        <Text text="{wiz>/errors/country_code}" class="tjFieldError" visible="{= !!${wiz>/errors/country_code} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.city}" labelFor="city" required="true"/>
+        <Input id="city" showValueStateMessage="false" value="{city}" valueState="{= ${wiz>/errors/city} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/city}" maxLength="80"/>
+        <Text text="{wiz>/errors/city}" class="tjFieldError" visible="{= !!${wiz>/errors/city} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.district}" labelFor="district" required="true"/>
+        <Input id="district" showValueStateMessage="false" value="{district}" valueState="{= ${wiz>/errors/district} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/district}" maxLength="80"/>
+        <Text text="{wiz>/errors/district}" class="tjFieldError" visible="{= !!${wiz>/errors/district} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.street}" labelFor="street" required="true"/>
+        <Input id="street" showValueStateMessage="false" value="{street}" valueState="{= ${wiz>/errors/street} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/street}" maxLength="120"/>
+        <Text text="{wiz>/errors/street}" class="tjFieldError" visible="{= !!${wiz>/errors/street} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.buildingNo}" labelFor="buildingNo" required="true"/>
+        <Input id="buildingNo" showValueStateMessage="false" value="{buildingNo}" valueState="{= ${wiz>/errors/buildingNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/buildingNo}" maxLength="4" textDirection="LTR" class="tjMonoInput"/>
+        <Text text="{wiz>/errors/buildingNo}" class="tjFieldError" visible="{= !!${wiz>/errors/buildingNo} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.postalCode}" labelFor="postalCode" required="true"/>
+        <Input id="postalCode" showValueStateMessage="false" value="{postalCode}" valueState="{= ${wiz>/errors/postalCode} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/postalCode}" maxLength="5" textDirection="LTR" class="tjMonoInput"/>
+        <Text text="{wiz>/errors/postalCode}" class="tjFieldError" visible="{= !!${wiz>/errors/postalCode} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.additionalNo}" labelFor="additionalNo" required="true"/>
+        <Input id="additionalNo" showValueStateMessage="false" value="{additionalNo}" valueState="{= ${wiz>/errors/additionalNo} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/additionalNo}" maxLength="4" textDirection="LTR" class="tjMonoInput"/>
+        <Text text="{wiz>/errors/additionalNo}" class="tjFieldError" visible="{= !!${wiz>/errors/additionalNo} }"/>
+      </VBox>
+      <VBox class="tjField" renderType="Bare">
+        <Label text="{i18n>f.shortAddress}" labelFor="shortAddress" required="false"/>
+        <Input id="shortAddress" showValueStateMessage="false" value="{shortAddress}" valueState="{= ${wiz>/errors/shortAddress} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/shortAddress}" maxLength="8" textDirection="LTR" class="tjMonoInput" placeholder="RAGI2929"/>
+        <Text text="{i18n>h.shortAddress}" class="tjHint" visible="{= !${wiz>/errors/shortAddress} }"/>
+        <Text text="{wiz>/errors/shortAddress}" class="tjFieldError" visible="{= !!${wiz>/errors/shortAddress} }"/>
+      </VBox>
+    </FlexBox>
+    <VBox class="tjSection" renderType="Bare">
+      <HBox class="tjSectionHead" alignItems="Center" renderType="Bare">
+        <Title text="{i18n>contacts.title}" level="H3" class="tjH3"/>
+        <Button text="{i18n>contacts.add}" icon="sap-icon://phosphor/plus" press=".onAddContact" class="tjBtnSmall"/>
+      </HBox>
+      <Text text="{wiz>/errors/contacts}" class="tjFieldError" visible="{= !!${wiz>/errors/contacts} }"/>
+      <List id="contacts" items="{ path: 'contacts', parameters: { $$updateGroupId: '$auto' } }" class="tjCard tjContacts" noDataText="{i18n>contacts.empty}" showSeparators="All">
+        <CustomListItem class="tjContactItem">
+          <FlexBox class="tjContactGrid" renderType="Bare">
+            <Input value="{name}" placeholder="{i18n>contacts.name}" maxLength="120"/>
+            <Input value="{role}" placeholder="{i18n>contacts.role}" maxLength="80"/>
+            <Input value="{email}" placeholder="{i18n>contacts.email}" type="Email" textDirection="LTR" maxLength="254"/>
+            <Input value="{phone}" placeholder="+9665XXXXXXXX" type="Tel" textDirection="LTR" maxLength="20"/>
+            <HBox class="tjContactFlags" alignItems="Center" renderType="Bare">
+              <CheckBox text="{i18n>contacts.primary}" selected="{isPrimary}" select=".onPrimary"/>
+              <CheckBox text="{i18n>contacts.signatory}" selected="{isSignatory}"/>
+              <Button icon="sap-icon://phosphor/trash" type="Transparent" press=".onDeleteContact" tooltip="Delete"/>
+            </HBox>
+          </FlexBox>
+        </CustomListItem>
+      </List>
+    </VBox>
+  </VBox>
+</core:FragmentDefinition>
