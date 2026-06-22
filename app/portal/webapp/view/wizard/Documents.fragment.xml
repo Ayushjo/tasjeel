@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'documents' }">
+    <MessageStrip text="{i18n>docs.chooseType}" type="Information" showIcon="true" visible="{= !${wiz>/supplierType} }" class="tjStrip"/>
+    <List items="{wiz>/docs}" class="tjCard tjDocs" showSeparators="All" visible="{= !!${wiz>/supplierType} }">
+      <CustomListItem>
+        <FlexBox class="tjDocRow" alignItems="Center" renderType="Bare">
+          <core:Icon src="{= ${wiz>fileName} ? 'sap-icon://phosphor/file-text' : 'sap-icon://phosphor/file-dashed' }" class="tjDocIcon">
+            <core:customData><core:CustomData key="done" value="{= String(!!${wiz>fileName}) }" writeToDom="true"/></core:customData>
+          </core:Icon>
+          <VBox renderType="Bare" class="tjGrow tjDocMain">
+            <HBox alignItems="Center" class="tjGap" renderType="Bare" wrap="Wrap">
+              <Text text="{wiz>name}" class="tjStrong"/>
+              <Text text="{= ${wiz>required} ? ${i18n>docs.required} : ${i18n>docs.optional} }" class="tjChip"/>
+            </HBox>
+            <Text text="{= ${wiz>fileName} ? ${wiz>fileName} + ' · ' + ${wiz>sizeText} : ${i18n>docs.hint} }" class="tjMuted tjSmall tjEllipsis"/>
+            <HBox alignItems="Center" class="tjGap tjDocExpiryRow" renderType="Bare" visible="{= !!${wiz>hasExpiry} &amp;&amp; !!${wiz>fileName} }">
+              <Label text="{i18n>docs.expiry}" class="tjSmall"/>
+              <DatePicker value="{wiz>expiryDate}" valueFormat="yyyy-MM-dd" width="9.5rem" change=".onDocExpiry" class="tjDocExpiry"/>
+            </HBox>
+          </VBox>
+          <Button text="{= ${wiz>uploading} ? ${i18n>docs.uploading} : ${wiz>fileName} ? ${i18n>docs.replace} : ${i18n>docs.upload} }"
+            icon="sap-icon://phosphor/upload-simple" press=".onUploadPress" enabled="{= !${wiz>uploading} }"/>
+          <Button icon="sap-icon://phosphor/trash" type="Transparent" press=".onDeleteDoc" visible="{= !!${wiz>fileName} }" tooltip="Delete"/>
+        </FlexBox>
+      </CustomListItem>
+    </List>
+  </VBox>
+</core:FragmentDefinition>
