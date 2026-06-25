@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'declarations' }">
+    <VBox class="tjCard tjDeclare" renderType="Bare">
+      <CheckBox selected="{declarationAccepted}" text="{i18n>f.declarationAccepted}" wrapping="true"
+        valueState="{= ${wiz>/errors/declarationAccepted} ? 'Error' : 'None' }"/>
+    </VBox>
+    <FlexBox class="tjGrid2" renderType="Bare">
+      <VBox class="tjField tjSpan2" renderType="Bare">
+        <Label text="{i18n>f.declaredBy}" labelFor="declaredBy" required="true"/>
+        <Input id="declaredBy" showValueStateMessage="false" value="{declaredBy}" valueState="{= ${wiz>/errors/declaredBy} ? 'Error' : 'None' }" valueStateText="{wiz>/errors/declaredBy}" maxLength="120"/>
+        <Text text="{wiz>/errors/declaredBy}" class="tjFieldError" visible="{= !!${wiz>/errors/declaredBy} }"/>
+      </VBox>
+    </FlexBox>
+  </VBox>
+</core:FragmentDefinition>
