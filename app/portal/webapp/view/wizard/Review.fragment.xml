@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <VBox class="tjStepBody" renderType="Bare" visible="{= ${wiz>/step} === 'review' }">
+    <VBox class="tjCard tjSummary" renderType="Bare">
+      <HBox class="tjSummaryHead" alignItems="Center" renderType="Bare">
+        <Title text="{i18n>step.pre}" level="H3" class="tjH3"/>
+        <Link text="{i18n>wiz.change}" press=".onChangeStep"><customData><core:CustomData key="step" value="pre"/></customData></Link>
+      </HBox>
+      <FlexBox class="tjDlGrid" renderType="Bare">
+          <Label text="{i18n>f.legalNameEn}" class="tjDl"/>
+          <Text text="{legalNameEn}" class="tjDd" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.legalNameAr}" class="tjDl"/>
+          <Text text="{legalNameAr}" class="tjDd" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.unifiedNo}" class="tjDl"/>
+          <Text text="{unifiedNo}" class="tjDd tjMono" emptyIndicatorMode="On"/>
+      </FlexBox>
+    </VBox>
+    <VBox class="tjCard tjSummary" renderType="Bare">
+      <HBox class="tjSummaryHead" alignItems="Center" renderType="Bare">
+        <Title text="{i18n>step.address}" level="H3" class="tjH3"/>
+        <Link text="{i18n>wiz.change}" press=".onChangeStep"><customData><core:CustomData key="step" value="address"/></customData></Link>
+      </HBox>
+      <FlexBox class="tjDlGrid" renderType="Bare">
+          <Label text="{i18n>f.city}" class="tjDl"/>
+          <Text text="{city}" class="tjDd" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.district}" class="tjDl"/>
+          <Text text="{district}" class="tjDd" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.postalCode}" class="tjDl"/>
+          <Text text="{postalCode}" class="tjDd tjMono" emptyIndicatorMode="On"/>
+      </FlexBox>
+    </VBox>
+    <VBox class="tjCard tjSummary" renderType="Bare">
+      <HBox class="tjSummaryHead" alignItems="Center" renderType="Bare">
+        <Title text="{i18n>step.tax}" level="H3" class="tjH3"/>
+        <Link text="{i18n>wiz.change}" press=".onChangeStep"><customData><core:CustomData key="step" value="tax"/></customData></Link>
+      </HBox>
+      <FlexBox class="tjDlGrid" renderType="Bare">
+          <Label text="{i18n>f.vatNumber}" class="tjDl"/>
+          <Text text="{vatNumber}" class="tjDd tjMono" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.gosiNo}" class="tjDl"/>
+          <Text text="{gosiNo}" class="tjDd tjMono" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.zakatCertNo}" class="tjDl"/>
+          <Text text="{zakatCertNo}" class="tjDd" emptyIndicatorMode="On"/>
+      </FlexBox>
+    </VBox>
+    <VBox class="tjCard tjSummary" renderType="Bare">
+      <HBox class="tjSummaryHead" alignItems="Center" renderType="Bare">
+        <Title text="{i18n>step.banking}" level="H3" class="tjH3"/>
+        <Link text="{i18n>wiz.change}" press=".onChangeStep"><customData><core:CustomData key="step" value="banking"/></customData></Link>
+      </HBox>
+      <FlexBox class="tjDlGrid" renderType="Bare">
+          <Label text="{i18n>f.iban}" class="tjDl"/>
+          <Text text="{path: 'iban', formatter: '.formatter.ibanMasked'}" class="tjDd tjMono" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.accountHolder}" class="tjDl"/>
+          <Text text="{accountHolder}" class="tjDd" emptyIndicatorMode="On"/>
+          <Label text="{i18n>f.swift}" class="tjDl"/>
+          <Text text="{swift}" class="tjDd tjMono" emptyIndicatorMode="On"/>
+      </FlexBox>
+    </VBox>
+    <VBox class="tjCard tjSummary" renderType="Bare">
+      <HBox class="tjSummaryHead" alignItems="Center" renderType="Bare">
+        <Title text="{i18n>step.documents}" level="H3" class="tjH3"/>
+        <Link text="{i18n>wiz.change}" press=".onChangeStep"><customData><core:CustomData key="step" value="documents"/></customData></Link>
+      </HBox>
+      <FlexBox class="tjDlGrid" renderType="Bare">
+          <Label text="{i18n>step.documents}" class="tjDl"/>
+          <Text text="{wiz>/docsUploaded}" class="tjDd" emptyIndicatorMode="On"/>
+      </FlexBox>
+    </VBox>
+  </VBox>
+</core:FragmentDefinition>
