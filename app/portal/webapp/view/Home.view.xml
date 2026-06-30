@@ -1,0 +1,150 @@
+<mvc:View controllerName="tasjeel.portal.controller.Home"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <Page showHeader="false" class="tjPage tjHomePage">
+    <VBox class="tjWrap tjHome" renderType="Bare">
+
+      <!-- Greeting -->
+      <FlexBox class="tjGreet" alignItems="End" wrap="Wrap" renderType="Bare">
+        <VBox renderType="Bare" class="tjGrow">
+          <Text text="{ path: 'ui>/lang', formatter: '.formatter.today' }" class="tjMuted tjSmall"/>
+          <Title text="{ parts: ['i18n>home.title', 'ui>/user/name'], formatter: '.formatter.text' }" level="H1" class="tjH1" wrapping="true"/>
+        </VBox>
+        <HBox renderType="Bare" class="tjGreetNo" alignItems="Center" visible="{= !!${home>/app/applicationNo} }">
+          <Text text="{i18n>home.application}" class="tjMuted tjSmall"/>
+          <Text text="{home>/app/applicationNo}" class="tjMono tjStrong"/>
+        </HBox>
+      </FlexBox>
+
+      <!-- Loading -->
+      <VBox class="tjHomeCenter" renderType="Bare" visible="{= ${home>/state} === 'loading' }">
+        <BusyIndicator size="1.5rem"/>
+      </VBox>
+
+      <!-- Error -->
+      <MessageStrip text="{home>/error}" type="Error" showIcon="true" visible="{= ${home>/state} === 'error' }" class="tjStrip"/>
+
+      <!-- No application yet -->
+      <VBox class="tjCard tjHomeEmpty" renderType="Bare" visible="{= ${home>/state} === 'empty' }">
+        <core:Icon src="sap-icon://phosphor/clipboard-text" class="tjHomeEmptyIcon"/>
+        <Title text="{i18n>home.empty.title}" level="H2" class="tjH2" wrapping="true"/>
+        <Text text="{i18n>home.empty.text}" class="tjMuted"/>
+        <VBox renderType="Bare" class="tjHomeEmptyList">
+          <HBox renderType="Bare" alignItems="Center" class="tjGap"><core:Icon src="sap-icon://phosphor/identification-card"/><Text text="{i18n>home.empty.need1}"/></HBox>
+          <HBox renderType="Bare" alignItems="Center" class="tjGap"><core:Icon src="sap-icon://phosphor/bank"/><Text text="{i18n>home.empty.need2}"/></HBox>
+          <HBox renderType="Bare" alignItems="Center" class="tjGap"><core:Icon src="sap-icon://phosphor/files"/><Text text="{i18n>home.empty.need3}"/></HBox>
+        </VBox>
+        <Button text="{i18n>home.start}" type="Emphasized" icon="sap-icon://phosphor/arrow-right" iconFirst="false" press=".onStart" class="tjMirror"/>
+      </VBox>
+
+      <VBox renderType="Bare" class="tjHomeBody" visible="{= ${home>/state} === 'ready' }">
+        <!-- Registration status -->
+        <VBox class="tjCard" renderType="Bare">
+          <HBox class="tjCardHead" alignItems="Center" renderType="Bare">
+            <HBox alignItems="Center" class="tjGap" renderType="Bare">
+              <Title text="{i18n>home.statusTitle}" level="H3" class="tjH3"/>
+              <tj:StatusTag status="{home>/app/status_code}" text="{home>/app/status/name}"/>
+            </HBox>
+            <Text text="{ parts: ['i18n>home.updated', 'home>/updated'], formatter: '.formatter.text' }" class="tjMuted tjSmall sapUiHideOnPhone"/>
+          </HBox>
+
+          <HBox items="{home>/stages}" class="tjTrack" renderType="Bare">
+            <VBox class="tjTk" renderType="Bare">
+              <customData>
+                <core:CustomData key="state" value="{home>state}" writeToDom="true"/>
+                <core:CustomData key="tone" value="{= ${home>tone} || 'none' }" writeToDom="true"/>
+              </customData>
+              <Text text="" class="tjTkBar"/>
+              <VBox renderType="Bare" class="tjTkText">
+                <HBox alignItems="Center" class="tjTkLabel" renderType="Bare">
+                  <core:Icon src="{= ${home>state} === 'done' ? 'sap-icon://phosphor/check-circle' : ${home>state} === 'current' ? (${home>tone} === 'warn' ? 'sap-icon://phosphor/warning-circle' : ${home>tone} === 'danger' ? 'sap-icon://phosphor/x-circle' : 'sap-icon://phosphor/circle-half') : 'sap-icon://phosphor/circle' }" class="tjTkIcon"/>
+                  <Text text="{home>title}" class="tjTkTitle"/>
+                </HBox>
+                <Text text="{home>meta}" class="tjTkMeta" visible="{= !!${home>meta} }"/>
+              </VBox>
+            </VBox>
+          </HBox>
+
+          <!-- What to know / do now -->
+          <HBox class="tjBanner" alignItems="Start" renderType="Bare">
+            <customData><core:CustomData key="tone" value="{home>/banner/tone}" writeToDom="true"/></customData>
+            <core:Icon src="{= 'sap-icon://phosphor/' + ${home>/banner/icon} }" class="tjBannerIcon"/>
+            <VBox renderType="Bare" class="tjGrow">
+              <Text text="{home>/banner/title}" class="tjStrong"/>
+              <Text text="{home>/banner/text}" class="tjMuted tjBannerText"/>
+            </VBox>
+            <Button text="{home>/banner/action}" type="Emphasized" icon="sap-icon://phosphor/arrow-right" iconFirst="false"
+              press=".onBannerAction" visible="{= !!${home>/banner/action} }" class="tjMirror tjBannerBtn"/>
+            <Button text="{home>/banner/secondary}" icon="sap-icon://phosphor/arrow-u-up-left"
+              press=".onBannerAction" visible="{= !!${home>/banner/secondary} }" class="tjBannerBtn"/>
+          </HBox>
+
+          <VBox items="{home>/items}" renderType="Bare" class="tjFlags">
+            <HBox class="tjFlag" alignItems="Center" renderType="Bare">
+              <customData><core:CustomData key="kind" value="{home>kind}" writeToDom="true"/></customData>
+              <core:Icon src="{home>icon}" class="tjFlagIcon"/>
+              <VBox renderType="Bare" class="tjGrow">
+                <Text text="{home>title}" class="tjStrong"/>
+                <Text text="{home>meta}" class="tjMuted tjSmall"/>
+              </VBox>
+              <Button text="{home>action}" press=".onItem"/>
+            </HBox>
+          </VBox>
+        </VBox>
+
+        <FlexBox class="tjHomeGrid" renderType="Bare">
+          <!-- Company -->
+          <VBox class="tjCard" renderType="Bare">
+            <HBox class="tjCardHead" alignItems="Center" renderType="Bare">
+              <Title text="{i18n>home.company}" level="H3" class="tjH3"/>
+              <HBox alignItems="Center" class="tjChip tjHomeLock" renderType="Bare">
+                <core:Icon src="{= ${home>/locked} ? 'sap-icon://phosphor/lock-simple' : 'sap-icon://phosphor/pencil-simple' }"/>
+                <Text text="{home>/lockText}"/>
+              </HBox>
+            </HBox>
+            <VBox items="{home>/company}" renderType="Bare" class="tjKvs">
+              <HBox class="tjKv" justifyContent="SpaceBetween" alignItems="Start" renderType="Bare">
+                <Text text="{home>k}" class="tjMuted"/>
+                <Text text="{home>v}" class="tjKvV">
+                  <customData><core:CustomData key="mono" value="{= String(!!${home>mono}) }" writeToDom="true"/></customData>
+                </Text>
+              </HBox>
+            </VBox>
+          </VBox>
+
+          <VBox renderType="Bare" class="tjHomeSide">
+            <!-- Document reminders -->
+            <VBox class="tjCard" renderType="Bare">
+              <HBox class="tjCardHead" renderType="Bare"><Title text="{i18n>home.reminders}" level="H3" class="tjH3"/></HBox>
+              <Text text="{i18n>home.remindersNone}" class="tjMuted tjSmall tjCardPad" visible="{= !${home>/reminders}.length }"/>
+              <VBox items="{home>/reminders}" renderType="Bare" class="tjReminders">
+                <HBox class="tjReminder" alignItems="Center" renderType="Bare">
+                  <customData><core:CustomData key="state" value="{home>state}" writeToDom="true"/></customData>
+                  <core:Icon src="{home>icon}" class="tjReminderIcon"/>
+                  <VBox renderType="Bare" class="tjGrow">
+                    <Text text="{home>name}" class="tjStrong"/>
+                    <Text text="{home>meta}" class="tjMuted tjSmall"/>
+                  </VBox>
+                </HBox>
+              </VBox>
+            </VBox>
+
+            <!-- Messages from procurement -->
+            <VBox class="tjCard" renderType="Bare">
+              <HBox class="tjCardHead" renderType="Bare"><Title text="{i18n>home.messages}" level="H3" class="tjH3"/></HBox>
+              <Text text="{i18n>home.messagesNone}" class="tjMuted tjSmall tjCardPad" visible="{= !${home>/messages}.length }"/>
+              <VBox items="{home>/messages}" renderType="Bare" class="tjMsgs">
+                <HBox class="tjMsg" alignItems="Start" renderType="Bare">
+                  <core:Icon src="sap-icon://phosphor/chat-circle-text" class="tjMsgIcon"/>
+                  <VBox renderType="Bare" class="tjGrow">
+                    <Text text="{home>text}"/>
+                    <Text text="{ parts: ['i18n>home.fromProcurement', 'home>when'], formatter: '.formatter.text' }" class="tjMuted tjSmall"/>
+                  </VBox>
+                </HBox>
+              </VBox>
+            </VBox>
+          </VBox>
+        </FlexBox>
+      </VBox>
+    </VBox>
+  </Page>
+</mvc:View>

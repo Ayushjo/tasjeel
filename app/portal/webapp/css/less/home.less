@@ -1,0 +1,91 @@
+// Supplier home: greeting, status tracker, next-step banner, company / reminders / messages
+@import (reference) "tokens.less";
+
+.tjHome { max-width: 65rem; gap: 1rem; }
+.tjGreet { gap: 1rem; margin-bottom: .5rem; }
+.tjGreet .tjH1.sapMTitle { margin-top: .25rem; }
+.tjGreetNo { gap: .5rem; }
+.tjHomeCenter { display: grid; place-items: center; padding: 4rem 0; }
+.tjHomeBody { display: flex; flex-direction: column; gap: 1rem; }
+.tjCardPad.sapMText { display: block; padding: 1rem; }
+
+// Empty state
+.tjHomeEmpty { padding: 2rem; display: flex; flex-direction: column; gap: .75rem; align-items: flex-start; max-width: 36rem; }
+.tjHomeEmptyIcon { font-size: 1.5rem; color: var(--tjAccent); width: 2.75rem; height: 2.75rem; display: grid !important; place-items: center;
+  border-radius: @r-lg; background: var(--tjAccentSoft); }
+.tjHomeEmptyList { display: flex; flex-direction: column; gap: .5rem; margin: .25rem 0 .5rem;
+  .sapUiIcon { color: var(--tjMuted); font-size: 1rem; } }
+
+// Status tracker: 5 segments with a bar on top
+.tjTrack { display: grid !important; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 1.25rem 1.25rem 1rem; }
+.tjTk { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.tjTkBar.sapMText { display: block; height: 4px; background: var(--tjBorder); margin-inline-end: 6px; }
+.tjTkText { display: flex; flex-direction: column; gap: .2rem; padding-inline-end: .5rem; min-width: 0; }
+.tjTkLabel { gap: .375rem; min-width: 0; }
+.tjTkIcon { font-size: .95rem; color: var(--tjSubtle); flex: none; }
+.tjTkTitle.sapMText { font-weight: 500; color: var(--tjSubtle); }
+.tjTkMeta.sapMText { font-size: .75rem; color: var(--tjMuted); }
+.tjTk[data-state="done"] { .tjTkBar { background: var(--tjAccent); } .tjTkIcon { color: var(--tjAccent); } .tjTkTitle { color: var(--tjText); } }
+.tjTk[data-state="current"] {
+  .tjTkTitle { color: var(--tjText); }
+  .tjTkBar { background: linear-gradient(to right, var(--tjTkTone) 50%, var(--tjBorder) 50%); }
+  .tjTkIcon { color: var(--tjTkTone); }
+  --tjTkTone: var(--tjAccent);
+  &[data-tone="info"] { --tjTkTone: var(--tjSubmitted); }
+  &[data-tone="review"] { --tjTkTone: var(--tjReview); }
+  &[data-tone="warn"] { --tjTkTone: var(--tjChanges); }
+  &[data-tone="danger"] { --tjTkTone: var(--tjRejected); }
+}
+[dir="rtl"] .tjTk[data-state="current"] .tjTkBar { background: linear-gradient(to left, var(--tjTkTone) 50%, var(--tjBorder) 50%); }
+
+// Next-step banner
+.tjBanner { margin: 0 1.25rem 1.25rem; padding: .875rem 1rem; gap: .75rem; border-radius: @r-lg;
+  --tjTone: var(--tjAccent);
+  background: color-mix(in srgb, var(--tjTone) 7%, var(--tjSurface)); border: 1px solid color-mix(in srgb, var(--tjTone) 28%, transparent);
+  &[data-tone="info"] { --tjTone: var(--tjSubmitted); }
+  &[data-tone="review"] { --tjTone: var(--tjReview); }
+  &[data-tone="warn"] { --tjTone: var(--tjChanges); }
+  &[data-tone="ok"] { --tjTone: var(--tjApproved); }
+  &[data-tone="danger"] { --tjTone: var(--tjRejected); }
+}
+.tjBannerIcon { color: var(--tjTone); font-size: 1.15rem; margin-top: .1rem; flex: none; }
+.tjBannerText.sapMText { margin-top: .15rem; }
+.tjBannerBtn { flex: none; }
+
+// Rows under the banner (flagged fields / open items)
+.tjFlags:empty { display: none; }
+.tjFlag { gap: .75rem; padding: .75rem 1.25rem; border-top: 1px solid var(--tjBorder); }
+.tjFlagIcon { width: 1.75rem; height: 1.75rem; display: grid !important; place-items: center; flex: none; border-radius: @r;
+  color: var(--tjChanges); background: color-mix(in srgb, var(--tjChanges) 12%, transparent); font-size: .95rem; }
+
+.tjFlag[data-kind="todo"] .tjFlagIcon { color: var(--tjMuted); background: var(--tjSurface2); }
+
+// Lower grid
+.tjHomeGrid { display: grid !important; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+.tjHomeSide { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.tjHomeLock { gap: .3rem; .sapUiIcon { font-size: .75rem; } }
+.tjKvs { padding: .25rem 1rem; }
+.tjKv { gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--tjBorder); &:last-child { border-bottom: 0; } }
+.tjKvV.sapMText { font-weight: 500; text-align: end; min-width: 0; overflow-wrap: anywhere; }
+.tjKvV[data-mono="true"] { font-family: @font-mono; font-size: .8125rem !important; direction: ltr; unicode-bidi: isolate; }
+.tjReminders, .tjMsgs { display: flex; flex-direction: column; &:empty { display: none; } }
+.tjReminder, .tjMsg { gap: .75rem; padding: .75rem 1rem; border-top: 1px solid var(--tjBorder); &:first-child { border-top: 0; } }
+.tjReminderIcon { font-size: 1.05rem; flex: none; color: var(--tjApproved); }
+.tjReminder[data-state="warn"] .tjReminderIcon { color: var(--tjReview); }
+.tjReminder[data-state="danger"] .tjReminderIcon { color: var(--tjRejected); }
+.tjMsgIcon { font-size: 1rem; color: var(--tjMuted); margin-top: .15rem; flex: none; }
+
+@media (max-width: @bp-phone) {
+  .tjHome { padding: 1.25rem 1rem 5rem; }
+  .tjGreet { flex-direction: column; align-items: flex-start !important; gap: .5rem; }
+  .tjTrack { grid-template-columns: 1fr; padding: .5rem 1rem; }
+  .tjTk { flex-direction: row; align-items: center; gap: .75rem; padding: .5rem 0; }
+  .tjTkBar.sapMText { width: 4px; height: 2rem; margin: 0; flex: none; }
+  .tjTk[data-state="current"] .tjTkBar, [dir="rtl"] .tjTk[data-state="current"] .tjTkBar { background: linear-gradient(to bottom, var(--tjTkTone) 50%, var(--tjBorder) 50%); }
+  .tjTkText { flex-direction: row; flex: 1; justify-content: space-between; align-items: center; gap: .5rem; }
+  .tjTkMeta.sapMText { text-align: end; }
+  .tjBanner { margin: 0 1rem 1rem; flex-wrap: wrap; }
+  .tjBannerBtn { width: 100%; .sapMBtnInner { width: 100%; } }
+  .tjFlag { padding: .75rem 1rem; }
+  .tjHomeGrid { grid-template-columns: 1fr; }
+}
