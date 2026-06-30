@@ -1,0 +1,231 @@
+<mvc:View controllerName="tasjeel.portal.controller.InboxDetail"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <Page id="detailPage" showHeader="false" class="tjDetailPage">
+    <!-- Nothing selected -->
+    <VBox class="tjWizCenter" renderType="Bare" visible="{= !${det>/id} }">
+      <core:Icon src="sap-icon://phosphor/tray" class="tjWizStateIcon"/>
+      <Text text="{i18n>inbox.select}" class="tjMuted"/>
+      <Text text="{i18n>inbox.shortcuts}" class="tjSubtleText tjSmall"/>
+    </VBox>
+
+    <VBox class="tjDetail" renderType="Bare" visible="{= !!${det>/id} }">
+      <!-- Header -->
+      <HBox class="tjDetHead" alignItems="Start" renderType="Bare">
+        <Text text="{ path: 'review>legalNameEn', formatter: '.formatter.initials' }" class="tjMonogram"/>
+        <VBox renderType="Bare" class="tjGrow">
+          <HBox alignItems="Center" class="tjGap" wrap="Wrap" renderType="Bare">
+            <Title text="{= ${ui>/lang} === 'ar' &amp;&amp; %{review>legalNameAr} ? %{review>legalNameAr} : %{review>legalNameEn} }" level="H2" class="tjH2" wrapping="true"/>
+            <tj:StatusTag status="{review>status_code}" text="{review>status/name}"/>
+            <Text text="{= %{review>riskLevel} === 'High' ? ${i18n>risk.High} : %{review>riskLevel} === 'Medium' ? ${i18n>risk.Medium} : ${i18n>risk.Low} }" class="tjRiskTag">
+              <customData><core:CustomData key="risk" value="{= %{review>riskLevel} || 'none' }" writeToDom="true"/></customData>
+            </Text>
+          </HBox>
+          <HBox class="tjDetSub" alignItems="Center" wrap="Wrap" renderType="Bare">
+            <Text text="{= ${ui>/lang} === 'ar' ? %{review>legalNameEn} : %{review>legalNameAr} }" class="tjMuted"/>
+            <Text text="·" class="tjSubtleText"/>
+            <Text text="{review>applicationNo}" class="tjMono tjMuted"/>
+            <Text text="·" class="tjSubtleText"/>
+            <Text text="{ parts: ['i18n>det.submitted', { path: 'review>submittedAt', targetType: 'any', formatter: '.formatter.relative' }], formatter: '.formatter.text' }" class="tjMuted"/>
+          </HBox>
+        </VBox>
+        <Button icon="sap-icon://phosphor/x" type="Transparent" press=".onClose" tooltip="Esc" class="tjCloseBtn"/>
+      </HBox>
+
+      <!-- Actions depend on status -->
+      <HBox class="tjDetActions" alignItems="Center" renderType="Bare" wrap="Wrap">
+        <Button text="{i18n>det.startReview}" type="Emphasized" icon="sap-icon://phosphor/eye" press=".onStartReview"
+          visible="{= %{review>status_code} === 'SUBMITTED' }"/>
+        <Button text="{i18n>det.requestChanges}" icon="sap-icon://phosphor/chat-circle-text" press=".onRequestChanges"
+          visible="{= %{review>status_code} === 'IN_REVIEW' }"/>
+        <Button id="rejectBtn" text="{ parts: ['det>/countdown', 'i18n>det.undo', 'i18n>det.reject'], formatter: '.formatter.undo' }"
+          icon="{= ${det>/countdown} > 0 ? 'sap-icon://phosphor/arrow-counter-clockwise' : 'sap-icon://phosphor/x' }" press=".onReject"
+          visible="{= %{review>status_code} === 'IN_REVIEW' || %{review>status_code} === 'SUBMITTED' }" class="tjDangerBtn">
+          <customData><core:CustomData key="counting" value="{= String(${det>/countdown} > 0) }" writeToDom="true"/></customData>
+        </Button>
+        <Button text="{i18n>det.approve}" type="Emphasized" icon="sap-icon://phosphor/check" press=".onApprove"
+          visible="{= %{review>status_code} === 'IN_REVIEW' }" enabled="{= !(${det>/countdown} > 0) }"/>
+      </HBox>
+
+      <IconTabBar id="tabs" selectedKey="overview" headerMode="Inline" class="tjTabs" expandable="false" headerBackgroundDesign="Transparent" backgroundDesign="Transparent" stretchContentHeight="false">
+        <items>
+          <!-- Overview -->
+          <IconTabFilter key="overview" text="{i18n>det.tab.overview}">
+            <FlexBox class="tjDetGrid" renderType="Bare">
+              <VBox renderType="Bare" class="tjDetMain">
+                <VBox class="tjCard" renderType="Bare">
+                  <HBox class="tjCardHead" renderType="Bare"><Title text="{i18n>det.company}" level="H3" class="tjH3"/></HBox>
+                  <FlexBox class="tjFacts" renderType="Bare">
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>det.supplierType}"/><Text text="{review>supplierType/name} · {review>legalForm/name}"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.unifiedNo}"/><Text text="{review>unifiedNo}" class="tjMono"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.vatNumber}"/><Text text="{review>vatNumber}" class="tjMono"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.establishedOn}"/><Text text="{ path: 'review>establishedOn', targetType: 'any', formatter: '.formatter.date' }"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.city}"/><Text text="{review>buildingNo} {review>street}, {review>district}, {review>city} {review>postalCode}"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.iban}"/><Text text="{review>bankCode/name} · {path: 'review>iban', formatter: '.formatter.ibanMasked'}"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.gosiNo}"/><Text text="{review>gosiNo}" class="tjMono"/></VBox>
+                    <VBox renderType="Bare" class="tjFact"><Label text="{i18n>f.categories}"/>
+                      <HBox items="{ path: 'review>categories', templateShareable: false }" renderType="Bare" class="tjGap" wrap="Wrap"><Text text="{review>category/name}" class="tjChip"/></HBox>
+                    </VBox>
+                  </FlexBox>
+                </VBox>
+
+                <VBox class="tjCard" renderType="Bare">
+                  <HBox class="tjCardHead" alignItems="Center" renderType="Bare">
+                    <Title text="{i18n>det.duplicates}" level="H3" class="tjH3"/>
+                    <Text text="Tasjeel" class="tjChip tjMono sapUiHideOnPhone"/>
+                  </HBox>
+                  <HBox class="tjDupRow" alignItems="Start" renderType="Bare" visible="{= ${det>/dups}.length === 0 }">
+                    <core:Icon src="sap-icon://phosphor/seal-check" class="tjDupIcon tjOk"/>
+                    <VBox renderType="Bare"><Text text="{i18n>det.duplicatesNone}"/><Text text="{i18n>det.s4See}" class="tjMuted tjSmall"/></VBox>
+                  </HBox>
+                  <List items="{det>/dups}" visible="{= ${det>/dups}.length > 0 }" showSeparators="Inner" class="tjPlainList">
+                    <CustomListItem type="Active" press=".onOpenDuplicate">
+                      <HBox class="tjDupRow" alignItems="Center" renderType="Bare">
+                        <core:Icon src="sap-icon://phosphor/warning-circle" class="tjDupIcon tjWarn"/>
+                        <VBox renderType="Bare" class="tjGrow">
+                          <Text text="{det>applicationNo} · {det>legalNameEn}" class="tjStrong"/>
+                          <Text text="{ parts: ['i18n>det.duplicatesFound', 'det>matchedOn'], formatter: '.formatter.text' }" class="tjMuted tjSmall"/>
+                        </VBox>
+                      </HBox>
+                    </CustomListItem>
+                  </List>
+                </VBox>
+
+                <VBox class="tjCard" renderType="Bare">
+                  <HBox class="tjCardHead" renderType="Bare"><Title text="{i18n>det.contacts}" level="H3" class="tjH3"/></HBox>
+                  <List items="{ path: 'review>contacts', templateShareable: false }" showSeparators="Inner" class="tjPlainList">
+                    <CustomListItem>
+                      <HBox class="tjContactRow" alignItems="Center" renderType="Bare">
+                        <Text text="{ path: 'review>name', formatter: '.formatter.initials' }" class="tjAvatarSm"/>
+                        <VBox renderType="Bare" class="tjGrow">
+                          <Text text="{review>name} · {review>role}" class="tjStrong"/>
+                          <Text text="{review>email} · {review>phone}" class="tjMuted tjSmall" textDirection="LTR"/>
+                        </VBox>
+                        <Text text="{i18n>contacts.signatory}" class="tjChip" visible="{= !!%{review>isSignatory} }"/>
+                      </HBox>
+                    </CustomListItem>
+                  </List>
+                </VBox>
+              </VBox>
+
+              <VBox renderType="Bare" class="tjDetSide">
+                <VBox class="tjCard tjRiskCard" renderType="Bare">
+                  <Text text="{i18n>det.risk}" class="tjMuted tjSmall"/>
+                  <HBox alignItems="End" class="tjGap" renderType="Bare">
+                    <Text text="{det>/risk/score}" class="tjBigNum"/>
+                    <Text text="/ 100" class="tjMuted"/>
+                  </HBox>
+                  <tj:RiskBar value="{det>/risk/score}" level="{det>/risk/level}"/>
+                  <List items="{det>/risk/factors}" showSeparators="None" class="tjPlainList tjFactors" noDataText="{i18n>det.riskNone}">
+                    <CustomListItem>
+                      <HBox class="tjFactorRow" renderType="Bare">
+                        <Text text="{det>label}" class="tjMuted tjSmall tjGrow"/>
+                        <Text text="+{det>points}" class="tjStrong tjSmall tjMono"/>
+                      </HBox>
+                    </CustomListItem>
+                  </List>
+                </VBox>
+
+                <!-- SAP S/4HANA: Business Partner sync + duplicate check in both systems -->
+                <VBox class="tjCard tjS4Card" renderType="Bare">
+                  <HBox class="tjCardHead" alignItems="Center" renderType="Bare">
+                    <Title text="{i18n>s4.title}" level="H3" class="tjH3"/>
+                    <Button id="s4Refresh" icon="sap-icon://phosphor/arrow-clockwise" type="Transparent" press=".onS4Refresh" tooltip="{i18n>s4.refresh}"
+                      enabled="{= !${det>/s4/loading} }" class="tjIconBtn"/>
+                  </HBox>
+
+                  <!-- Sync outcome (after approval) -->
+                  <VBox class="tjS4Sync" renderType="Bare" visible="{= !!%{review>s4SyncStatus} }">
+                    <customData><core:CustomData key="sync" value="{= %{review>s4SyncStatus} || 'NONE' }" writeToDom="true"/></customData>
+                    <HBox alignItems="Center" class="tjGap" renderType="Bare">
+                      <core:Icon src="{= %{review>s4SyncStatus} === 'SYNCED' ? 'sap-icon://phosphor/check-circle' : %{review>s4SyncStatus} === 'FAILED' ? 'sap-icon://phosphor/warning-circle' : 'sap-icon://phosphor/circle-notch' }" class="tjS4SyncIcon"/>
+                      <Text text="{= %{review>s4SyncStatus} === 'SYNCED' ? ${i18n>s4.synced} : %{review>s4SyncStatus} === 'FAILED' ? ${i18n>s4.failed} : ${i18n>s4.pending} }" class="tjStrong"/>
+                    </HBox>
+                    <VBox renderType="Bare" visible="{= !!%{review>s4BusinessPartner} }" class="tjS4Bp">
+                      <Label text="{i18n>s4.bp}"/>
+                      <Text text="{review>s4BusinessPartner}" class="tjBigNum tjMono"/>
+                      <Text text="{ parts: ['i18n>s4.syncedAt', { path: 'review>s4SyncedAt', targetType: 'any', formatter: '.formatter.relative' }], formatter: '.formatter.text' }" class="tjMuted tjSmall"/>
+                    </VBox>
+                    <Text text="{review>s4SyncMessage}" class="tjS4Msg tjSmall" visible="{= !!%{review>s4SyncMessage} }" wrapping="true"/>
+                    <HBox alignItems="Center" class="tjS4Retry" renderType="Bare" visible="{= %{review>s4SyncStatus} === 'FAILED' }">
+                      <Text text="{ parts: ['i18n>s4.attempts', 'review>s4SyncAttempts'], formatter: '.formatter.text' }" class="tjMuted tjSmall tjGrow"/>
+                      <Button text="{= ${det>/retrying} ? ${i18n>s4.retrying} : ${i18n>s4.retry} }" icon="sap-icon://phosphor/arrow-clockwise"
+                        press=".onRetrySync" enabled="{= !${det>/retrying} }"/>
+                    </HBox>
+                  </VBox>
+
+                  <!-- Duplicate check per system -->
+                  <VBox renderType="Bare" class="tjS4Busy" visible="{= !!${det>/s4/loading} }">
+                    <BusyIndicator size="1rem"/>
+                    <Text text="{i18n>s4.checking}" class="tjMuted tjSmall"/>
+                  </VBox>
+                  <List items="{det>/s4/systems}" showSeparators="Inner" class="tjPlainList tjS4Systems" visible="{= !${det>/s4/loading} }">
+                    <CustomListItem>
+                      <VBox class="tjS4Sys" renderType="Bare">
+                        <HBox alignItems="Center" class="tjGap" renderType="Bare">
+                          <Text text="" class="tjS4Dot">
+                            <customData><core:CustomData key="state" value="{det>state}" writeToDom="true"/></customData>
+                          </Text>
+                          <Text text="{det>label}" class="tjStrong tjGrow"/>
+                          <Text text="{det>meta}" class="tjMuted tjSmall tjMono"/>
+                        </HBox>
+                        <Text text="{det>summary}" class="tjMuted tjSmall" wrapping="true"/>
+                        <VBox items="{ path: 'det>matches', templateShareable: false }" renderType="Bare" class="tjS4Matches">
+                          <HBox alignItems="Center" class="tjS4Match" renderType="Bare">
+                            <Text text="{det>businessPartner}" class="tjMono tjSmall"/>
+                            <Text text="{det>name}" class="tjSmall tjGrow" wrapping="false"/>
+                            <Text text="{det>matchedOnText}" class="tjChip"/>
+                          </HBox>
+                        </VBox>
+                      </VBox>
+                    </CustomListItem>
+                  </List>
+                </VBox>
+              </VBox>
+            </FlexBox>
+          </IconTabFilter>
+
+          <!-- Documents -->
+          <IconTabFilter key="documents" text="{i18n>det.tab.documents}" count="{det>/docCount}">
+            <List items="{ path: 'review>documents', templateShareable: false }" class="tjCard tjPlainList" showSeparators="Inner">
+              <CustomListItem>
+                <HBox class="tjDocRow" alignItems="Center" renderType="Bare">
+                  <core:Icon src="sap-icon://phosphor/file-text" class="tjDocIcon">
+                    <core:customData><core:CustomData key="done" value="true" writeToDom="true"/></core:customData>
+                  </core:Icon>
+                  <VBox renderType="Bare" class="tjGrow">
+                    <Text text="{review>docType/name}" class="tjStrong"/>
+                    <Text text="{ parts: ['review>fileName', 'review>size', 'review>expiryDate'], formatter: '.formatter.docMeta' }" class="tjMuted tjSmall tjEllipsis"/>
+                  </VBox>
+                  <Button text="{i18n>det.view}" icon="sap-icon://phosphor/eye" press=".onViewDoc"/>
+                </HBox>
+              </CustomListItem>
+            </List>
+          </IconTabFilter>
+
+          <!-- Activity -->
+          <IconTabFilter key="activity" text="{i18n>det.tab.activity}">
+            <VBox class="tjCard tjComposer" renderType="Bare">
+              <TextArea id="comment" placeholder="{i18n>det.commentPh}" rows="2" width="100%" growing="true" growingMaxLines="6"/>
+              <HBox alignItems="Center" justifyContent="SpaceBetween" renderType="Bare">
+                <CheckBox id="share" text="{i18n>det.shareWithSupplier}"/>
+                <Button text="{i18n>det.post}" type="Emphasized" press=".onPostComment"/>
+              </HBox>
+            </VBox>
+            <List items="{det>/activity}" showSeparators="None" class="tjTimeline">
+              <CustomListItem>
+                <HBox class="tjEvent" renderType="Bare">
+                  <core:Icon src="{det>icon}" class="tjEventIcon"/>
+                  <VBox renderType="Bare" class="tjGrow">
+                    <Text text="{det>line}" class="tjEventText" textDirection="{= ${ui>/lang} === 'ar' ? 'RTL' : 'LTR' }"/>
+                    <Text text="{det>text}" class="tjQuote" visible="{= !!${det>text} }"/>
+                    <Text text="{det>meta}" class="tjMuted tjSmall"/>
+                  </VBox>
+                </HBox>
+              </CustomListItem>
+            </List>
+          </IconTabFilter>
+        </items>
+      </IconTabBar>
+    </VBox>
+  </Page>
+</mvc:View>
