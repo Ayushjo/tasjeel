@@ -1,0 +1,51 @@
+<mvc:View controllerName="tasjeel.portal.controller.Inbox"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <f:FlexibleColumnLayout id="fcl" layout="{det>/layout}" class="tjFcl" backgroundDesign="Transparent">
+    <f:beginColumnPages>
+      <Page id="queuePage" showHeader="false" class="tjQueuePage">
+        <VBox class="tjQueueHead" renderType="Bare">
+          <HBox class="tjQueueTitle" alignItems="Center" renderType="Bare">
+            <Title text="{i18n>inbox.title}" level="H1" class="tjH2"/>
+            <Text id="count" class="tjMuted tjSmall"/>
+          </HBox>
+          <SearchField id="search" placeholder="{i18n>inbox.search}" liveChange=".onSearch" class="tjSearch"/>
+          <SegmentedButton id="filter" selectedKey="pending" selectionChange=".onFilter" width="100%" class="tjSeg">
+            <items>
+              <SegmentedButtonItem key="pending" text="{i18n>inbox.f.pending}"/>
+              <SegmentedButtonItem key="changes" text="{i18n>inbox.f.changes}"/>
+              <SegmentedButtonItem key="mine" text="{i18n>inbox.f.mine}"/>
+              <SegmentedButtonItem key="all" text="{i18n>inbox.f.all}"/>
+            </items>
+          </SegmentedButton>
+        </VBox>
+        <List id="queue" mode="SingleSelectMaster" selectionChange=".onSelect" growing="true" growingThreshold="25" growingScrollToLoad="true"
+          updateFinished=".onUpdateFinished" class="tjQueue" noDataText="{i18n>inbox.empty}" showSeparators="All"
+          items="{ path: 'review>/Applications', parameters: { $count: true, $expand: 'status($select=name),categories($select=category_code;$expand=category($select=name))' },
+                   sorter: { path: 'submittedAt', descending: true }, filters: [{ path: 'status_code', operator: 'EQ', value1: 'SUBMITTED' }, { path: 'status_code', operator: 'EQ', value1: 'IN_REVIEW' }] }">
+          <CustomListItem type="Active" class="tjQueueItem">
+            <customData><core:CustomData key="id" value="{review>ID}"/></customData>
+            <VBox class="tjQueueRow" renderType="Bare">
+              <HBox class="tjQueueLine" alignItems="Center" renderType="Bare">
+                <tj:StatusTag status="{review>status_code}" text="{review>status/name}" dotOnly="true"/>
+                <Text text="{= ${ui>/lang} === 'ar' &amp;&amp; %{review>legalNameAr} ? %{review>legalNameAr} : %{review>legalNameEn} }" class="tjRowTitle tjEllipsis"/>
+                <Text text="{ path: 'review>submittedAt', targetType: 'any', formatter: '.formatter.relative' }" class="tjMuted tjSmall tjNoWrap"/>
+              </HBox>
+              <HBox class="tjQueueMeta" alignItems="Center" renderType="Bare" wrap="Wrap">
+                <Text text="{review>applicationNo}" class="tjMono tjMuted"/>
+                <HBox items="{ path: 'review>categories', templateShareable: false }" renderType="Bare" class="tjGap">
+                  <Text text="{review>category/name}" class="tjChip"/>
+                </HBox>
+                <Text text="{= %{review>riskLevel} === 'High' ? ${i18n>risk.High} : %{review>riskLevel} === 'Medium' ? ${i18n>risk.Medium} : ${i18n>risk.Low} }" class="tjRiskTag">
+                  <customData><core:CustomData key="risk" value="{= %{review>riskLevel} || 'none' }" writeToDom="true"/></customData>
+                </Text>
+              </HBox>
+            </VBox>
+          </CustomListItem>
+        </List>
+      </Page>
+    </f:beginColumnPages>
+    <f:midColumnPages>
+      <mvc:XMLView id="detail" viewName="tasjeel.portal.view.InboxDetail"/>
+    </f:midColumnPages>
+  </f:FlexibleColumnLayout>
+</mvc:View>
