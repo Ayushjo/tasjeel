@@ -1,0 +1,84 @@
+<mvc:View controllerName="tasjeel.portal.controller.Dashboard"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:tj="tasjeel.portal.control">
+  <Page showHeader="false" class="tjPage">
+    <VBox class="tjWrap tjDash" renderType="Bare">
+      <HBox class="tjDashHead" alignItems="End" wrap="Wrap" renderType="Bare">
+        <VBox renderType="Bare" class="tjGrow">
+          <Title text="{i18n>dash.title}" level="H1" class="tjH1"/>
+          <Text text="{i18n>dash.sub}" class="tjMuted"/>
+        </VBox>
+        <SegmentedButton selectedKey="{stats>/weeks}" selectionChange=".onRange" class="tjSegSm">
+          <items>
+            <SegmentedButtonItem key="4" text="{i18n>dash.r4}"/>
+            <SegmentedButtonItem key="8" text="{i18n>dash.r8}"/>
+            <SegmentedButtonItem key="13" text="{i18n>dash.r13}"/>
+          </items>
+        </SegmentedButton>
+      </HBox>
+
+      <FlexBox class="tjCard tjKpis" renderType="Bare">
+        <VBox class="tjKpi" renderType="Bare">
+          <HBox class="tjKpiLabelRow" alignItems="Center" renderType="Bare"><core:Icon src="sap-icon://phosphor/tray"/><Text text="{i18n>dash.awaiting}" class="tjKpiLabel"/></HBox>
+          <Text text="{stats>/summary/awaitingReview}" class="tjKpiValue"/>
+        </VBox>
+        <VBox class="tjKpi" renderType="Bare">
+          <HBox class="tjKpiLabelRow" alignItems="Center" renderType="Bare"><core:Icon src="sap-icon://phosphor/seal-check"/><Text text="{i18n>dash.approved}" class="tjKpiLabel"/></HBox>
+          <Text text="{stats>/summary/approved}" class="tjKpiValue"/>
+        </VBox>
+        <VBox class="tjKpi" renderType="Bare">
+          <HBox class="tjKpiLabelRow" alignItems="Center" renderType="Bare"><core:Icon src="sap-icon://phosphor/clock"/><Text text="{i18n>dash.avg}" class="tjKpiLabel"/></HBox>
+          <Text text="{stats>/summary/avgDecisionDays} {i18n>dash.days}" class="tjKpiValue"/>
+        </VBox>
+        <VBox class="tjKpi" renderType="Bare">
+          <HBox class="tjKpiLabelRow" alignItems="Center" renderType="Bare"><core:Icon src="sap-icon://phosphor/warning-circle"/><Text text="{i18n>dash.sla}" class="tjKpiLabel"/></HBox>
+          <Text text="{stats>/summary/slaBreaches}" class="tjKpiValue"/>
+          <Text text="{i18n>dash.slaHint}" class="tjMuted tjSmall"/>
+        </VBox>
+      </FlexBox>
+
+      <FlexBox class="tjDashGrid" renderType="Bare">
+        <VBox class="tjCard" renderType="Bare">
+          <HBox class="tjCardHead" alignItems="Center" renderType="Bare"><Title text="{i18n>dash.weekly}" level="H3" class="tjH3"/></HBox>
+          <tj:Chart type="bars" data="{stats>/weekly}" ariaLabel="{i18n>dash.weekly}" class="tjChartPad"/>
+        </VBox>
+        <VBox class="tjCard" renderType="Bare">
+          <HBox class="tjCardHead" alignItems="Center" renderType="Bare"><Title text="{i18n>dash.byStatus}" level="H3" class="tjH3"/></HBox>
+          <VBox class="tjChartPad" renderType="Bare">
+            <Text text="{i18n>dash.total}" class="tjMuted tjSmall"/>
+            <Text text="{stats>/total}" class="tjKpiValue"/>
+            <tj:Chart type="stack" data="{stats>/byStatus}" ariaLabel="{i18n>dash.byStatus}"/>
+          </VBox>
+        </VBox>
+      </FlexBox>
+
+      <FlexBox class="tjDashGrid" renderType="Bare">
+        <VBox class="tjCard" renderType="Bare">
+          <HBox class="tjCardHead" alignItems="Center" renderType="Bare">
+            <Title text="{i18n>dash.attention}" level="H3" class="tjH3"/>
+            <Text text="{stats>/sla/length}" class="tjChip"/>
+          </HBox>
+          <Table items="{stats>/sla}" class="tjTable" noDataText="{i18n>dash.noBreach}" popinLayout="GridSmall">
+            <columns>
+              <Column><Text text="{i18n>dash.colSupplier}"/></Column>
+              <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>dash.colStatus}"/></Column>
+              <Column hAlign="End"><Text text="{i18n>dash.colWaiting}"/></Column>
+            </columns>
+            <items>
+              <ColumnListItem type="Navigation" press=".onOpen">
+                <cells>
+                  <VBox renderType="Bare"><Text text="{stats>name}" class="tjStrong"/><Text text="{stats>no}" class="tjMono tjMuted"/></VBox>
+                  <tj:StatusTag status="{stats>status}" text="{stats>statusName}"/>
+                  <Text text="{stats>waiting}" class="tjDanger"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </VBox>
+        <VBox class="tjCard" renderType="Bare">
+          <HBox class="tjCardHead" alignItems="Center" renderType="Bare"><Title text="{i18n>dash.categories}" level="H3" class="tjH3"/></HBox>
+          <tj:Chart type="hbars" data="{stats>/byCategory}" ariaLabel="{i18n>dash.categories}" class="tjChartPad"/>
+        </VBox>
+      </FlexBox>
+    </VBox>
+  </Page>
+</mvc:View>
