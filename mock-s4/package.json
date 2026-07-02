@@ -1,0 +1,26 @@
+{
+  "name": "tasjeel-mock-s4",
+  "version": "1.0.0",
+  "description": "Mock 'on-premise' S/4HANA serving the real API_BUSINESS_PARTNER contract over OData V2 (dev + Cloud Connector demo). POST /mock/outage {on:true} simulates downtime.",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@sap/cds": "^10",
+    "@cap-js/sqlite": "^3",
+    "@cap-js-community/odata-v2-adapter": "^1",
+    "express": "^5"
+  },
+  "scripts": {
+    "start": "cds-serve --port 4006",
+    "watch": "cds watch --port 4006"
+  },
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "../srv/external/API_BUSINESS_PARTNER"
+      },
+      "auth": "mocked"
+    }
+  }
+}
