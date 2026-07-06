@@ -1,0 +1,29 @@
+{
+  "xsappname": "tasjeel",
+  "tenant-mode": "dedicated",
+  "description": "Tasjeel supplier onboarding: suppliers register, procurement reviews, admins maintain master data",
+  "scopes": [
+    { "name": "$XSAPPNAME.Applicant", "description": "Register as a supplier and manage your own application" },
+    { "name": "$XSAPPNAME.Reviewer", "description": "Review, approve and reject supplier applications" },
+    { "name": "$XSAPPNAME.Admin", "description": "Maintain master data (categories, document types, banks)" }
+  ],
+  "attributes": [],
+  "role-templates": [
+    { "name": "Applicant", "description": "Supplier", "scope-references": ["$XSAPPNAME.Applicant"], "attribute-references": [] },
+    { "name": "Reviewer", "description": "Procurement reviewer", "scope-references": ["$XSAPPNAME.Reviewer"], "attribute-references": [] },
+    { "name": "Admin", "description": "Administrator", "scope-references": ["$XSAPPNAME.Admin"], "attribute-references": [] }
+  ],
+  "role-collections": [
+    { "name": "Tasjeel_Applicant", "description": "Tasjeel supplier", "role-template-references": ["$XSAPPNAME.Applicant"] },
+    { "name": "Tasjeel_Reviewer", "description": "Tasjeel procurement reviewer", "role-template-references": ["$XSAPPNAME.Reviewer"] },
+    { "name": "Tasjeel_Admin", "description": "Tasjeel administrator (includes reviewing)", "role-template-references": ["$XSAPPNAME.Admin", "$XSAPPNAME.Reviewer"] }
+  ],
+  "oauth2-configuration": {
+    "token-validity": 1800,
+    "redirect-uris": [
+      "https://*.cfapps.ap21.hana.ondemand.com/**",
+      "https://*.launchpad.cfapps.ap21.hana.ondemand.com/**",
+      "http://localhost:5001/**"
+    ]
+  }
+}
