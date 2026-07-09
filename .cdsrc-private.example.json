@@ -1,0 +1,11 @@
+{
+  "requires": {
+    "S4_SANDBOX": {
+      "[development]": {
+        "credentials": {
+          "headers": { "APIKey": "<your api.sap.com API key>" }
+        }
+      }
+    }
+  }
+}
