@@ -4,42 +4,144 @@
     "id": "tasjeel.vendors",
     "type": "application",
     "i18n": "i18n/i18n.properties",
-    "applicationVersion": { "version": "0.5.0" },
+    "applicationVersion": {
+      "version": "0.5.0"
+    },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "dataSources": {
-      "mainService": { "uri": "/odata/v4/review/", "type": "OData", "settings": { "odataVersion": "4.0" } }
-    }
-  },
-  "sap.ui": { "technology": "UI5", "deviceTypes": { "desktop": true, "tablet": true, "phone": true } },
-  "sap.ui5": {
-    "dependencies": { "minUI5Version": "1.148.0", "libs": { "sap.fe.templates": {} } },
-    "contentDensities": { "compact": true, "cozy": true },
-    "models": {
-      "i18n": { "type": "sap.ui.model.resource.ResourceModel", "settings": { "bundleName": "tasjeel.vendors.i18n.i18n", "supportedLocales": ["", "ar"], "fallbackLocale": "" } },
-      "": { "dataSource": "mainService", "preload": true, "settings": { "operationMode": "Server", "autoExpandSelect": true, "earlyRequests": true } }
+      "mainService": {
+        "uri": "odata/v4/review/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
     },
-    "resources": { "css": [{ "uri": "../../portal/webapp/css/style.css" }] },
-    "routing": {
-      "routes": [
-        { "pattern": ":?query:", "name": "VendorsList", "target": "VendorsList" },
-        { "pattern": "Vendors({key}):?query:", "name": "VendorsObjectPage", "target": "VendorsObjectPage" }
-      ],
-      "targets": {
-        "VendorsList": {
-          "type": "Component", "id": "VendorsList", "name": "sap.fe.templates.ListReport",
-          "options": { "settings": {
-            "contextPath": "/Vendors", "variantManagement": "Page", "initialLoad": "Enabled",
-            "navigation": { "Vendors": { "detail": { "route": "VendorsObjectPage" } } },
-            "controlConfiguration": { "@com.sap.vocabularies.UI.v1.LineItem": { "tableSettings": { "type": "ResponsiveTable", "selectionMode": "None" } } }
-          } }
-        },
-        "VendorsObjectPage": {
-          "type": "Component", "id": "VendorsObjectPage", "name": "sap.fe.templates.ObjectPage",
-          "options": { "settings": { "contextPath": "/Vendors", "editableHeaderContent": false } }
+    "crossNavigation": {
+      "inbounds": {
+        "TasjeelVendor-display": {
+          "semanticObject": "TasjeelVendor",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "icon": "sap-icon://factory",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
         }
       }
     }
   },
-  "sap.fiori": { "registrationIds": [], "archeType": "transactional" }
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.148.0",
+      "libs": {
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "tasjeel.vendors.i18n.i18n",
+          "supportedLocales": [
+            "",
+            "ar"
+          ],
+          "fallbackLocale": ""
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "VendorsList",
+          "target": "VendorsList"
+        },
+        {
+          "pattern": "Vendors({key}):?query:",
+          "name": "VendorsObjectPage",
+          "target": "VendorsObjectPage"
+        }
+      ],
+      "targets": {
+        "VendorsList": {
+          "type": "Component",
+          "id": "VendorsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Vendors",
+              "variantManagement": "Page",
+              "initialLoad": "Enabled",
+              "navigation": {
+                "Vendors": {
+                  "detail": {
+                    "route": "VendorsObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "selectionMode": "None"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "VendorsObjectPage": {
+          "type": "Component",
+          "id": "VendorsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Vendors",
+              "editableHeaderContent": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "tasjeel.service"
+  }
 }

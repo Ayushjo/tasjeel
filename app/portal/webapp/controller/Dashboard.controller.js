@@ -21,7 +21,7 @@ sap.ui.define(["./BaseController", "sap/ui/model/json/JSONModel", "../model/form
     async _load() {
       const m = this.getView().getModel("stats");
       const headers = { ...this.getOwnerComponent().getAuthHeaders(), "Accept-Language": this.getUi().getProperty("/lang") };
-      const get = (p) => fetch("/rest/stats/" + p, { headers }).then((r) => (r.ok ? r.json() : null));
+      const get = (p) => fetch(this.getOwnerComponent().backendUrl("rest/stats/" + p), { headers }).then((r) => (r.ok ? r.json() : null));
       const weeks = Number(m.getProperty("/weeks"));
       const [summary, weekly, byStatus, byCategory] = await Promise.all([get("summary"), get("weekly?weeks=" + weeks), get("byStatus"), get("byCategory")]);
       if (summary) m.setProperty("/summary", summary);

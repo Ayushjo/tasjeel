@@ -30,6 +30,8 @@ mta_archives/
 *_mta_build_tmp/
 *.mtar
 dist/
+# mbt staging folder for the HTML5 content module
+/resources/
 resources/mta-*/
 .ui5/
 

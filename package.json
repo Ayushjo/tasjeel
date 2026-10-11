@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
+    "@cap-js/hana": "^3",
     "@sap-cloud-sdk/connectivity": "^4",
     "@sap-cloud-sdk/http-client": "^4",
     "@sap-cloud-sdk/resilience": "^4",
@@ -24,7 +25,10 @@
     "watch:css": "node -e \"require('fs').watch('app/portal/webapp/css/less',()=>require('child_process').execSync('npm run build:css',{stdio:'inherit'}))\"",
     "mock:s4": "cd mock-s4 && cds watch --port 4006",
     "hybrid": "cds watch --profile hybrid --port 4008",
-    "router:hybrid": "PORT=5001 destinations='[{\"name\":\"srv-api\",\"url\":\"http://localhost:4008\",\"forwardAuthToken\":true}]' cds bind --profile hybrid --exec -- npm start --prefix app/router"
+    "router:hybrid": "PORT=5001 destinations='[{\"name\":\"srv-api\",\"url\":\"http://localhost:4008\",\"forwardAuthToken\":true}]' cds bind --profile hybrid --exec -- sh -c 'cd app/router/hybrid && node ../node_modules/@sap/approuter/approuter.js'",
+    "build:ui": "node scripts/build-ui.mjs",
+    "build:mta": "mbt build -t mta_archives",
+    "deploy": "cf deploy mta_archives/tasjeel_1.0.0.mtar"
   },
   "private": true,
   "cds": {
@@ -101,7 +105,27 @@
             "path": "/odata/v2/api-business-partner"
           }
         }
+      },
+      "db": {
+        "[development]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:"
+          }
+        },
+        "[production]": {
+          "kind": "hana"
+        }
+      },
+      "destinations": {
+        "[production]": true
+      },
+      "connectivity": {
+        "[production]": true
       }
     }
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

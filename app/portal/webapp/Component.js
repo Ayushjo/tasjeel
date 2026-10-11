@@ -62,7 +62,7 @@ sap.ui.define([
       const ui = this.getModel("ui");
       let me = null;
       try {
-        const res = await fetch("/rest/user/me", { headers: { Accept: "application/json" }, credentials: "same-origin" });
+        const res = await fetch(this.backendUrl("rest/user/me"), { headers: { Accept: "application/json" }, credentials: "same-origin" });
         if (res.ok) me = await res.json();
       } catch (e) { /* offline: fall back to demo mode */ }
 
@@ -88,6 +88,12 @@ sap.ui.define([
       return ((parts[0]?.[0] || "") + (parts[1]?.[0] || "")).toUpperCase() || "?";
     },
 
+    /**
+     * Backend URL relative to this app, e.g. "rest/stats/summary". Works the same on the local CAP server,
+     * behind the approuter (HTML5 repository) and inside SAP Build Work Zone.
+     */
+    backendUrl(path) { return sap.ui.require.toUrl("tasjeel/portal/" + path); },
+
     /** Resolves when the signed-in identity is known (used by views that load data on init). */
     identityLoaded() { return this._identity; },
 
@@ -104,7 +110,9 @@ sap.ui.define([
 
     signOut() {
       if (!this.getModel("ui").getProperty("/demo")) {
-        location.href = "/logout"; // approuter ends the session and the XSUAA login, then shows /signed-out.html
+        // Inside Work Zone the launchpad owns the session; standalone, the approuter's logout endpoint ends it.
+        const shell = sap.ui.require("sap/ushell/Container");
+        if (shell) shell.logout(); else location.href = "/logout";
         return;
       }
       STORE.set("tj-user", "");

@@ -18,7 +18,7 @@
       // Behind the approuter (hybrid :5000 or BTP) the session cookie + XSUAA token handle this.
       if (["localhost", "127.0.0.1"].includes(location.hostname) && location.port === "4004") {
         var auth = "Basic " + btoa(user + ":"), open = XMLHttpRequest.prototype.open, send = XMLHttpRequest.prototype.send;
-        XMLHttpRequest.prototype.open = function (m, url) { this.__tjOData = /\/odata\//.test(url); return open.apply(this, arguments); };
+        XMLHttpRequest.prototype.open = function (m, url) { this.__tjOData = /(^|\/)odata\//.test(url); return open.apply(this, arguments); };
         XMLHttpRequest.prototype.send = function () { if (this.__tjOData) this.setRequestHeader("Authorization", auth); return send.apply(this, arguments); };
       }
     })();

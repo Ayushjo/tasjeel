@@ -1,0 +1,30 @@
+{
+  "welcomeFile": "/portal/webapp/index.html",
+  "authenticationMethod": "route",
+  "sessionTimeout": 30,
+  "logout": {
+    "logoutEndpoint": "/logout",
+    "logoutPage": "/signed-out.html"
+  },
+  "routes": [
+    {
+      "source": "^/signed-out\\.html$",
+      "localDir": "../resources",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/(odata|rest)/(.*)$",
+      "target": "/$1/$2",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": true
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "/$1",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    }
+  ]
+}
