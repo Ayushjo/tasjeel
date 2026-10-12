@@ -44,6 +44,7 @@ sap.ui.define([
         user: null,
         demo: true,     // true: local CAP mock users; false: real identity from XSUAA via the approuter
         noRole: null,   // signed in for real, but no Tasjeel role collection assigned (shows who, so they can ask)
+        vendorsUrl: this._vendorsUrl(),
         sideExpanded: !Device.system.tablet && window.innerWidth >= 1200
       }), "ui");
       this.setModel(new JSONModel(Device), "device");
@@ -93,6 +94,15 @@ sap.ui.define([
      * behind the approuter (HTML5 repository) and inside SAP Build Work Zone.
      */
     backendUrl(path) { return sap.ui.require.toUrl("tasjeel/portal/" + path); },
+
+    /**
+     * Where the Fiori Elements vendor list lives: a launchpad intent inside Work Zone, the sibling app in the
+     * HTML5 repository behind the approuter, or the neighbouring folder on the local CAP server.
+     */
+    _vendorsUrl() {
+      if (sap.ui.require("sap/ushell/Container")) return "#TasjeelVendor-display";
+      return /\/webapp\//.test(location.pathname) ? "../../vendors/webapp/index.html" : "../tasjeelvendors/index.html";
+    },
 
     /** Resolves when the signed-in identity is known (used by views that load data on init). */
     identityLoaded() { return this._identity; },

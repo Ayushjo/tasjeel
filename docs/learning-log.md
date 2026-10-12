@@ -247,3 +247,37 @@ The supplier overview had stayed a placeholder since Phase 3. It is now a real s
 - `requirements()` returned raw `{0}` placeholders when the client sent no `Accept-Language`. It now falls back to the default language.
 - UI5 date skeletons need canonical symbol order (`MMMMEEEEd`, not `EEEEdMMMM`).
 - `NavContainer` auto-focuses the new page, which drew focus rings without any keyboard use. Turned off.
+
+## Phase 8: Deploy to SAP BTP
+
+**Built:** a live deployment on the ap21 trial: <https://85cc730atrial-dev-tasjeel.cfapps.ap21.hana.ondemand.com>
+- **One MTA (`mta.yaml`):**
+  - CAP service (HANA Cloud through an HDI container) and an HDI deployer for tables and demo data;
+  - standalone approuter as the public entry point;
+  - both UI apps zipped into the HTML5 Application Repository (`scripts/build-ui.mjs`, no UI5 tooling needed);
+  - destinations for the backend and for Work Zone;
+  - connectivity, reserved for Phase 9.
+- **The same UI build runs in every environment:** the apps call the backend with app-relative URLs (`odata/…`, `rest/…`). Each app's `xs-app.json` routes them to the `tasjeel-srv-api` destination, and locally `@sap/cds-fiori` plus a small `srv/server.js` map them back.
+- **Verified in Brave** under a real SAP ID with `Tasjeel_Admin`:
+  - dashboard on live HANA data;
+  - inbox and detail views;
+  - "Start review" writes through approuter CSRF into HANA, and the history records the SAP ID;
+  - the Fiori Elements vendor list;
+  - the S/4 panel shows both systems offline (no destinations yet) without breaking the page;
+  - the backend URL alone returns 401 without a token.
+
+**Concepts**
+- **MTA build and deploy:** `mbt build` runs `cds build --production` (gen/srv, gen/db), packages modules, then `cf deploy` creates or updates services, binds them, stages apps and runs the HDI deployer as a CF task.
+- **HDI on HANA Cloud:** the `hana`/`hdi-shared` broker needs a HANA Cloud database *visible to the CF space*. Creating the database with `cf create-service hana-cloud hana-free … -c '{"data":{…}}'` puts it straight into the space; a database created in HANA Cloud Central needs an instance mapping instead.
+- **HTML5 repository:** apps are served at `/<sap.app.id without dots>/` (`/tasjeelportal/`). The router hands everything to `html5-apps-repo-rt`, which then applies the app's own `xs-app.json`.
+- **Destinations from an MTA:**
+  - service-instance destinations (HTML5 repo host, XSUAA with `sap.cloud.service`) go in a `com.sap.application.content` module;
+  - plain URL destinations go in the destination service's `init_data`.
+- **Resumable deploys:** a failed `cf deploy` stays as an operation that can be resumed (`-a retry`) or aborted. `-m <module>` redeploys a single module, e.g. only the UI content.
+
+**Bugs found by deploying**
+- "No database available in space dev": HANA wasn't mapped to the space, so it was recreated in the space via the CF CLI.
+- The SAP HANA Cloud tools subscription failed on the trial ("try again"). The CLI route above makes it unnecessary.
+- "Missing destination property ServiceInstanceName": the backend URL destination was in the content module. Moved it to `init_data`.
+- The portal's "Vendors" link used the local folder path. It's now environment-aware: a launchpad intent, the sibling HTML5 app, or the local folder.
+- Seed documents have metadata but no file content (CSV can't carry binaries), so their preview is empty. Uploaded documents work.

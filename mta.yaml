@@ -129,12 +129,6 @@ modules:
         instance:
           existing_destinations_policy: update
           destinations:
-            - Name: tasjeel-srv-api
-              URL: ~{srv-api/srv-url}
-              Type: HTTP
-              ProxyType: Internet
-              Authentication: NoAuthentication
-              HTML5.ForwardAuthToken: true
             - Name: tasjeel-html5-repository
               ServiceInstanceName: tasjeel-html5-repo-host
               ServiceKeyName: tasjeel-html5-repo-host-key
@@ -168,6 +162,19 @@ resources:
       config:
         HTML5Runtime_enabled: true
         version: 1.0.0
+        # Plain URL destinations go here; the content module above only takes service-instance destinations.
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: tasjeel-srv-api
+                URL: ~{srv-api/srv-url}
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: NoAuthentication
+                HTML5.ForwardAuthToken: true
+    requires:
+      - name: srv-api
 
   # Phase 9: reaches the mock "on-premise" S/4 through the Cloud Connector
   - name: tasjeel-connectivity

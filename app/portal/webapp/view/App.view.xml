@@ -36,7 +36,7 @@
         <tnt:NavigationList>
           <tnt:NavigationListItem key="inbox" text="{i18n>nav.inbox}" icon="sap-icon://phosphor/tray"/>
           <tnt:NavigationListItem key="dashboard" text="{i18n>nav.dashboard}" icon="sap-icon://phosphor/chart-line-up"/>
-          <tnt:NavigationListItem key="vendors" text="{i18n>nav.vendors}" icon="sap-icon://phosphor/buildings" href="../../vendors/webapp/index.html"/>
+          <tnt:NavigationListItem key="vendors" text="{i18n>nav.vendors}" icon="sap-icon://phosphor/buildings" href="{ui>/vendorsUrl}"/>
         </tnt:NavigationList>
         <tnt:fixedItem>
           <tnt:NavigationList>
