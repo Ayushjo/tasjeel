@@ -4,7 +4,9 @@
 
 **Bilingual supplier onboarding on SAP BTP: from registration to a Business Partner in SAP S/4HANA.**
 
-SAPUI5 · Fiori Elements · SAP CAP · OData V4 · S/4HANA Business Partner API · XSUAA · Approuter
+SAPUI5 · Fiori Elements · SAP CAP · OData V4 · S/4HANA Business Partner API · XSUAA · HANA Cloud
+
+**[Live on SAP BTP](https://85cc730atrial-dev-tasjeel.cfapps.ap21.hana.ondemand.com)** · [Learning log](docs/learning-log.md)
 
 </div>
 
@@ -14,7 +16,9 @@ Suppliers register through a guided, bilingual (Arabic / English, full RTL) wiza
 
 The scenario is modelled on Saudi supplier registration: unified (CR) number, ZATCA VAT number, Saudi IBAN, National Address, GOSI and Zakat certificates.
 
-> **Status:** phases 0–7 complete. It runs locally and in hybrid mode against a real XSUAA instance on SAP BTP. Next is deployment to BTP Cloud Foundry (HANA Cloud, HTML5 repository, Work Zone). See the [roadmap](#roadmap).
+> **Status:** deployed on SAP BTP (Cloud Foundry, ap21 trial) with HANA Cloud, the HTML5 Application Repository and a standalone approuter. Next is the Cloud Connector link to an on-premise S/4. See the [roadmap](#roadmap).
+>
+> **About the live link:** sign-in is with an SAP ID, and the app only opens for users who hold a `Tasjeel_*` role collection; everyone else sees the "no access yet" screen. The database is a free-tier HANA Cloud instance that stops every night, so the app may be unavailable until it is restarted. For a full walkthrough, run it locally (below).
 
 ---
 
@@ -105,6 +109,20 @@ Locally, CAP's mocked authentication is used. The welcome page offers demo users
 curl -XPOST localhost:4006/mock/outage -H 'content-type: application/json' -d '{"on":true}'
 ```
 
+### Deploy to SAP BTP
+
+Prerequisites: a BTP trial (Cloud Foundry), the `cf` CLI with the MultiApps plugin, and `mbt`.
+
+```bash
+# HANA Cloud database inside the CF space (free tier; choose your own admin password)
+cf create-service hana-cloud hana-free tasjeel-hana -c '{"data":{"edition":"cloud","memory":16,"systempassword":"<password>","whitelistIPs":["0.0.0.0/0"]}}'
+
+npm run build:mta       # mbt build → mta_archives/tasjeel_1.0.0.mtar
+npm run deploy          # cf deploy
+```
+
+Then assign a `Tasjeel_*` role collection to your user (Security → Role Collections) and open the `tasjeel` app's route. The free HANA instance stops nightly; start it again with `cf update-service tasjeel-hana -c '{"data":{"serviceStopped":false}}'`.
+
 ### Hybrid mode: real SAP login against BTP
 
 ```bash
@@ -150,7 +168,7 @@ tasjeel/
 - [x] **5** Reviewer inbox, decisions, dashboard, Fiori Elements vendor list
 - [x] **6** S/4HANA: duplicate check, Business Partner creation, failure handling and retry
 - [x] **7** XSUAA roles, approuter, real identity in the UI, authorization tests
-- [ ] **8** Deploy to BTP: MTA, HANA Cloud, HTML5 repository, SAP Build Work Zone
+- [x] **8** Deploy to BTP: MTA, HANA Cloud, HTML5 repository, standalone approuter (SAP Build Work Zone site pending)
 - [ ] **9** Cloud Connector: cloud app → S/4 running on-premise
 - [ ] **10** CI/CD, linting, UI tests
 
