@@ -281,3 +281,19 @@ The supplier overview had stayed a placeholder since Phase 3. It is now a real s
 - "Missing destination property ServiceInstanceName": the backend URL destination was in the content module. Moved it to `init_data`.
 - The portal's "Vendors" link used the local folder path. It's now environment-aware: a launchpad intent, the sibling HTML5 app, or the local folder.
 - Seed documents have metadata but no file content (CSV can't carry binaries), so their preview is empty. Uploaded documents work.
+
+## Phase 9: Cloud Connector
+
+**Built:** approving a supplier in the deployed app now creates the Business Partner in the mock "on-premise" S/4 on the laptop. Verified: BP 1000402 "Al Waha Logistics" with its VAT number, created from BTP. Setup and screenshots are in [cloud-connector.md](cloud-connector.md).
+- Destination `TASJEEL_S4_ONPREM` (ProxyType OnPremise) is created by the MTA in the app's own destination service. Nothing is typed into the cockpit, and it doesn't collide with another project's `S4_ONPREM`.
+- Cloud Connector mapping `tasjeel-s4:44301` → `localhost:4006`, exposing a single resource, `/odata/v2/api-business-partner`. The same connector serves another project on its own virtual host.
+
+**Concepts**
+- **Direction of trust:** the Cloud Connector dials *out* to BTP and keeps a TLS tunnel open. BTP never connects in, and the laptop has no open ports.
+- **Virtual vs internal host:** BTP only knows `tasjeel-s4:44301`. The real host and port stay on the laptop, and the resource list is the allow-list (least privilege).
+- **OnPremise destinations:** the SAP Cloud SDK sees `ProxyType: OnPremise`, fetches a token for the Connectivity service and sends the request through its proxy. CAP code doesn't change between the local URL, the sandbox and the tunnel; only `cds.requires` does.
+- **Instance-level destinations:** destinations in the app's own destination instance (MTA `init_data`) are found before subaccount ones. Deployments stay self-contained, and two apps can't overwrite each other's destinations.
+
+**Observed**
+- The duplicate check through the tunnel takes ~690 ms (local: ~40 ms). The 5 s timeout leaves plenty of headroom.
+- mock-s4's log shows the exact sequence from BTP: duplicate check → idempotency lookup by application number → `POST A_BusinessPartner` (201) → tax number.

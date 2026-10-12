@@ -173,6 +173,13 @@ resources:
                 ProxyType: Internet
                 Authentication: NoAuthentication
                 HTML5.ForwardAuthToken: true
+              # Phase 9: the "on-premise" S/4 (mock-s4 on the laptop) through the Cloud Connector.
+              # Virtual host as mapped in the Cloud Connector; Bridge uses s4-onprem:44300, so Tasjeel has its own.
+              - Name: TASJEEL_S4_ONPREM
+                URL: http://tasjeel-s4:44301
+                Type: HTTP
+                ProxyType: OnPremise
+                Authentication: NoAuthentication
     requires:
       - name: srv-api
 

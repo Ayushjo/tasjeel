@@ -101,7 +101,7 @@
         },
         "[production]": {
           "credentials": {
-            "destination": "S4_ONPREM",
+            "destination": "TASJEEL_S4_ONPREM",
             "path": "/odata/v2/api-business-partner"
           }
         }

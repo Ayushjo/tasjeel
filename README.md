@@ -16,7 +16,7 @@ Suppliers register through a guided, bilingual (Arabic / English, full RTL) wiza
 
 The scenario is modelled on Saudi supplier registration: unified (CR) number, ZATCA VAT number, Saudi IBAN, National Address, GOSI and Zakat certificates.
 
-> **Status:** deployed on SAP BTP (Cloud Foundry, ap21 trial) with HANA Cloud, the HTML5 Application Repository and a standalone approuter. Next is the Cloud Connector link to an on-premise S/4. See the [roadmap](#roadmap).
+> **Status:** deployed on SAP BTP (Cloud Foundry, ap21 trial) with HANA Cloud, the HTML5 Application Repository and a standalone approuter. Approvals on BTP create the Business Partner in an "on-premise" S/4 on a laptop through the SAP Cloud Connector ([how](docs/cloud-connector.md)). See the [roadmap](#roadmap).
 >
 > **About the live link:** sign-in is with an SAP ID, and the app only opens for users who hold a `Tasjeel_*` role collection; everyone else sees the "no access yet" screen. The database is a free-tier HANA Cloud instance that stops every night, so the app may be unavailable until it is restarted. For a full walkthrough, run it locally (below).
 
@@ -31,7 +31,7 @@ The scenario is modelled on Saudi supplier registration: unified (CR) number, ZA
 | **Saudi-grade validation** | Unified number, VAT (`3…3`, 15 digits), IBAN mod-97 with live bank detection and SWIFT fill, National Address, document expiry. Arabic-Indic digits are normalized server-side. |
 | **Reviewer inbox** | `FlexibleColumnLayout`, deep links, J/K/Esc triage, explainable risk score, duplicate detection (unified no., VAT, IBAN), PDF preview, activity timeline, internal or shared comments. |
 | **Decisions with guardrails** | Approve, request changes on specific fields (the supplier's wizard reopens on them), reject with a reason and a 5-second undo. Status transitions are enforced by a server-side state machine. |
-| **S/4HANA integration** | Duplicate check against the target S/4 and the public S/4HANA Cloud sandbox. Approval creates an organization BP plus VAT number. Timeouts, a visible failed state, and an **idempotent retry** that never creates a second BP. |
+| **S/4HANA integration** | Through the **SAP Cloud Connector** (Destination → Connectivity → tunnel) to an on-premise S/4. Duplicate check against that system and the public S/4HANA Cloud sandbox. Approval creates an organization BP plus VAT number. Timeouts, a visible failed state, and an **idempotent retry** that never creates a second BP. |
 | **Security** | XSUAA scopes → role templates → role collections; approuter with login, CSRF and logout; row-level ownership (`createdBy = $user`, including history and messages); the UI adapts to roles, the server enforces them. |
 | **Fiori Elements** | Approved-vendor list report and object page generated purely from CDS annotations. |
 | **Bilingual by design** | Every label, message, code list and validation error in EN/AR; RTL layout, mirrored icons and bidi-safe mixed text. Light and dark themes over SAP Horizon. |
@@ -169,7 +169,7 @@ tasjeel/
 - [x] **6** S/4HANA: duplicate check, Business Partner creation, failure handling and retry
 - [x] **7** XSUAA roles, approuter, real identity in the UI, authorization tests
 - [x] **8** Deploy to BTP: MTA, HANA Cloud, HTML5 repository, standalone approuter (SAP Build Work Zone site pending)
-- [ ] **9** Cloud Connector: cloud app → S/4 running on-premise
+- [x] **9** Cloud Connector: approval on BTP creates the Business Partner on-premise ([setup](docs/cloud-connector.md))
 - [ ] **10** CI/CD, linting, UI tests
 
 ## What I learned
